@@ -1,0 +1,159 @@
+.o_portal {
+    .o_ecsp_portal_banner {
+        background-color: #ffffff;
+        border-bottom: 3px solid $primary;
+    }
+
+    .o_ecsp_portal_logo {
+        height: 42px;
+        width: auto;
+    }
+
+    .o_ecsp_portal_title {
+        color: $body-color;
+        font-weight: 700;
+        font-size: 1.15rem;
+        line-height: 1.2;
+    }
+
+    .o_ecsp_portal_subtitle {
+        color: $primary;
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+
+    .o_portal_index_card {
+        border-top: 3px solid $primary;
+        transition: box-shadow .15s ease-in-out;
+    }
+    .o_portal_index_card:hover {
+        box-shadow: 0 .25rem .75rem rgba($primary, 0.15);
+    }
+
+    /* ---------------- Dashboard ---------------- */
+    .o_ecsp_dashboard {
+        padding-top: .5rem;
+    }
+
+    .o_dash_avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: $primary;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+
+    .o_dash_card {
+        background: #fff;
+        border: 1px solid #eceef5;
+        border-radius: .75rem;
+        padding: 1.1rem 1.25rem;
+        box-shadow: 0 .125rem .5rem rgba(0, 0, 0, .06);
+    }
+
+    .o_dash_card_balance {
+        background: $primary;
+        color: #fff;
+        border: none;
+    }
+    .o_dash_card_balance .o_dash_card_label {
+        color: rgba(255, 255, 255, .75);
+    }
+
+    .o_dash_card_label {
+        font-size: .8rem;
+        color: #8a8fa3;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+        margin-bottom: .35rem;
+    }
+
+    .o_dash_card_value {
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+    .o_dash_progress {
+        height: 6px;
+        border-radius: 3px;
+        background: #eceef5;
+        margin-top: .6rem;
+        overflow: hidden;
+    }
+    .o_dash_progress_bar {
+        height: 100%;
+        background: $primary;
+        border-radius: 3px;
+    }
+
+    .o_dash_request_card {
+        background: #fff;
+        border: 1px solid #eceef5;
+        border-radius: .75rem;
+        padding: 1rem 1.25rem;
+    }
+
+    .o_dash_mini_card {
+        background: #fff;
+        border: 1px solid #eceef5;
+        border-radius: .6rem;
+        padding: .6rem .5rem;
+    }
+
+    .o_dash_stepper {
+        display: flex;
+        align-items: flex-start;
+    }
+    .o_dash_step {
+        flex: 1;
+        text-align: center;
+        position: relative;
+    }
+    .o_dash_step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: 50%;
+        width: 100%;
+        height: 2px;
+        background: #e2e4ee;
+        z-index: 0;
+    }
+    .o_dash_step.done:not(:last-child)::after {
+        background: $primary;
+    }
+    .o_dash_step_dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #e2e4ee;
+        margin: 0 auto .4rem;
+        position: relative;
+        z-index: 1;
+        border: 2px solid #fff;
+    }
+    .o_dash_step.done .o_dash_step_dot {
+        background: $primary;
+    }
+    .o_dash_step.refused .o_dash_step_dot {
+        background: $danger;
+    }
+    .o_dash_step_label {
+        font-size: .72rem;
+        color: #8a8fa3;
+    }
+    .o_dash_step.done .o_dash_step_label {
+        color: $primary;
+        font-weight: 600;
+    }
+}
+
+#o_attendance_toggle_btn {
+    min-width: 140px;
+}

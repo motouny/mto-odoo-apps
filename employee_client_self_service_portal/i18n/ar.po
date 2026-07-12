@@ -1,0 +1,713 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* employee_client_self_service_portal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: employee_client_self_service_portal
+#: model:mail.template,body_html:employee_client_self_service_portal.mail_template_assignment_reminder
+msgid ""
+"<div style=\"margin: 0px; padding: 0px; font-family: Arial, sans-serif;\">\n"
+"                    <p>Hello <t t-out=\"object.name\"/>,</p>\n"
+"                    <p>You still have assignments that need a status update:</p>\n"
+"                    <ul>\n"
+"                        <t t-foreach=\"ctx.get('pending_tasks', [])\" t-as=\"task\">\n"
+"                            <li>\n"
+"                                <strong t-out=\"task.name\"/>\n"
+"                                <t t-if=\"task.deadline\"> - Deadline: <t t-out=\"task.deadline\"/></t>\n"
+"                                - Current status: <t t-out=\"task.state\"/>\n"
+"                            </li>\n"
+"                        </t>\n"
+"                    </ul>\n"
+"                    <p>\n"
+"                        <a t-attf-href=\"{{ object.get_base_url() }}/my/assignments\" style=\"background-color:#875A7B;color:#fff;padding:8px 16px;text-decoration:none;border-radius:4px;\">\n"
+"                            Update my assignments\n"
+"                        </a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px; font-family: Arial, sans-serif; direction: rtl; text-align: right;\">\n"
+"                    <p>مرحباً <t t-out=\"object.name\"/>،</p>\n"
+"                    <p>لديك مهام مسندة إليك ما زالت بحاجة إلى تحديث حالتها:</p>\n"
+"                    <ul>\n"
+"                        <t t-foreach=\"ctx.get('pending_tasks', [])\" t-as=\"task\">\n"
+"                            <li>\n"
+"                                <strong t-out=\"task.name\"/>\n"
+"                                <t t-if=\"task.deadline\"> - الموعد النهائي: <t t-out=\"task.deadline\"/></t>\n"
+"                                - الحالة الحالية: <t t-out=\"task.state\"/>\n"
+"                            </li>\n"
+"                        </t>\n"
+"                    </ul>\n"
+"                    <p>\n"
+"                        <a t-attf-href=\"{{ object.get_base_url() }}/my/assignments\" style=\"background-color:#875A7B;color:#fff;padding:8px 16px;text-decoration:none;border-radius:4px;\">\n"
+"                            تحديث مهامي\n"
+"                        </a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "<option value=\"\">-</option>"
+msgstr "<option value=\"\">-</option>"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+msgid ""
+"<select class=\"form-select form-select-sm\" name=\"state\">\n"
+"                                <option value=\"in_progress\">In Progress</option>\n"
+"                                <option value=\"done\">Done</option>\n"
+"                            </select>"
+msgstr ""
+"<select class=\"form-select form-select-sm\" name=\"state\">\n"
+"                                <option value=\"in_progress\">قيد التنفيذ</option>\n"
+"                                <option value=\"done\">منجزة</option>\n"
+"                            </select>"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "<span class=\"fs-6 fw-normal\">days</span>"
+msgstr "<span class=\"fs-6 fw-normal\">يوم</span>"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+msgid "Absent"
+msgstr "غائب"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+msgid "Accept Task"
+msgstr "قبول المهمة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__employee_portal_task__state__accepted
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+msgid "Accepted"
+msgstr "مقبولة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+msgid "Approvals"
+msgstr "الموافقات"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+msgid "Approve"
+msgstr "موافقة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "Approved"
+msgstr "تمت الموافقة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
+msgid "Assign New Task"
+msgstr "إسناد مهمة جديدة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
+msgid "Assign Task"
+msgstr "إسناد المهمة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__assigned_by_id
+msgid "Assigned By"
+msgstr "أُسندت بواسطة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__employee_id
+msgid "Assigned To"
+msgstr "مسندة إلى"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
+msgid "Cancel Request"
+msgstr "إلغاء الطلب"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Certificate Level"
+msgstr "المؤهل الدراسي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_attendances
+msgid "Check In"
+msgstr "تسجيل حضور"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_attendances
+msgid "Check Out"
+msgstr "تسجيل انصراف"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+msgid "Check in / check out and view your attendance history"
+msgstr "سجّل حضورك وانصرافك واطّلع على سجل حضورك"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "City"
+msgstr "المدينة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Contact Name"
+msgstr "اسم جهة الاتصال"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Contact Phone"
+msgstr "هاتف جهة الاتصال"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Country"
+msgstr "الدولة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__create_uid
+msgid "Created by"
+msgstr "أنشأه"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__deadline
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
+msgid "Deadline"
+msgstr "الموعد النهائي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+msgid "Deadline:"
+msgstr "الموعد النهائي:"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__description
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
+msgid "Description"
+msgstr "الوصف"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__employee_portal_task__state__done
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+msgid "Done"
+msgstr "منجزة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Education"
+msgstr "المؤهل التعليمي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Emergency Contact"
+msgstr "جهة الاتصال في حالات الطوارئ"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_hr_employee
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_layout_company_branding
+msgid "Employee Portal"
+msgstr "بوابة الموظفين"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_employee_portal_task
+msgid "Employee Portal Task Assignment"
+msgstr "مهمة مسندة عبر بوابة الموظفين"
+
+#. module: employee_client_self_service_portal
+#: model:ir.actions.server,name:employee_client_self_service_portal.ir_cron_assignment_reminder_ir_actions_server
+#: model:mail.template,name:employee_client_self_service_portal.mail_template_assignment_reminder
+msgid "Employee Portal: Assignment Status Reminder"
+msgstr "بوابة الموظفين: تذكير بتحديث حالة المهام"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Field of Study"
+msgstr "التخصص الدراسي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
+msgid "From"
+msgstr "من"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_employee_form_portal_access
+msgid "Grant Portal Access"
+msgstr "منح صلاحية دخول البوابة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__employee_portal_task__state__in_progress
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__last_update_date
+msgid "Last Updated"
+msgstr "آخر تحديث"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__write_uid
+msgid "Last Updated by"
+msgstr "آخر من قام بالتحديث"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__write_date
+msgid "Last Updated on"
+msgstr "تاريخ آخر تحديث"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__status_note
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+msgid "Latest Update"
+msgstr "آخر تحديث للحالة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "My Assignments"
+msgstr "مهامي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_attendances
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+msgid "My Attendances"
+msgstr "حضوري وانصرافي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "My Profile"
+msgstr "ملفي الشخصي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "My Requests"
+msgstr "طلباتي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
+msgid "My Tasks"
+msgstr "مهامي في المشروع"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+msgid "My Team"
+msgstr "فريقي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
+msgid "My Time Off"
+msgstr "إجازاتي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__employee_portal_task__state__new
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+msgid "New"
+msgstr "جديدة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
+msgid "New Request"
+msgstr "طلب جديد"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
+msgid "New Time Off Request"
+msgstr "طلب إجازة جديد"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+msgid "No assignments yet."
+msgstr "لا توجد مهام مسندة إليك بعد."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "No employee record is linked to your account."
+msgstr "لا يوجد سجل موظف مرتبط بحسابك."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+msgid "No employees are assigned to this project yet."
+msgstr "لا يوجد موظفون مسندون لهذا المشروع بعد."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+msgid "No pending requests from your team."
+msgstr "لا توجد طلبات معلّقة من فريقك."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "No requests yet."
+msgstr "لا توجد طلبات بعد."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+msgid "No tasks assigned to your team yet."
+msgstr "لا توجد مهام مسندة لفريقك بعد."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+msgid "On Leave"
+msgstr "في إجازة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+msgid "On Permission"
+msgstr "مستأذن"
+
+#. module: employee_client_self_service_portal
+#: model:hr.leave.type,name:employee_client_self_service_portal.holiday_status_permission
+msgid "Permission"
+msgstr "استئذان"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "Pick a valid employee and title."
+msgstr "اختر موظفاً صالحاً وعنواناً للمهمة."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_project_project__portal_manager_id
+msgid "Portal Manager"
+msgstr "مدير البوابة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_hr_employee__project_id
+msgid "Portal Project"
+msgstr "مشروع البوابة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_portal_wizard_user
+msgid "Portal User Config"
+msgstr "إعداد مستخدم البوابة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_project_project__portal_manager_id
+msgid ""
+"Portal user who can review this project's employees and approve their time "
+"off requests from the employee portal. Independent from the Project Manager "
+"above, which requires an internal user."
+msgstr ""
+"مستخدم البوابة الذي يمكنه مراجعة موظفي هذا المشروع والموافقة على طلبات "
+"إجازاتهم من بوابة الموظفين. مستقل عن مدير المشروع أعلاه، الذي يتطلب "
+"مستخدماً داخلياً."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+msgid "Present"
+msgstr "حاضر"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Private Email"
+msgstr "البريد الإلكتروني الشخصي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Private Phone"
+msgstr "الهاتف الشخصي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_project_project
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__project_id
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
+msgid "Project"
+msgstr "المشروع"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_employee_portal_task__project_id
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_hr_employee__project_id
+msgid ""
+"Project this employee is reported under in the employee portal. The "
+"project's Portal Manager can see this employee's status and approve their "
+"time off requests from the portal."
+msgstr ""
+"المشروع الذي يتبع له هذا الموظف في بوابة الموظفين. يمكن لمدير البوابة "
+"الخاص بهذا المشروع رؤية حالة الموظف والموافقة على طلبات إجازاته من "
+"البوابة."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+msgid "Refuse"
+msgstr "رفض"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+msgid "Remaining balance - view and submit leave requests"
+msgstr "الرصيد المتبقي - عرض وتقديم طلبات الإجازات"
+
+#. module: employee_client_self_service_portal
+#: model:mail.template,subject:employee_client_self_service_portal.mail_template_assignment_reminder
+msgid "Reminder: you have assignments waiting for a status update"
+msgstr "تذكير: لديك مهام بانتظار تحديث الحالة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+msgid "Review Approvals"
+msgstr "مراجعة الموافقات"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Save"
+msgstr "حفظ"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "School"
+msgstr "المدرسة/الجامعة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
+msgid "Stage"
+msgstr "المرحلة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "State"
+msgstr "المحافظة/الولاية"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__state
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
+msgid "Status"
+msgstr "الحالة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+msgid "Status update note"
+msgstr "ملاحظة تحديث الحالة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Street"
+msgstr "الشارع"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Street 2"
+msgstr "الشارع 2"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
+msgid "Submit Request"
+msgstr "إرسال الطلب"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
+msgid "Task"
+msgstr "المهمة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+msgid "Tasks assigned to you"
+msgstr "المهام المسندة إليك"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+msgid "Team Tasks"
+msgstr "مهام الفريق"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+msgid "Team status and time off approvals"
+msgstr "حالة الفريق والموافقة على طلبات الإجازة"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "This assignment does not belong to you."
+msgstr "هذه المهمة ليست مسندة إليك."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/hr_employee.py:0
+msgid "This employee has no related contact to grant portal access to."
+msgstr "لا توجد جهة اتصال مرتبطة بهذا الموظف لمنحها صلاحية دخول البوابة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "This request does not require your approval."
+msgstr "هذا الطلب لا يتطلب موافقتك."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
+msgid "Time Off Request"
+msgstr "طلب إجازة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
+msgid "Time Off Type"
+msgstr "نوع الإجازة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+msgid "Time off requests waiting for your approval"
+msgstr "طلبات إجازة بانتظار موافقتك"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__name
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
+msgid "Title"
+msgstr "العنوان"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
+msgid "To"
+msgstr "إلى"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "Total Remaining Balance"
+msgstr "إجمالي الرصيد المتبقي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
+msgid "Type"
+msgstr "النوع"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+msgid "Update"
+msgstr "تحديث"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+msgid "Update your personal and emergency information"
+msgstr "تحديث بياناتك الشخصية وبيانات الطوارئ"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "View all"
+msgstr "عرض الكل"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_attendances
+msgid "Worked Hours"
+msgstr "ساعات العمل"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+msgid "You are not the Portal Manager of any project yet."
+msgstr "أنت لست مدير بوابة لأي مشروع حتى الآن."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "You are not the approver of this request."
+msgstr "أنت لست الجهة المخوّلة للموافقة على هذا الطلب."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_attendances
+msgid "You have no attendance records yet."
+msgstr "لا توجد سجلات حضور بعد."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
+msgid "You have no tasks assigned to you."
+msgstr "لا توجد مهام مسندة إليك."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
+msgid "You have no time off requests yet."
+msgstr "لا توجد طلبات إجازة بعد."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
+msgid "Zip"
+msgstr "الرمز البريدي"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "open tasks"
+msgstr "مهام مفتوحة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "pending leaves"
+msgstr "إجازات معلّقة"

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Home tile: appended into the core module's employee tile row -->
+    <template id="portal_my_home_employee_self_payroll" name="Employee Self Portal Payslips Tile" inherit_id="employee_client_self_service_portal.portal_my_home_employee_self" priority="30">
+        <xpath expr="//div[@id='portal_employee_self_category']" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">My Payslips</t>
+                <t t-set="text">View and download your payslips</t>
+                <t t-set="url" t-value="'/my/payslips'"/>
+                <t t-set="placeholder_count" t-value="'payslip_count'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Dashboard quick-action button -->
+    <template id="portal_my_dashboard_payroll" name="Employee Self Portal Dashboard Payslips Link" inherit_id="employee_client_self_service_portal.portal_my_dashboard" priority="30">
+        <xpath expr="//div[@id='o_dash_employee_actions']" position="inside">
+            <a href="/my/payslips" class="btn btn-outline-secondary btn-sm">My Payslips</a>
+        </xpath>
+    </template>
+
+    <template id="portal_breadcrumbs_employee_self_payroll" name="Employee Self Portal Payslips Breadcrumb" inherit_id="portal.portal_breadcrumbs" priority="30">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'payslips'" class="breadcrumb-item active">My Payslips</li>
+        </xpath>
+    </template>
+
+    <!-- ==================== Payslips ==================== -->
+    <template id="portal_my_payslips" name="My Payslips">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Payslips</t>
+            </t>
+            <div t-if="not payslips" class="alert alert-warning" role="alert">
+                You have no payslips available yet.
+            </div>
+            <t t-if="payslips" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Period</th>
+                        <th>Status</th>
+                        <th class="text-end"/>
+                    </tr>
+                </thead>
+                <t t-foreach="payslips" t-as="payslip">
+                    <tr>
+                        <td><span t-field="payslip.date_from"/> - <span t-field="payslip.date_to"/></td>
+                        <td t-out="payslip.state"/>
+                        <td class="text-end">
+                            <a t-attf-href="/my/payslips/#{payslip.id}/download" class="btn btn-sm btn-secondary">
+                                <i class="fa fa-download"/> Download
+                            </a>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_portal_access" model="ir.ui.view">
+        <field name="name">hr.employee.form.portal.access</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_grant_portal_access" string="Grant Portal Access" type="object"
+                        groups="hr.group_hr_user" invisible="user_id or not active or not id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_form_portal_project" model="ir.ui.view">
+        <field name="name">hr.employee.form.portal.project</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='job_id']" position="after">
+                <field name="project_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

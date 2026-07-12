@@ -1,0 +1,103 @@
+<section style="max-width: 900px; margin: 0 auto; font-family: -apple-system, 'Segoe UI', Arial, sans-serif; color: #333; background: #ffffff;">
+
+    <div style="text-align:center; padding: 32px 0;">
+        <h1 style="font-size: 2rem; margin-bottom: 8px; color: #222;">Employee &amp; Client Self-Service Portal</h1>
+        <p style="font-size: 1.1rem; color: #666;">
+            HR self-service for employees who don't need a full internal Odoo license,
+            plus a client-facing team-oversight role &mdash; all from the standard Odoo portal.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 32px;">
+        <img src="screenshots/01_dashboard.png" alt="Employee dashboard with leave balance and approval stepper" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block; margin-bottom:16px;"/>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:260px;">
+                <img src="screenshots/05_my_team.png" alt="Portal Manager team card grid with live status" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
+                <p style="text-align:center; color:#888; font-size:0.85rem; margin-top:6px;">Portal Manager &ndash; My Team</p>
+            </div>
+            <div style="flex:1; min-width:260px;">
+                <img src="screenshots/06_approvals.png" alt="Time off approval queue for the Portal Manager" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
+                <p style="text-align:center; color:#888; font-size:0.85rem; margin-top:6px;">Portal Manager &ndash; Approvals</p>
+            </div>
+            <div style="flex:1; min-width:260px;">
+                <img src="screenshots/03_assignments.png" alt="Employee assignments with accept and status update" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
+                <p style="text-align:center; color:#888; font-size:0.85rem; margin-top:6px;">Employee &ndash; My Assignments</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="background:#f7f5f9; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+        <h2 style="margin-top:0;">Why this app</h2>
+        <p>
+            Odoo's own Employee and Time Off apps require an internal user license.
+            If most of your workforce only ever needs to check a leave balance, request
+            time off, or clock in and out, this app gives them everything they need
+            through the free <strong>Portal</strong> user type instead &mdash; no extra
+            license required.
+        </p>
+        <p>
+            On top of that, if some of your projects are overseen by an external
+            contact (a client, a site manager, a department head) who isn't an Odoo
+            user at all, this app gives that person a lightweight, project-scoped
+            <strong>Portal Manager</strong> role: they can see their project's team
+            status for the day and approve time-off requests, entirely from the
+            portal, with zero Odoo licenses on their side either.
+        </p>
+    </div>
+
+    <h2>What employees get under <code>/my</code></h2>
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 24px;">
+        <tr><td style="padding:10px; border-bottom:1px solid #eee; width:180px;"><strong>My Profile</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">Edit private contact and emergency information.</td></tr>
+        <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>My Time Off</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">See remaining balance, submit and cancel leave requests, follow the approval stage live.</td></tr>
+        <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>My Attendances</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">Check in / check out and review monthly attendance from the portal.</td></tr>
+        <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>My Tasks</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">Read-only list of Project tasks assigned to the employee.</td></tr>
+        <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>My Assignments</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">Accept lightweight tasks assigned by the project's Portal Manager, post status updates, get a daily email reminder until marked done.</td></tr>
+    </table>
+
+    <h2>What a project's Portal Manager gets</h2>
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 24px;">
+        <tr><td style="padding:10px; border-bottom:1px solid #eee; width:180px;"><strong>My Team</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">Card-grid of the project's employees with today's status: present, on leave, on permission or absent.</td></tr>
+        <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>Approvals</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">First-stage approval on the team's time off / permission requests before internal HR finalizes them.</td></tr>
+        <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>Team Tasks</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">Assign lightweight tasks with a deadline to the project's employees and track progress.</td></tr>
+    </table>
+
+    <div style="background:#f7f5f9; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+        <h2 style="margin-top:0;">Built for multi-tenant, license-conscious deployments</h2>
+        <ul>
+            <li>No new security groups &mdash; everything runs on the standard Portal user type.</li>
+            <li>Branding follows your own company name and logo automatically; no fixed color scheme is imposed.</li>
+            <li>The Portal Manager role is assigned per <em>project</em>, so a single client contact can oversee exactly the employees working on their project &mdash; nothing else.</li>
+            <li>Two-stage time-off validation: the client-side Portal Manager approves first, then your internal HR finalizes it &mdash; the client is never the final word.</li>
+            <li>Ships in English and Arabic.</li>
+        </ul>
+    </div>
+
+    <h2>Optional: My Payslips</h2>
+    <p>
+        Install the companion <strong>Employee &amp; Client Self-Service Portal &ndash; Payslips</strong>
+        module (requires Odoo Enterprise's Payroll app) to add a "My Payslips" page where
+        employees can view and download their finalized payslips.
+    </p>
+
+    <h2>Setup</h2>
+    <ol>
+        <li>Install the module.</li>
+        <li>On an <code>hr.employee</code> record, use the <strong>Grant Portal Access</strong> button to create (or link) a portal user for that employee.</li>
+        <li>On a <code>project.project</code>, set the <strong>Portal Manager</strong> field to the portal user who should oversee that project's employees.</li>
+        <li>On each <code>hr.employee</code> working on that project, set <strong>Portal Project</strong> to the same project.</li>
+        <li>Done &mdash; the employee sees their self-service tiles at <code>/my</code>, and the Portal Manager sees a "My Team" tile.</li>
+    </ol>
+
+    <div style="text-align:center; padding: 24px 0 8px; border-top: 1px solid #eee; margin-top: 8px;">
+        <img src="mto_lockup.png" alt="MTO" style="height:28px; opacity:0.85;"/>
+    </div>
+
+</section>

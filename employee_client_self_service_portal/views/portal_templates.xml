@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Home tiles -->
+    <template id="portal_my_home_employee_self" name="Employee Self Portal Home" inherit_id="portal.portal_my_home" priority="30">
+        <xpath expr="//div[@id='portal_common_category']" position="after">
+            <div t-if="request.env.user.employee_id" class="o_portal_category row g-2 mt-3" id="portal_employee_self_category">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My Profile</t>
+                    <t t-set="text">Update your personal and emergency information</t>
+                    <t t-set="url" t-value="'/my/profile'"/>
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My Time Off</t>
+                    <t t-set="text">Remaining balance - view and submit leave requests</t>
+                    <t t-set="url" t-value="'/my/time-off'"/>
+                    <t t-set="placeholder_count" t-value="'leave_balance_count'"/>
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My Attendances</t>
+                    <t t-set="text">Check in / check out and view your attendance history</t>
+                    <t t-set="url" t-value="'/my/attendances'"/>
+                    <t t-set="placeholder_count" t-value="'attendance_count'"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My Tasks</t>
+                    <t t-set="text">Tasks assigned to you</t>
+                    <t t-set="url" t-value="'/my/tasks'"/>
+                    <t t-set="placeholder_count" t-value="'task_count'"/>
+                </t>
+            </div>
+            <div t-if="request.env['project.project'].sudo().search_count([('portal_manager_id', '=', request.env.user.id)])"
+                 class="o_portal_category row g-2 mt-3" id="portal_employee_team_category">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My Team</t>
+                    <t t-set="text">Team status and time off approvals</t>
+                    <t t-set="url" t-value="'/my/team'"/>
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Approvals</t>
+                    <t t-set="text">Time off requests waiting for your approval</t>
+                    <t t-set="url" t-value="'/my/team/approvals'"/>
+                    <t t-set="placeholder_count" t-value="'team_approval_count'"/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="portal_breadcrumbs_employee_self" name="Employee Self Portal Breadcrumbs" inherit_id="portal.portal_breadcrumbs" priority="30">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name in ('profile',)" class="breadcrumb-item active">My Profile</li>
+            <li t-if="page_name in ('time_off', 'time_off_new')" class="breadcrumb-item active">My Time Off</li>
+            <li t-if="page_name == 'attendances'" class="breadcrumb-item active">My Attendances</li>
+            <li t-if="page_name == 'tasks'" class="breadcrumb-item active">My Tasks</li>
+            <li t-if="page_name == 'team'" class="breadcrumb-item active">My Team</li>
+            <li t-if="page_name == 'team_approvals'" class="breadcrumb-item active">Approvals</li>
+            <li t-if="page_name == 'team_tasks'" class="breadcrumb-item active">Team Tasks</li>
+            <li t-if="page_name == 'assignments'" class="breadcrumb-item active">My Assignments</li>
+        </xpath>
+    </template>
+
+    <!-- ==================== Dashboard ==================== -->
+    <template id="portal_my_dashboard" name="Dashboard">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_breadcrumbs" t-value="True"/>
+            <div class="o_ecsp_dashboard">
+
+                <t t-if="dash_employee">
+                    <div class="o_dash_hero d-flex align-items-center flex-wrap gap-3 mb-4">
+                        <div class="o_dash_avatar"><t t-esc="(dash_employee['employee'].name or '?')[0]"/></div>
+                        <div class="flex-grow-1">
+                            <h2 class="mb-0"><t t-esc="dash_employee['employee'].name"/></h2>
+                            <div class="text-muted">
+                                <t t-esc="dash_employee['employee'].job_title or ''"/>
+                                <t t-if="dash_employee['employee'].project_id"> · <t t-esc="dash_employee['employee'].project_id.name"/></t>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-wrap gap-2" id="o_dash_employee_actions">
+                            <a href="/my/profile" class="btn btn-outline-secondary btn-sm">My Profile</a>
+                            <a href="/my/attendances" class="btn btn-outline-secondary btn-sm">My Attendances</a>
+                            <a href="/my/tasks" class="btn btn-outline-secondary btn-sm">My Tasks</a>
+                            <a href="/my/assignments" class="btn btn-outline-secondary btn-sm">
+                                My Assignments
+                                <span t-if="dash_employee['assignment_count']" class="badge text-bg-danger ms-1"><t t-esc="dash_employee['assignment_count']"/></span>
+                            </a>
+                            <a href="/my/time-off/new" class="btn btn-primary btn-sm">New Request</a>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4 col-6">
+                            <div class="o_dash_card o_dash_card_balance h-100">
+                                <div class="o_dash_card_label">Total Remaining Balance</div>
+                                <div class="o_dash_card_value"><t t-esc="'%.1f' % dash_employee['leave_balance']"/> <span class="fs-6 fw-normal">days</span></div>
+                            </div>
+                        </div>
+                        <t t-foreach="dash_employee['allocation_data'][:2]" t-as="alloc">
+                            <div class="col-md-4 col-6">
+                                <div class="o_dash_card h-100">
+                                    <div class="o_dash_card_label"><t t-esc="alloc[0]"/></div>
+                                    <div class="o_dash_card_value">
+                                        <t t-esc="'%.1f' % alloc[1]['virtual_remaining_leaves']"/>
+                                        <span class="fs-6 fw-normal">/ <t t-esc="'%.0f' % alloc[1]['max_leaves']"/></span>
+                                    </div>
+                                    <div class="o_dash_progress">
+                                        <div class="o_dash_progress_bar"
+                                             t-attf-style="width: #{ (alloc[1]['virtual_remaining_leaves'] / alloc[1]['max_leaves'] * 100) if alloc[1]['max_leaves'] else 0 }%"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <div class="o_dash_section mb-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="mb-0">My Requests</h4>
+                            <a href="/my/time-off" class="small">View all</a>
+                        </div>
+                        <div t-if="not dash_employee['leaves']" class="alert alert-warning" role="alert">
+                            No requests yet.
+                        </div>
+                        <t t-foreach="dash_employee['leaves']" t-as="leave_pair">
+                            <t t-set="leave" t-value="leave_pair[0]"/>
+                            <t t-set="stage" t-value="leave_pair[1]"/>
+                            <div class="o_dash_request_card mb-3">
+                                <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                                    <div>
+                                        <div class="fw-bold"><t t-esc="leave.holiday_status_id.name"/></div>
+                                        <div class="small text-muted"><span t-field="leave.date_from"/> - <span t-field="leave.date_to"/></div>
+                                    </div>
+                                    <span t-if="stage['ended']" class="badge text-bg-danger"><t t-esc="stage['end_label']"/></span>
+                                    <span t-elif="stage['approved']" class="badge text-bg-success">Approved</span>
+                                    <span t-else="" class="badge text-bg-warning">In Progress</span>
+                                </div>
+                                <div class="o_dash_stepper mt-3">
+                                    <t t-foreach="stage['step_info']" t-as="step">
+                                        <div t-attf-class="o_dash_step #{'done' if step['done'] else ''} #{'refused' if stage['ended'] else ''}">
+                                            <div class="o_dash_step_dot"/>
+                                            <div class="o_dash_step_label"><t t-esc="step['label']"/></div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+
+                <t t-if="dash_projects_status">
+                    <div class="o_dash_section">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="mb-0">My Team</h4>
+                            <div class="d-flex gap-2">
+                                <a href="/my/team/tasks" class="btn btn-outline-secondary btn-sm">Team Tasks</a>
+                                <a href="/my/team/approvals" class="btn btn-primary btn-sm">Review Approvals</a>
+                            </div>
+                        </div>
+                        <t t-foreach="dash_projects_status" t-as="proj">
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="mb-0"><t t-esc="proj['project'].name"/></h5>
+                                    <div class="d-flex gap-1">
+                                        <span t-if="proj['approval_count']" class="badge text-bg-danger"><t t-esc="proj['approval_count']"/> pending leaves</span>
+                                        <span t-if="proj['task_count']" class="badge text-bg-warning"><t t-esc="proj['task_count']"/> open tasks</span>
+                                    </div>
+                                </div>
+                                <div class="row g-2">
+                                    <t t-foreach="proj['lines']" t-as="line">
+                                        <div class="col-6 col-md-3">
+                                            <div class="o_dash_mini_card text-center">
+                                                <div class="fw-bold small"><t t-esc="line['employee'].name"/></div>
+                                                <span t-if="line['status'] == 'present'" class="badge text-bg-success">Present</span>
+                                                <span t-elif="line['status'] == 'leave'" class="badge text-bg-warning">On Leave</span>
+                                                <span t-elif="line['status'] == 'permission'" class="badge text-bg-info">On Permission</span>
+                                                <span t-else="" class="badge text-bg-secondary">Absent</span>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+
+            </div>
+        </t>
+    </template>
+
+    <!-- ==================== Company branding banner ==================== -->
+    <template id="portal_layout_company_branding" name="Company Branding Banner" inherit_id="portal.portal_layout" priority="10">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <div class="o_ecsp_portal_banner d-flex align-items-center px-3 px-md-5 py-3">
+                <img t-att-src="'/logo.png?company=%s' % request.env.company.id" t-att-alt="request.env.company.name" class="o_ecsp_portal_logo"/>
+                <div class="ms-3">
+                    <div class="o_ecsp_portal_title" t-out="request.env.company.name"/>
+                    <div class="o_ecsp_portal_subtitle">Employee Portal</div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- ==================== Profile ==================== -->
+    <template id="portal_my_profile" name="My Profile">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Profile</t>
+            </t>
+            <form action="/my/profile/update" method="post" class="row g-3">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="col-md-6">
+                    <label class="form-label">Private Email</label>
+                    <input type="email" class="form-control" name="private_email" t-att-value="employee.private_email"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Private Phone</label>
+                    <input type="text" class="form-control" name="private_phone" t-att-value="employee.private_phone"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Street</label>
+                    <input type="text" class="form-control" name="private_street" t-att-value="employee.private_street"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Street 2</label>
+                    <input type="text" class="form-control" name="private_street2" t-att-value="employee.private_street2"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">City</label>
+                    <input type="text" class="form-control" name="private_city" t-att-value="employee.private_city"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Zip</label>
+                    <input type="text" class="form-control" name="private_zip" t-att-value="employee.private_zip"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Country</label>
+                    <select class="form-select" name="private_country_id">
+                        <option value="">-</option>
+                        <t t-foreach="countries" t-as="country">
+                            <option t-att-value="country.id" t-att-selected="country.id == employee.private_country_id.id">
+                                <t t-out="country.name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">State</label>
+                    <select class="form-select" name="private_state_id">
+                        <option value="">-</option>
+                        <t t-foreach="states" t-as="state">
+                            <option t-att-value="state.id" t-att-selected="state.id == employee.private_state_id.id">
+                                <t t-out="state.name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+                <div class="col-12"><hr/><h5>Emergency Contact</h5></div>
+                <div class="col-md-6">
+                    <label class="form-label">Contact Name</label>
+                    <input type="text" class="form-control" name="emergency_contact" t-att-value="employee.emergency_contact"/>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Contact Phone</label>
+                    <input type="text" class="form-control" name="emergency_phone" t-att-value="employee.emergency_phone"/>
+                </div>
+                <div class="col-12"><hr/><h5>Education</h5></div>
+                <div class="col-md-4">
+                    <label class="form-label">Certificate Level</label>
+                    <select class="form-select" name="certificate">
+                        <t t-set="certificate_levels" t-value="[('graduate', 'Graduate'), ('bachelor', 'Bachelor'), ('master', 'Master'), ('doctor', 'Doctor'), ('other', 'Other')]"/>
+                        <option value="">-</option>
+                        <t t-foreach="certificate_levels" t-as="cl">
+                            <option t-att-value="cl[0]" t-att-selected="cl[0] == employee.certificate">
+                                <t t-out="cl[1]"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Field of Study</label>
+                    <input type="text" class="form-control" name="study_field" t-att-value="employee.study_field"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">School</label>
+                    <input type="text" class="form-control" name="study_school" t-att-value="employee.study_school"/>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <!-- ==================== Time Off ==================== -->
+    <template id="portal_my_time_off" name="My Time Off">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Time Off</t>
+            </t>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="row g-2 flex-grow-1">
+                    <t t-foreach="allocation_data" t-as="alloc">
+                        <div class="col-md-3">
+                            <div class="border rounded p-2 text-center">
+                                <div class="fw-bold" t-out="alloc[1]['virtual_remaining_leaves']"/>
+                                <div class="small text-muted" t-out="alloc[0]"/>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+                <a href="/my/time-off/new" class="btn btn-primary ms-3">New Request</a>
+            </div>
+            <div t-if="not leaves" class="alert alert-warning" role="alert">
+                You have no time off requests yet.
+            </div>
+            <t t-if="leaves" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Type</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Status</th>
+                        <th/>
+                    </tr>
+                </thead>
+                <t t-foreach="leaves" t-as="leave">
+                    <tr>
+                        <td><a t-attf-href="/my/time-off/#{leave.id}"><t t-out="leave.holiday_status_id.name"/></a></td>
+                        <td><span t-field="leave.date_from"/></td>
+                        <td><span t-field="leave.date_to"/></td>
+                        <td><span t-out="leave.state"/></td>
+                        <td/>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_my_time_off_new" name="New Time Off Request">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">New Time Off Request</t>
+            </t>
+            <div t-if="error" class="alert alert-danger" role="alert"><t t-out="error"/></div>
+            <form action="/my/time-off/new/submit" method="post" class="row g-3">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="col-md-6">
+                    <label class="form-label">Time Off Type</label>
+                    <select class="form-select" name="holiday_status_id" required="required">
+                        <t t-foreach="leave_types" t-as="lt">
+                            <option t-att-value="lt.id"><t t-out="lt.name"/></option>
+                        </t>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">From</label>
+                    <input type="date" class="form-control" name="request_date_from" required="required"/>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">To</label>
+                    <input type="date" class="form-control" name="request_date_to" required="required"/>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" name="name" rows="3"/>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                    <a href="/my/time-off" class="btn btn-link">Cancel</a>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <template id="portal_my_time_off_detail" name="Time Off Detail">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Time Off Request</t>
+            </t>
+            <table class="table table-sm">
+                <tr><th>Type</th><td t-out="leave.holiday_status_id.name"/></tr>
+                <tr><th>From</th><td><span t-field="leave.date_from"/></td></tr>
+                <tr><th>To</th><td><span t-field="leave.date_to"/></td></tr>
+                <tr><th>Status</th><td t-out="leave.state"/></tr>
+                <tr><th>Description</th><td t-out="leave.name"/></tr>
+            </table>
+            <form t-if="leave.state in ('confirm', 'validate1')" t-attf-action="/my/time-off/#{leave.id}/cancel" method="post">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <button type="submit" class="btn btn-outline-danger">Cancel Request</button>
+            </form>
+        </t>
+    </template>
+
+    <!-- ==================== Attendances ==================== -->
+    <template id="portal_my_attendances" name="My Attendances">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Attendances</t>
+            </t>
+            <div class="mb-4">
+                <button id="o_attendance_toggle_btn" type="button" class="btn btn-primary"
+                        t-att-data-state="employee.attendance_state">
+                    <t t-if="employee.attendance_state == 'checked_in'">Check Out</t>
+                    <t t-else="">Check In</t>
+                </button>
+                <span id="o_attendance_toggle_result" class="ms-2 text-muted"/>
+            </div>
+            <div t-if="not attendances" class="alert alert-warning" role="alert">
+                You have no attendance records yet.
+            </div>
+            <t t-if="attendances" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th class="text-end">Worked Hours</th>
+                    </tr>
+                </thead>
+                <t t-foreach="attendances" t-as="attendance">
+                    <tr>
+                        <td><span t-field="attendance.check_in"/></td>
+                        <td><span t-field="attendance.check_out"/></td>
+                        <td class="text-end"><span t-esc="'%.2f' % attendance.worked_hours"/></td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ==================== Tasks ==================== -->
+    <template id="portal_my_tasks" name="My Tasks">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Tasks</t>
+            </t>
+            <div t-if="not tasks" class="alert alert-warning" role="alert">
+                You have no tasks assigned to you.
+            </div>
+            <t t-if="tasks" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Task</th>
+                        <th>Project</th>
+                        <th>Deadline</th>
+                        <th>Stage</th>
+                    </tr>
+                </thead>
+                <t t-foreach="tasks" t-as="task">
+                    <tr>
+                        <td t-out="task.name"/>
+                        <td t-out="task.project_id.name"/>
+                        <td><span t-field="task.date_deadline"/></td>
+                        <td t-out="task.stage_id.name"/>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ==================== Team (manager) ==================== -->
+    <template id="portal_my_team" name="My Team">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Team</t>
+            </t>
+            <div class="mb-3">
+                <a href="/my/team/approvals" class="btn btn-primary">Review Approvals</a>
+            </div>
+            <div t-if="not projects_status" class="alert alert-warning" role="alert">
+                You are not the Portal Manager of any project yet.
+            </div>
+            <t t-foreach="projects_status" t-as="proj">
+                <h4 class="mt-4"><t t-esc="proj['project'].name"/></h4>
+                <div t-if="not proj['lines']" class="alert alert-warning" role="alert">
+                    No employees are assigned to this project yet.
+                </div>
+                <div t-if="proj['lines']" class="row g-3">
+                    <t t-foreach="proj['lines']" t-as="line">
+                        <div class="col-6 col-md-3">
+                            <div class="card h-100 text-center">
+                                <div class="card-body">
+                                    <div class="fw-bold"><t t-esc="line['employee'].name"/></div>
+                                    <div class="small text-muted mb-2"><t t-esc="line['employee'].job_title or '-'"/></div>
+                                    <span t-if="line['status'] == 'present'" class="badge text-bg-success">Present</span>
+                                    <span t-elif="line['status'] == 'leave'" class="badge text-bg-warning">On Leave</span>
+                                    <span t-elif="line['status'] == 'permission'" class="badge text-bg-info">On Permission</span>
+                                    <span t-else="" class="badge text-bg-secondary">Absent</span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_my_team_approvals" name="Time Off Approvals">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Approvals</t>
+            </t>
+            <div t-if="not leaves" class="alert alert-warning" role="alert">
+                No pending requests from your team.
+            </div>
+            <t t-if="leaves" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Employee</th>
+                        <th>Type</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th class="text-end"/>
+                    </tr>
+                </thead>
+                <t t-foreach="leaves" t-as="leave">
+                    <tr>
+                        <td t-out="leave.employee_id.name"/>
+                        <td t-out="leave.holiday_status_id.name"/>
+                        <td><span t-field="leave.date_from"/></td>
+                        <td><span t-field="leave.date_to"/></td>
+                        <td class="text-end">
+                            <form t-attf-action="/my/team/approvals/#{leave.id}/approve" method="post" class="d-inline">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                            </form>
+                            <form t-attf-action="/my/team/approvals/#{leave.id}/refuse" method="post" class="d-inline">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Refuse</button>
+                            </form>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- ==================== Team Tasks (manager) ==================== -->
+    <template id="portal_my_team_tasks" name="Team Tasks">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Team Tasks</t>
+            </t>
+            <div class="mb-3">
+                <a href="/my/team/tasks/new" class="btn btn-primary">Assign New Task</a>
+            </div>
+            <div t-if="not tasks" class="alert alert-warning" role="alert">
+                No tasks assigned to your team yet.
+            </div>
+            <t t-if="tasks" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Employee</th>
+                        <th>Title</th>
+                        <th>Deadline</th>
+                        <th>Status</th>
+                        <th>Latest Update</th>
+                    </tr>
+                </thead>
+                <t t-foreach="tasks" t-as="task">
+                    <tr>
+                        <td><t t-esc="task.employee_id.name"/></td>
+                        <td><t t-esc="task.name"/></td>
+                        <td><span t-if="task.deadline" t-field="task.deadline"/></td>
+                        <td>
+                            <span t-if="task.state == 'new'" class="badge text-bg-secondary">New</span>
+                            <span t-elif="task.state == 'accepted'" class="badge text-bg-info">Accepted</span>
+                            <span t-elif="task.state == 'in_progress'" class="badge text-bg-warning">In Progress</span>
+                            <span t-else="" class="badge text-bg-success">Done</span>
+                        </td>
+                        <td><t t-esc="task.status_note or '-'"/></td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_my_team_tasks_new" name="Assign New Task">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Assign New Task</t>
+            </t>
+            <div t-if="error" class="alert alert-danger" role="alert"><t t-out="error"/></div>
+            <form action="/my/team/tasks/new/submit" method="post" class="row g-3">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="col-md-6">
+                    <label class="form-label">Employee</label>
+                    <select class="form-select" name="employee_id" required="required">
+                        <t t-foreach="employees" t-as="emp">
+                            <option t-att-value="emp.id"><t t-esc="emp.name"/></option>
+                        </t>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Deadline</label>
+                    <input type="datetime-local" class="form-control" name="deadline"/>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" name="name" required="required"/>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" name="description" rows="3"/>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Assign Task</button>
+                    <a href="/my/team/tasks" class="btn btn-link">Cancel</a>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <!-- ==================== My Assignments (employee) ==================== -->
+    <template id="portal_my_assignments" name="My Assignments">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Assignments</t>
+            </t>
+            <div t-if="not tasks" class="alert alert-warning" role="alert">
+                No assignments yet.
+            </div>
+            <t t-foreach="tasks" t-as="task">
+                <div class="o_dash_request_card mb-3">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                        <div>
+                            <div class="fw-bold"><t t-esc="task.name"/></div>
+                            <div class="small text-muted" t-if="task.description"><t t-esc="task.description"/></div>
+                            <div class="small text-muted" t-if="task.deadline">Deadline: <span t-field="task.deadline"/></div>
+                        </div>
+                        <span t-if="task.state == 'new'" class="badge text-bg-secondary">New</span>
+                        <span t-elif="task.state == 'accepted'" class="badge text-bg-info">Accepted</span>
+                        <span t-elif="task.state == 'in_progress'" class="badge text-bg-warning">In Progress</span>
+                        <span t-else="" class="badge text-bg-success">Done</span>
+                    </div>
+
+                    <form t-if="task.state == 'new'" t-attf-action="/my/assignments/#{task.id}/accept" method="post" class="mt-3">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <button type="submit" class="btn btn-primary btn-sm">Accept Task</button>
+                    </form>
+
+                    <form t-if="task.state in ('accepted', 'in_progress')" t-attf-action="/my/assignments/#{task.id}/update" method="post" class="row g-2 mt-2">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="col-md-4">
+                            <select class="form-select form-select-sm" name="state">
+                                <option value="in_progress">In Progress</option>
+                                <option value="done">Done</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" name="status_note" placeholder="Status update note" t-att-value="task.status_note"/>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary btn-sm w-100">Update</button>
+                        </div>
+                    </form>
+
+                    <div t-if="task.state == 'done'" class="small text-muted mt-2">
+                        <t t-esc="task.status_note or ''"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

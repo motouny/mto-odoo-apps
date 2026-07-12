@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mail_template_assignment_reminder" model="mail.template">
+            <field name="name">Employee Portal: Assignment Status Reminder</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="subject">Reminder: you have assignments waiting for a status update</field>
+            <field name="email_from">{{ (object.company_id.email or user.email) }}</field>
+            <field name="email_to">{{ object.work_email }}</field>
+            <field name="lang">{{ object.user_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; font-family: Arial, sans-serif;">
+                    <p>Hello <t t-out="object.name"/>,</p>
+                    <p>You still have assignments that need a status update:</p>
+                    <ul>
+                        <t t-foreach="ctx.get('pending_tasks', [])" t-as="task">
+                            <li>
+                                <strong t-out="task.name"/>
+                                <t t-if="task.deadline"> - Deadline: <t t-out="task.deadline"/></t>
+                                - Current status: <t t-out="task.state"/>
+                            </li>
+                        </t>
+                    </ul>
+                    <p>
+                        <a t-attf-href="{{ object.get_base_url() }}/my/assignments" style="background-color:#875A7B;color:#fff;padding:8px 16px;text-decoration:none;border-radius:4px;">
+                            Update my assignments
+                        </a>
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
