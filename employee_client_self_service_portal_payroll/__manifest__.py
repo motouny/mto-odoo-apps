@@ -25,4 +25,6 @@ My Team, My Assignments) installs cleanly on Community, where
     ],
     'installable': True,
     'license': 'OPL-1',
+    'price': 15.0,
+    'currency': 'EUR',
 }
