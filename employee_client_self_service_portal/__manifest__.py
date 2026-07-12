@@ -60,7 +60,5 @@ Enterprise's Payroll app).
     },
     'installable': True,
     'license': 'OPL-1',
-    'price': 30.0,
-    'currency': 'EUR',
     'post_init_hook': 'post_init_hook',
 }
