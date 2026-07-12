@@ -22,17 +22,6 @@ My Team, My Assignments) installs cleanly on Community, where
     'summary': 'Adds My Payslips to the Employee & Client Self-Service Portal (requires Payroll / Enterprise)',
     'description': """
 Employee & Client Self-Service Portal - Payslips
-==================================================
-Optional add-on for `employee_client_self_service_portal`. Only installable where
-`hr_payroll` is available (Odoo Enterprise or Odoo.sh) - kept as a
-separate module so the base portal (Profile, Time Off, Attendance,
-My Team, My Assignments) installs cleanly on Community, where
-`hr_payroll` does not exist.
-
-* My Payslips - view and download finalized payslips from the portal
-""",
-    'author': 'MTO',
-    'images': ['static/description/banner.png'],
     'depends': ['employee_client_self_service_portal', 'hr_payroll'],
     'data': [
         'security/ir.model.access.csv',
@@ -41,4 +30,6 @@ My Team, My Assignments) installs cleanly on Community, where
     ],
     'installable': True,
     'license': 'OPL-1',
+    'price': 29.0,
+    'currency': 'EUR',
 }
