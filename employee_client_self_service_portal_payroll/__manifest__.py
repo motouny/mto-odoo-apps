@@ -14,7 +14,9 @@ My Team, My Assignments) installs cleanly on Community, where
 
 * My Payslips - view and download finalized payslips from the portal
 """,
-    'author': 'Custom',
+    'author': 'MTO Solutions',
+    'price': 15.0,
+    'currency': 'EUR',
     'depends': ['employee_client_self_service_portal', 'hr_payroll'],
     'data': [
         'security/ir.model.access.csv',
