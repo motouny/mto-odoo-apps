@@ -1,6 +1,6 @@
 {
     'name': 'Employee & Client Self-Service Portal - Payslips',
-    'version': '18.0.1.0.0',
+    'version': '18.0.2.0.0',
     'category': 'Human Resources',
     'summary': 'Adds My Payslips to the Employee & Client Self-Service Portal (requires Payroll / Enterprise)',
     'description': """
@@ -14,9 +14,11 @@ My Team, My Assignments) installs cleanly on Community, where
 
 * My Payslips - view and download finalized payslips from the portal
 """,
-    'author': 'MTO Solutions',
-    'price': 15.0,
+    'author': 'MTO',
+    'price': 29.0,
     'currency': 'EUR',
+    'support': 'support@mto-solutions.com',
+    'images': ['static/description/banner.png'],
     'depends': ['employee_client_self_service_portal', 'hr_payroll'],
     'data': [
         'security/ir.model.access.csv',

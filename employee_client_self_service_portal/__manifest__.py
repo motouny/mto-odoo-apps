@@ -38,9 +38,11 @@ Install the separate `employee_client_self_service_portal_payroll`
 add-on for a "My Payslips" page on top of this (requires Odoo
 Enterprise's Payroll app).
 """,
-    'author': 'MTO Solutions',
-    'price': 30.0,
+    'author': 'MTO',
+    'price': 49.0,
     'currency': 'EUR',
+    'support': 'support@mto-solutions.com',
+    'images': ['static/description/banner.png'],
     'depends': ['portal', 'hr', 'hr_holidays', 'hr_attendance', 'project', 'mail'],
     'data': [
         'security/ir.model.access.csv',
