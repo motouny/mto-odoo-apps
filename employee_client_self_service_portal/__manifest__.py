@@ -1,6 +1,6 @@
 {
     'name': 'Employee & Client Self-Service Portal',
-    'version': '18.0.1.0.0',
+    'version': '18.0.2.0.0',
     'category': 'Human Resources',
     'summary': 'Employee HR self-service and client-side team oversight, entirely from the portal',
     'description': """
@@ -39,7 +39,7 @@ add-on for a "My Payslips" page on top of this (requires Odoo
 Enterprise's Payroll app).
 """,
     'author': 'MTO Solutions',
-    'price': 20.0,
+    'price': 30.0,
     'currency': 'EUR',
     'depends': ['portal', 'hr', 'hr_holidays', 'hr_attendance', 'project', 'mail'],
     'data': [
