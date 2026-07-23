@@ -26,4 +26,36 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
+
+    <record id="view_sa_gov_asset_verification_quick_scan_wizard_form" model="ir.ui.view">
+        <field name="name">sa.gov.asset.verification.quick.scan.wizard.form</field>
+        <field name="model">sa.gov.asset.verification.quick.scan.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="verification_id" invisible="1"/><!-- carries the campaign id from the action context; not user-editable -->
+                <group>
+                    <field name="scanned_count" readonly="1" string="Scanned So Far"/>
+                </group>
+                <group>
+                    <field name="scan_input" placeholder="Point the scanner/RFID reader here and scan..."
+                           options="{'autofocus': true}"/>
+                </group>
+                <div class="alert alert-info" role="status" invisible="not last_result">
+                    <field name="last_result" readonly="1" nolabel="1"/>
+                    <field name="last_asset_id" readonly="1"/>
+                </div>
+                <footer>
+                    <button name="action_scan" type="object" string="Scan" class="btn-primary"/>
+                    <button special="cancel" string="Close"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sa_gov_asset_verification_quick_scan_wizard" model="ir.actions.act_window">
+        <field name="name">Quick Scan (Barcode / QR / RFID)</field>
+        <field name="res_model">sa.gov.asset.verification.quick.scan.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
 </odoo>

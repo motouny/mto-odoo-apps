@@ -103,3 +103,61 @@ class TestSaGovAsset(TransactionCase):
         asset.disposal_method = 'write_off'
         asset.action_dispose()
         self.assertEqual(asset.state, 'disposed')
+
+    def test_quick_scan_marks_existing_line_found(self):
+        asset = self.env['sa.gov.asset'].create({
+            'name': 'Scanner test laptop',
+            'classification_id': self.cls_laptop.id,
+            'acquisition_cost': 4500.0,
+        })
+        asset.action_register()
+        self.env['sa.gov.asset.tag'].create({
+            'asset_id': asset.id,
+            'tag_number': 'TAG-001',
+            'rfid_tag_id': 'E200341201580000',
+        })
+        campaign = self.env['sa.gov.asset.verification'].create({})
+        line = self.env['sa.gov.asset.verification.line'].create({
+            'verification_id': campaign.id,
+            'asset_id': asset.id,
+            'found': False,
+        })
+        wizard = self.env['sa.gov.asset.verification.quick.scan.wizard'].create({
+            'verification_id': campaign.id,
+            'scan_input': 'E200341201580000',
+        })
+        wizard.action_scan()
+        self.assertTrue(line.found)
+        self.assertFalse(wizard.scan_input)
+        self.assertEqual(wizard.last_asset_id, asset)
+
+    def test_quick_scan_creates_line_when_missing(self):
+        asset = self.env['sa.gov.asset'].create({
+            'name': 'Scanner test chair',
+            'classification_id': self.cls_chair.id,
+            'acquisition_cost': 500.0,
+        })
+        asset.action_register()
+        self.env['sa.gov.asset.tag'].create({
+            'asset_id': asset.id,
+            'tag_number': 'TAG-002',
+        })
+        campaign = self.env['sa.gov.asset.verification'].create({})
+        self.assertFalse(campaign.line_ids)
+        wizard = self.env['sa.gov.asset.verification.quick.scan.wizard'].create({
+            'verification_id': campaign.id,
+            'scan_input': 'TAG-002',
+        })
+        wizard.action_scan()
+        self.assertEqual(len(campaign.line_ids), 1)
+        self.assertTrue(campaign.line_ids.found)
+
+    def test_quick_scan_unknown_code(self):
+        campaign = self.env['sa.gov.asset.verification'].create({})
+        wizard = self.env['sa.gov.asset.verification.quick.scan.wizard'].create({
+            'verification_id': campaign.id,
+            'scan_input': 'DOES-NOT-EXIST',
+        })
+        wizard.action_scan()
+        self.assertIn('Unknown code', wizard.last_result)
+        self.assertFalse(wizard.last_asset_id)

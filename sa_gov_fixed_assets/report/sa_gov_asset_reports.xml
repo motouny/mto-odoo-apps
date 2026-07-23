@@ -34,7 +34,7 @@
     </record>
 
     <record id="action_report_sa_gov_asset_tag_label" model="ir.actions.report">
-        <field name="name">Asset Tag Label (QR)</field>
+        <field name="name">Asset Tag Label (QR / Barcode)</field>
         <field name="model">sa.gov.asset</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">sa_gov_fixed_assets.report_sa_gov_asset_tag_label_document</field>

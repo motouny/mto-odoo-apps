@@ -26,6 +26,8 @@
                             invisible="state != 'draft'" class="btn-primary"/>
                     <button name="%(action_sa_gov_asset_verification_populate_wizard)d" type="action"
                             string="Add Assets" invisible="state == 'done'"/>
+                    <button name="%(action_sa_gov_asset_verification_quick_scan_wizard)d" type="action"
+                            string="Quick Scan (Barcode / QR / RFID)" invisible="state != 'in_progress'"/>
                     <button name="action_done" type="object" string="Close Campaign"
                             invisible="state != 'in_progress'" class="btn-primary"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done"/>

@@ -1,6 +1,6 @@
 {
     'name': 'Saudi Government Fixed Asset Management (MOF Compliant)',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.1.0',
     'category': 'Accounting/Localizations',
     'summary': 'Asset classification, MOF coding, capitalization threshold, depreciation, tagging and physical verification for Saudi government entities',
     'description': """
@@ -23,10 +23,13 @@ Highlights
   classification + sequence, e.g. 10020201-0001)
 * Straight-line depreciation schedule bounded by each classification's
   official useful-life range
-* Physical tagging with QR codes (Odoo's own barcode route, no third-party
-  library) following the guide's movability/safety tagging decision logic
+* Physical tagging with QR or Code128 barcodes (Odoo's own barcode route,
+  no third-party library), plus an RFID Tag ID field, following the guide's
+  movability/safety tagging decision logic
 * Physical verification (جرد) campaigns with discrepancy tracking
-  (lost/damaged/stolen) and responsible-employee follow-up
+  (lost/damaged/stolen) and responsible-employee follow-up, including a
+  Quick Scan screen for fast barcode/QR/RFID-based counts (works with any
+  handheld scanner or RFID reader in keyboard-wedge/HID mode)
 * Asset register, classification & coding sheet, and physical count QWeb
   reports
 * Multi-company, Arabic and English, right-to-left ready
