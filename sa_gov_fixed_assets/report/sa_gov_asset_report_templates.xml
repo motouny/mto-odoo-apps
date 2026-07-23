@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_sa_gov_asset_register_document">
+        <t t-call="web.html_container">
+            <div class="page" style="padding:1cm;">
+                <h2>Asset Register - سجل الأصول</h2>
+                <p t-esc="docs[:1].company_id.name if docs else ''"/>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>MOF Code</th>
+                            <th>Description</th>
+                            <th>Classification</th>
+                            <th>Acct. Class</th>
+                            <th>Capitalized</th>
+                            <th>Acquisition Cost</th>
+                            <th>Accum. Depreciation</th>
+                            <th>Book Value</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="o">
+                            <td><span t-field="o.asset_code"/></td>
+                            <td><span t-field="o.name"/></td>
+                            <td><span t-esc="'%s / %s / %s' % (o.l1_name, o.l2_name, o.l3_name)"/></td>
+                            <td><span t-field="o.accounting_class"/></td>
+                            <td><span t-esc="'Yes' if o.is_capitalized else 'No'"/></td>
+                            <td><span t-field="o.acquisition_cost"/></td>
+                            <td><span t-field="o.accumulated_depreciation"/></td>
+                            <td><span t-field="o.book_value"/></td>
+                            <td><span t-field="o.state"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_sa_gov_asset_classification_document">
+        <t t-call="web.html_container">
+            <div class="page" style="padding:1cm;">
+                <h2>Asset Classification &amp; Coding - نموذج تصنيف وترميز الأصول</h2>
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Full Code</th>
+                            <th>Main Group</th>
+                            <th>Sub-Group</th>
+                            <th>Asset Type</th>
+                            <th>Accounting Class</th>
+                            <th>Cap. Threshold (SAR)</th>
+                            <th>Useful Life (years)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="o">
+                            <td><span t-field="o.full_code"/></td>
+                            <td><span t-field="o.l1_name"/></td>
+                            <td><span t-field="o.l2_name"/></td>
+                            <td><span t-field="o.l3_name"/></td>
+                            <td><span t-field="o.natural_accounting_class"/></td>
+                            <td><span t-esc="o.cap_threshold or 'NA'"/></td>
+                            <td><span t-esc="'%s - %s' % (o.useful_life_min, o.useful_life_max) if o.useful_life_min else 'NA'"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_sa_gov_asset_verification_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="padding:1cm;">
+                    <h2>Physical Count Sheet - نموذج حصر وجرد الأصول</h2>
+                    <p>
+                        <strong>Campaign:</strong> <span t-field="o.name"/> |
+                        <strong>Period:</strong> <span t-field="o.date_start"/> - <span t-field="o.date_deadline"/> |
+                        <strong>Team Lead:</strong> <span t-field="o.responsible_id.name"/>
+                    </p>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th>MOF Code</th>
+                                <th>Expected Location</th>
+                                <th>Found</th>
+                                <th>Location Match</th>
+                                <th>Condition Found</th>
+                                <th>Discrepancy</th>
+                                <th>Responsible</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.line_ids" t-as="l">
+                                <td><span t-field="l.asset_code"/></td>
+                                <td><span t-field="l.expected_location"/></td>
+                                <td><span t-esc="'Yes' if l.found else 'No'"/></td>
+                                <td><span t-esc="'Yes' if l.location_matches else 'No'"/></td>
+                                <td><span t-field="l.condition_found"/></td>
+                                <td><span t-field="l.discrepancy_type"/></td>
+                                <td><span t-field="l.responsible_user_id.name"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_sa_gov_asset_tag_label_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="tag" t-value="o.tag_ids[:1]"/>
+                <t t-set="barcode_route" t-value="'Code128' if (tag and tag.barcode_type == 'code128') else 'QR'"/>
+                <t t-set="barcode_value" t-value="(tag and tag.scan_value) or o.asset_code or 'NA'"/>
+                <div class="page" style="width:8cm;height:5cm;padding:0.4cm;border:1px solid #333;margin:auto;text-align:center;">
+                    <div style="font-size:10px;" t-esc="o.company_id.name"/>
+                    <img t-att-src="'/report/barcode/%s/%s?width=120&amp;height=%s' % (barcode_route, barcode_value, '40' if barcode_route == 'Code128' else '120')"/>
+                    <div style="font-weight:bold;" t-esc="o.asset_code"/>
+                    <div style="font-size:10px;" t-esc="o.name"/>
+                    <div style="font-size:8px;" t-if="tag and tag.rfid_tag_id">RFID: <t t-esc="tag.rfid_tag_id"/></div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

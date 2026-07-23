@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sa_gov_asset_classification_list" model="ir.ui.view">
+        <field name="name">sa.gov.asset.classification.list</field>
+        <field name="model">sa.gov.asset.classification</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="1" default_order="full_code">
+                <field name="full_code"/>
+                <field name="l1_name"/>
+                <field name="l2_name"/>
+                <field name="l3_name"/>
+                <field name="natural_accounting_class"/>
+                <field name="cap_threshold"/>
+                <field name="cap_threshold_large_entity" optional="hide"/>
+                <field name="useful_life_min"/>
+                <field name="useful_life_max"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sa_gov_asset_classification_form" model="ir.ui.view">
+        <field name="name">sa.gov.asset.classification.form</field>
+        <field name="model">sa.gov.asset.classification</field>
+        <field name="arch" type="xml">
+            <form create="0">
+                <sheet>
+                    <group>
+                        <group string="Classification">
+                            <field name="l1_code"/>
+                            <field name="l1_name"/>
+                            <field name="l2_code"/>
+                            <field name="l2_name"/>
+                            <field name="l3_code"/>
+                            <field name="l3_name"/>
+                            <field name="natural_accounting_class"/>
+                        </group>
+                        <group string="Coding &amp; Thresholds">
+                            <field name="classification_code"/>
+                            <field name="full_code"/>
+                            <field name="cap_threshold"/>
+                            <field name="cap_threshold_large_entity"/>
+                            <field name="useful_life_min"/>
+                            <field name="useful_life_max"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sa_gov_asset_classification_search" model="ir.ui.view">
+        <field name="name">sa.gov.asset.classification.search</field>
+        <field name="model">sa.gov.asset.classification</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="full_code"/>
+                <field name="l1_name"/>
+                <field name="l2_name"/>
+                <field name="l3_name"/>
+                <filter name="has_threshold" string="Has Capitalization Threshold"
+                        domain="[('has_threshold', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_l1" string="Main Group" context="{'group_by': 'l1_name'}"/>
+                    <filter name="group_ag" string="Accounting Classification"
+                            context="{'group_by': 'natural_accounting_class'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sa_gov_asset_classification" model="ir.actions.act_window">
+        <field name="name">Asset Classification &amp; Coding (MOF)</field>
+        <field name="res_model">sa.gov.asset.classification</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_sa_gov_assets_root" name="Government Assets"
+              sequence="60" web_icon="sa_gov_fixed_assets,static/description/icon.png"/>
+
+    <menuitem id="menu_sa_gov_asset" name="Assets" parent="menu_sa_gov_assets_root"
+              action="action_sa_gov_asset" sequence="10"/>
+
+    <menuitem id="menu_sa_gov_asset_verification" name="Physical Verification (جرد)"
+              parent="menu_sa_gov_assets_root" action="action_sa_gov_asset_verification" sequence="20"/>
+
+    <menuitem id="menu_sa_gov_asset_tag" name="Tags" parent="menu_sa_gov_assets_root"
+              action="action_sa_gov_asset_tag" sequence="30"/>
+
+    <menuitem id="menu_sa_gov_asset_configuration" name="Configuration"
+              parent="menu_sa_gov_assets_root" sequence="90"
+              groups="sa_gov_fixed_assets.group_sa_asset_manager"/>
+
+    <menuitem id="menu_sa_gov_asset_classification" name="Classification &amp; Coding (MOF)"
+              parent="menu_sa_gov_asset_configuration" action="action_sa_gov_asset_classification"
+              sequence="10"/>
+</odoo>
