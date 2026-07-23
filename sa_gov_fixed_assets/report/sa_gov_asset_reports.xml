@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_sa_gov_asset_register" model="ir.actions.report">
+        <field name="name">Asset Register (سجل الأصول)</field>
+        <field name="model">sa.gov.asset</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sa_gov_fixed_assets.report_sa_gov_asset_register_document</field>
+        <field name="report_file">sa_gov_fixed_assets.report_sa_gov_asset_register_document</field>
+        <field name="print_report_name">'Asset Register'</field>
+        <field name="binding_model_id" ref="model_sa_gov_asset"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_sa_gov_asset_classification" model="ir.actions.report">
+        <field name="name">Classification &amp; Coding Sheet</field>
+        <field name="model">sa.gov.asset.classification</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sa_gov_fixed_assets.report_sa_gov_asset_classification_document</field>
+        <field name="report_file">sa_gov_fixed_assets.report_sa_gov_asset_classification_document</field>
+        <field name="print_report_name">'Asset Classification and Coding'</field>
+        <field name="binding_model_id" ref="model_sa_gov_asset_classification"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_sa_gov_asset_verification" model="ir.actions.report">
+        <field name="name">Physical Count Sheet</field>
+        <field name="model">sa.gov.asset.verification</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sa_gov_fixed_assets.report_sa_gov_asset_verification_document</field>
+        <field name="report_file">sa_gov_fixed_assets.report_sa_gov_asset_verification_document</field>
+        <field name="print_report_name">'Physical Count - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_sa_gov_asset_verification"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_sa_gov_asset_tag_label" model="ir.actions.report">
+        <field name="name">Asset Tag Label (QR)</field>
+        <field name="model">sa.gov.asset</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sa_gov_fixed_assets.report_sa_gov_asset_tag_label_document</field>
+        <field name="report_file">sa_gov_fixed_assets.report_sa_gov_asset_tag_label_document</field>
+        <field name="print_report_name">'Tag - %s' % (object.asset_code or object.name)</field>
+        <field name="binding_model_id" ref="model_sa_gov_asset"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

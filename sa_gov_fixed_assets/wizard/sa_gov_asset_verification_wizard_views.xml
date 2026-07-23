@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sa_gov_asset_verification_populate_wizard_form" model="ir.ui.view">
+        <field name="name">sa.gov.asset.verification.populate.wizard.form</field>
+        <field name="model">sa.gov.asset.verification.populate.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="verification_id" invisible="1"/><!-- carries the campaign id from the action context; not user-editable -->
+                    <field name="classification_id"/>
+                    <field name="custodian_department"/>
+                    <field name="building_number"/>
+                    <field name="only_capitalized"/>
+                </group>
+                <footer>
+                    <button name="action_populate" type="object" string="Add Assets" class="btn-primary"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sa_gov_asset_verification_populate_wizard" model="ir.actions.act_window">
+        <field name="name">Add Assets to Campaign</field>
+        <field name="res_model">sa.gov.asset.verification.populate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

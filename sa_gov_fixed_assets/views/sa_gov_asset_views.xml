@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sa_gov_asset_list" model="ir.ui.view">
+        <field name="name">sa.gov.asset.list</field>
+        <field name="model">sa.gov.asset</field>
+        <field name="arch" type="xml">
+            <list decoration-muted="state == 'disposed'">
+                <field name="asset_code"/>
+                <field name="name"/>
+                <field name="l1_name"/>
+                <field name="l3_name"/>
+                <field name="accounting_class"/>
+                <field name="is_capitalized" widget="boolean_toggle"/>
+                <field name="acquisition_cost" sum="Total"/>
+                <field name="book_value" sum="Total"/>
+                <field name="state" widget="badge"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sa_gov_asset_kanban" model="ir.ui.view">
+        <field name="name">sa.gov.asset.kanban</field>
+        <field name="model">sa.gov.asset</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="asset_code"/>
+                <field name="state"/>
+                <field name="is_capitalized"/>
+                <field name="book_value"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click p-2">
+                            <strong><field name="asset_code"/></strong>
+                            <div><field name="name"/></div>
+                            <div class="text-muted">
+                                <field name="l3_name"/>
+                            </div>
+                            <span class="badge rounded-pill"
+                                  t-att-class="record.is_capitalized.raw_value ? 'text-bg-success' : 'text-bg-warning'">
+                                <t t-if="record.is_capitalized.raw_value">Capitalized</t>
+                                <t t-else="">Non-Capitalized</t>
+                            </span>
+                            <field name="state" widget="badge"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_sa_gov_asset_form" model="ir.ui.view">
+        <field name="name">sa.gov.asset.form</field>
+        <field name="model">sa.gov.asset</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_start_construction" type="object" string="Start Construction (WIP)"
+                            invisible="state != 'draft'" class="btn-secondary"/>
+                    <button name="action_register" type="object" string="Register &amp; Capitalize"
+                            invisible="state not in ('draft', 'wip')" class="btn-primary"/>
+                    <button name="action_dispose" type="object" string="Dispose"
+                            invisible="state not in ('registered', 'in_service')"/>
+                    <button name="action_transfer" type="object" string="Transfer"
+                            invisible="state not in ('registered', 'in_service')"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft"
+                            invisible="state not in ('disposed', 'transferred')"
+                            groups="sa_gov_fixed_assets.group_sa_asset_manager"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,wip,registered,in_service"/>
+                </header>
+                <sheet>
+                    <field name="photo" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Asset description"/></h1>
+                        <h3>
+                            <field name="asset_code" readonly="1"/>
+                        </h3>
+                    </div>
+                    <group>
+                        <group string="Classification">
+                            <field name="classification_id"/>
+                            <field name="accounting_class" readonly="1"/>
+                            <field name="is_capitalized" readonly="1"/>
+                            <field name="effective_threshold" readonly="1"/>
+                        </group>
+                        <group string="Company">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="tag_number"/>
+                            <field name="old_tag_number" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Capitalization Override" groups="sa_gov_fixed_assets.group_sa_asset_manager">
+                        <field name="capitalization_override"/>
+                        <field name="capitalization_override_value" invisible="not capitalization_override"/>
+                        <field name="capitalization_override_reason" invisible="not capitalization_override"/>
+                    </group>
+                    <notebook>
+                        <page string="Acquisition">
+                            <group>
+                                <group>
+                                    <field name="acquisition_method"/>
+                                    <field name="acquisition_date"/>
+                                    <field name="acquisition_cost"/>
+                                    <field name="date_placed_in_service"/>
+                                </group>
+                                <group>
+                                    <field name="ownership_document_type"/>
+                                    <field name="ownership_document_number"/>
+                                    <field name="ownership_document_date"/>
+                                    <field name="archive_document_number"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Location &amp; Custody">
+                            <group>
+                                <group>
+                                    <field name="country_id"/>
+                                    <field name="region"/>
+                                    <field name="city"/>
+                                    <field name="building_number"/>
+                                    <field name="floor_number"/>
+                                    <field name="room_number"/>
+                                </group>
+                                <group>
+                                    <field name="national_address"/>
+                                    <field name="geo_coordinates"/>
+                                    <field name="custodian_department"/>
+                                    <field name="responsible_user_id"/>
+                                    <field name="condition"/>
+                                    <field name="asset_utilization"/>
+                                    <field name="related_asset_id"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Depreciation" invisible="not is_capitalized">
+                            <group>
+                                <field name="useful_life_years"/>
+                                <field name="salvage_value"/>
+                                <field name="depreciable_value" readonly="1"/>
+                                <field name="accumulated_depreciation" readonly="1"/>
+                                <field name="book_value" readonly="1"/>
+                            </group>
+                            <field name="depreciation_line_ids" readonly="1">
+                                <list editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="date"/>
+                                    <field name="depreciation_value"/>
+                                    <field name="accumulated_value"/>
+                                    <field name="remaining_value"/>
+                                    <field name="state" widget="badge"/>
+                                    <button name="action_post" type="object" string="Post"
+                                            invisible="state != 'draft'" icon="fa-check"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Type-Specific Details">
+                            <field name="type_detail_ids">
+                                <list editable="bottom">
+                                    <field name="land_area_m2" optional="show"/>
+                                    <field name="built_up_area" optional="show"/>
+                                    <field name="manufacturer" optional="show"/>
+                                    <field name="model_name" optional="show"/>
+                                    <field name="manufacturer_serial_number" optional="show"/>
+                                    <field name="year_of_manufacture" optional="show"/>
+                                    <field name="registration_plate_number" optional="show"/>
+                                    <field name="software_version" optional="hide"/>
+                                    <field name="biological_age" optional="hide"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Tags">
+                            <field name="tag_ids">
+                                <list editable="bottom">
+                                    <field name="tag_number"/>
+                                    <field name="issue_date"/>
+                                    <field name="is_movable"/>
+                                    <field name="safety_risk"/>
+                                    <field name="requires_physical_tag" readonly="1"/>
+                                    <button name="action_reissue" type="object" string="Set as Current Tag"
+                                            icon="fa-check"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Disposal / Transfer"
+                              invisible="state not in ('registered', 'in_service', 'disposed', 'transferred')">
+                            <group>
+                                <group string="Disposal">
+                                    <field name="disposal_method"/>
+                                    <field name="disposal_date"/>
+                                    <field name="disposal_proceeds"/>
+                                    <field name="disposal_reason"/>
+                                </group>
+                                <group string="Transfer">
+                                    <field name="transfer_destination"/>
+                                    <field name="transfer_date"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sa_gov_asset_search" model="ir.ui.view">
+        <field name="name">sa.gov.asset.search</field>
+        <field name="model">sa.gov.asset</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="asset_code"/>
+                <field name="name"/>
+                <field name="tag_number"/>
+                <field name="classification_id"/>
+                <filter name="capitalized" string="Capitalized (مرسملة)" domain="[('is_capitalized', '=', True)]"/>
+                <filter name="non_capitalized" string="Non-Capitalized (غير مرسملة)"
+                        domain="[('is_capitalized', '=', False)]"/>
+                <separator/>
+                <filter name="in_service" string="In Service" domain="[('state', '=', 'in_service')]"/>
+                <filter name="disposed" string="Disposed" domain="[('state', '=', 'disposed')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_l1" string="Main Group" context="{'group_by': 'l1_name'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_capitalized" string="Capitalized" context="{'group_by': 'is_capitalized'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sa_gov_asset" model="ir.actions.act_window">
+        <field name="name">Government Assets</field>
+        <field name="res_model">sa.gov.asset</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="context">{'search_default_group_l1': 1}</field>
+    </record>
+</odoo>

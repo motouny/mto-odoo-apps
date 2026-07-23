@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="demo_asset_land" model="sa.gov.asset">
+        <field name="name">Ministry Headquarters Land Plot</field>
+        <field name="classification_id" ref="cls_01010101"/>
+        <field name="acquisition_method">purchase</field>
+        <field name="acquisition_date" eval="'2015-01-15'"/>
+        <field name="acquisition_cost">5000000</field>
+        <field name="date_placed_in_service" eval="'2015-01-15'"/>
+        <field name="city">Riyadh</field>
+        <field name="condition">good</field>
+    </record>
+
+    <record id="demo_asset_laptop" model="sa.gov.asset">
+        <field name="name">Dell Latitude Laptop - IT Department</field>
+        <field name="classification_id" ref="cls_13020401"/>
+        <field name="acquisition_method">purchase</field>
+        <field name="acquisition_date" eval="'2024-03-01'"/>
+        <field name="acquisition_cost">4500</field>
+        <field name="date_placed_in_service" eval="'2024-03-01'"/>
+        <field name="useful_life_years">4</field>
+        <field name="city">Riyadh</field>
+        <field name="custodian_department">IT Department</field>
+        <field name="condition">good</field>
+    </record>
+
+    <record id="demo_asset_chair" model="sa.gov.asset">
+        <field name="name">Office Chair - below capitalization threshold</field>
+        <field name="classification_id" ref="cls_09020301"/>
+        <field name="acquisition_method">purchase</field>
+        <field name="acquisition_date" eval="'2024-06-01'"/>
+        <field name="acquisition_cost">500</field>
+        <field name="date_placed_in_service" eval="'2024-06-01'"/>
+        <field name="city">Riyadh</field>
+        <field name="custodian_department">General Services</field>
+        <field name="condition">good</field>
+    </record>
+</odoo>

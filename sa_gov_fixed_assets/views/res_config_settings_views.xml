@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sa.gov.fixed.assets</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Government Assets" string="Government Assets"
+                     name="sa_gov_fixed_assets"
+                     groups="sa_gov_fixed_assets.group_sa_asset_manager">
+                    <block title="Saudi MOF Asset Settings">
+                        <setting help="Use the higher capitalization threshold defined per asset category for large entities owning infrastructure and specialized equipment">
+                            <field name="sa_gov_is_large_entity"/>
+                        </setting>
+                        <setting help="Entity name/code per the chart of accounts issued by the Ministry of Finance Budget &amp; Organization Agency">
+                            <field name="sa_gov_asset_entity_name"/>
+                            <field name="sa_gov_asset_entity_code"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_sa_gov_asset_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'sa_gov_fixed_assets'}</field>
+    </record>
+</odoo>
