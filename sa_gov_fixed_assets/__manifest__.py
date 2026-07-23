@@ -44,6 +44,7 @@ Community).
     'price': 30.0,
     'currency': 'EUR',
     'support': 'support@mto-solutions.com',
+    'images': ['static/description/banner.png'],
     'depends': ['base', 'mail', 'web'],
     'data': [
         'security/sa_gov_fixed_assets_security.xml',
