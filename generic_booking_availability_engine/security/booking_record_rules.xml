@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_booking_resource_company" model="ir.rule">
+        <field name="name">Booking Resource: multi-company</field>
+        <field name="model_id" ref="model_booking_resource"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="rule_booking_order_company" model="ir.rule">
+        <field name="name">Booking Order: multi-company</field>
+        <field name="model_id" ref="model_booking_order"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="rule_booking_order_portal_own" model="ir.rule">
+        <field name="name">Booking Order: portal users see only their own</field>
+        <field name="model_id" ref="model_booking_order"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[('partner_id', 'child_of', [user.commercial_partner_id.id])]</field>
+    </record>
+
+    <record id="rule_booking_order_line_portal_own" model="ir.rule">
+        <field name="name">Booking Order Line: portal users see only their own</field>
+        <field name="model_id" ref="model_booking_order_line"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[('order_id.partner_id', 'child_of', [user.commercial_partner_id.id])]</field>
+    </record>
+</odoo>

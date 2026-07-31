@@ -1,0 +1,92 @@
+<meta charset="utf-8"/>
+<section style="font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#2b2b3a; max-width: 980px; margin: 0 auto; line-height:1.55;">
+
+  <!-- Hero -->
+  <div style="background: linear-gradient(135deg,#5b3a5e,#3f2a52); color:#fff; border-radius:12px; padding:40px 32px; text-align:center;">
+    <h1 style="margin:0 0 8px; font-size:32px;">Generic Booking &amp; Availability Engine</h1>
+    <p style="margin:0 0 16px; font-size:18px; opacity:.9;">Bookable Resources &bull; Date Availability &bull; Seasonal Pricing &bull; Cancellation Policies</p>
+    <div>
+      <span style="display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:6px 16px; margin:4px; font-size:14px;">Odoo 18</span>
+      <span style="display:inline-block; background:#fff; color:#3f2a52; border-radius:20px; padding:6px 18px; margin:4px; font-size:14px; font-weight:700;">€30</span>
+      <span style="display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:6px 16px; margin:4px; font-size:14px;">Community &amp; Enterprise</span>
+    </div>
+  </div>
+
+  <p style="font-size:17px; margin:28px 0; text-align:center; color:#444;">
+    A domain-agnostic booking engine for anything sold or rented by the day or by a date
+    range &mdash; hotel rooms, vehicles, tour guides, equipment rental, clinic slots, event
+    seats, meal plans &mdash; any bookable resource, entirely inside Odoo.
+  </p>
+
+  <!-- Screenshots -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px;">Screenshots</h2>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin:20px 0;">
+    <figure style="margin:0;">
+      <img src="screenshots/01_bookings_list.png" alt="Bookings list" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Bookings list with status decorations</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/02_bookings_kanban.png" alt="Bookings kanban" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Kanban grouped by booking status</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/03_booking_form_confirmed.png" alt="Confirmed booking" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Confirmed booking with statusbar and voucher</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/04_booking_form_draft_buttons.png" alt="Draft booking workflow buttons" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Guarded workflow buttons per status</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/05_resources_list.png" alt="Resources list" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Bookable resources by category</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/06_resource_pricing_rules.png" alt="Resource pricing rules" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Seasonal / special-offer pricing rules</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/07_availability_calendar.png" alt="Availability calendar" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Day-by-day availability calendar</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/08_cancellation_policy.png" alt="Cancellation policy" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Configurable cancellation / refund policy</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/10_portal_bookings_list.png" alt="Portal bookings list" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Customer portal: booking history</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/12_portal_after_cancel_request.png" alt="Portal cancellation and refund" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Self-service cancellation with automatic refund calculation</figcaption>
+    </figure>
+  </div>
+
+  <!-- Highlights -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px;">Highlights</h2>
+  <ul style="font-size:15px; color:#333;">
+    <li>Bookable resources organized by category, each with its own capacity, base price and cancellation policy</li>
+    <li>Day-by-day availability calendar with per-date capacity overrides and blackout dates</li>
+    <li>Seasonal / special-offer pricing rules resolved by priority and date range</li>
+    <li>Configurable cancellation policies (refund percentage by days-before-start)</li>
+    <li>A full booking workflow: draft, pending payment, payment failed, paid, pending supplier
+      confirmation, confirmed, rejected by supplier, cancelled by customer, cancelled by admin,
+      refund requested, refunded, completed, no-show</li>
+    <li>Automatic capacity guard &mdash; a booking cannot be confirmed past a resource's available
+      capacity for its requested dates</li>
+    <li>Automatic refund percentage calculation from the resource's cancellation policy</li>
+    <li>Portal self-service: customers see only their own bookings, download the booking voucher
+      and request cancellation</li>
+    <li>Printable booking voucher (PDF)</li>
+    <li>Bulk availability generator wizard</li>
+    <li>Multi-company, works standalone or alongside standard Sales/Invoicing</li>
+    <li>Arabic and English, right-to-left ready</li>
+  </ul>
+
+  <p style="text-align:center; color:#777; font-size:13px; margin-top:32px;">
+    This app is fully independent &mdash; it does not require or depend on any other paid
+    application from this publisher.
+  </p>
+
+</section>

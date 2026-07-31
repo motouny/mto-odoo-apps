@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_booking_pricing_rule_list" model="ir.ui.view">
+        <field name="name">booking.pricing.rule.list</field>
+        <field name="model">booking.pricing.rule</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="resource_id"/>
+                <field name="name"/>
+                <field name="rule_type"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="price"/>
+                <field name="priority"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_booking_pricing_rule_form" model="ir.ui.view">
+        <field name="name">booking.pricing.rule.form</field>
+        <field name="model">booking.pricing.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="resource_id"/>
+                        <field name="name"/>
+                        <field name="rule_type"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="price"/>
+                        <field name="priority"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_booking_pricing_rule" model="ir.actions.act_window">
+        <field name="name">Pricing Rules</field>
+        <field name="res_model">booking.pricing.rule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_booking_voucher_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>
+                    Booking Voucher -
+                    <span t-field="o.name"/>
+                </h2>
+                <div class="row mt32 mb32">
+                    <div class="col-6">
+                        <strong>Customer</strong>
+                        <div t-field="o.partner_id"
+                             t-options="{'widget': 'contact', 'fields': ['address', 'name', 'email', 'phone'], 'no_marker': True}"/>
+                    </div>
+                    <div class="col-6 text-end">
+                        <strong>Booking Date:</strong>
+                        <span t-field="o.date_order"/>
+                        <br/>
+                        <strong>Status:</strong>
+                        <span t-field="o.state"/>
+                    </div>
+                </div>
+
+                <table class="table table-sm o_main_table">
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th class="text-end">Nights</th>
+                            <th class="text-end">Qty</th>
+                            <th class="text-end">Unit Price</th>
+                            <th class="text-end">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="o.line_ids" t-as="line">
+                            <td><span t-field="line.resource_id.name"/></td>
+                            <td><span t-field="line.date_from"/></td>
+                            <td><span t-field="line.date_to"/></td>
+                            <td class="text-end"><span t-field="line.nights"/></td>
+                            <td class="text-end"><span t-field="line.quantity"/></td>
+                            <td class="text-end"><span t-field="line.unit_price"/></td>
+                            <td class="text-end"><span t-field="line.subtotal"/></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-end"><strong>Total</strong></td>
+                            <td class="text-end"><span t-field="o.amount_total"/></td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <p t-if="o.note" t-field="o.note"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_booking_voucher">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="generic_booking_availability_engine.report_booking_voucher_document" t-lang="o.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>
