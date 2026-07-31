@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="smart_visitor_management.KioskScanner">
+        <div class="o_visitor_kiosk d-flex flex-column align-items-center p-4 gap-3">
+            <h2>Visitor Check-In Kiosk</h2>
+
+            <div class="btn-group" role="group">
+                <button class="btn" t-att-class="state.mode === 'check_in' ? 'btn-primary' : 'btn-outline-primary'"
+                        t-on-click="() => this.setMode('check_in')">Check In</button>
+                <button class="btn" t-att-class="state.mode === 'check_out' ? 'btn-primary' : 'btn-outline-primary'"
+                        t-on-click="() => this.setMode('check_out')">Check Out</button>
+            </div>
+
+            <button class="btn btn-lg btn-success" t-on-click="onScanClick" t-att-disabled="state.busy">
+                <i class="fa fa-camera me-1"/> Scan QR Code
+            </button>
+
+            <form class="d-flex gap-2" t-on-submit="onManualSubmit">
+                <input type="text" class="form-control" placeholder="Enter token manually"
+                       t-model="state.manualToken"/>
+                <button type="submit" class="btn btn-secondary" t-att-disabled="state.busy">Submit</button>
+            </form>
+
+            <div t-if="state.lastResult" class="alert w-50 text-center"
+                 t-att-class="state.lastResult.ok ? 'alert-success' : 'alert-danger'">
+                <strong t-esc="state.lastResult.message"/>
+                <div t-if="state.lastResult.guest_name" t-esc="state.lastResult.guest_name"/>
+            </div>
+        </div>
+    </t>
+</templates>

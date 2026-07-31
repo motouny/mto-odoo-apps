@@ -1,6 +1,6 @@
 {
     'name': 'Smart Visitor Management',
-    'version': '18.0.1.0.2',
+    'version': '18.0.1.0.3',
     'category': 'Administration',
     'summary': 'Visitor invitations, approvals, secure QR check-in, badges, vehicles, blacklist and live occupancy',
     'description': """
@@ -47,10 +47,12 @@ other paid application from this publisher.
         'data/ir_sequence_data.xml',
         'data/mail_template_data.xml',
         'data/ir_cron_data.xml',
+        'data/report_paperformat_data.xml',
         'views/visitor_visit_views.xml',
         'views/visitor_guest_views.xml',
         'views/visitor_location_views.xml',
         'views/visitor_gate_views.xml',
+        'views/visitor_department_views.xml',
         'views/visitor_host_views.xml',
         'views/visitor_blacklist_views.xml',
         'views/visitor_checkpoint_log_views.xml',

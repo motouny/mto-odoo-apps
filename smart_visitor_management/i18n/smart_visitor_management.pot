@@ -1,0 +1,1648 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* smart_visitor_management
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-13 08:19+0000\n"
+"PO-Revision-Date: 2026-07-13 08:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: smart_visitor_management
+#: model:ir.actions.report,print_report_name:smart_visitor_management.action_report_visitor_badge
+msgid "'Badge - %s' % (object.name)"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.report,print_report_name:smart_visitor_management.action_report_vehicle_permit
+msgid "'Vehicle Permit - %s' % (object.name)"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:mail.template,body_html:smart_visitor_management.mail_template_visitor_rejected
+msgid ""
+"<div>\n"
+"                <p>Dear <t t-out=\"object.guest_id.name\"/>,</p>\n"
+"                <p>\n"
+"                    Unfortunately your visit request (<t t-out=\"object.name\"/>) was not approved.\n"
+"                </p>\n"
+"                <p t-if=\"object.rejection_reason\">\n"
+"                    Reason: <t t-out=\"object.rejection_reason\"/>\n"
+"                </p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:mail.template,body_html:smart_visitor_management.mail_template_visitor_invitation
+msgid ""
+"<div>\n"
+"                <p>Dear <t t-out=\"object.guest_id.name\"/>,</p>\n"
+"                <p>\n"
+"                    You have been invited by <t t-out=\"object.host_id.name\"/> to visit\n"
+"                    <t t-out=\"object.location_id.name\"/> on <t t-out=\"object.visit_start\"/>.\n"
+"                </p>\n"
+"                <p>Please complete your visitor details using the link below before your visit:</p>\n"
+"                <p>\n"
+"                    <a t-attf-href=\"/visitor/invitation/{{ object.invitation_token }}\">\n"
+"                        Complete My Visitor Registration\n"
+"                    </a>\n"
+"                </p>\n"
+"                <p>This link is personal, do not share it.</p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:mail.template,body_html:smart_visitor_management.mail_template_visitor_approved
+msgid ""
+"<div>\n"
+"                <p>Dear <t t-out=\"object.guest_id.name\"/>,</p>\n"
+"                <p>\n"
+"                    Your visit (<t t-out=\"object.name\"/>) has been approved. Please present a valid\n"
+"                    ID at the reception desk on arrival.\n"
+"                </p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_vehicle_permit_document
+msgid "<strong>Guest:</strong>"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_visitor_badge_document
+msgid "<strong>Host:</strong>"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_visitor_badge_document
+msgid "<strong>Purpose:</strong>"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_vehicle_permit_document
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_visitor_badge_document
+msgid "<strong>Valid:</strong>"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.constraint,message:smart_visitor_management.constraint_visitor_guest_identity_number_type_uniq
+msgid "A guest with this identity type and number already exists."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__guest_ids
+msgid "Accompanying Guests"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_needaction
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_needaction
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__active
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__active
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__active
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__active
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__active
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__active
+msgid "Active"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Add to Blacklist"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__guest_ids
+msgid "Additional guests included in this visit (group visits)."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:res.groups,name:smart_visitor_management.group_visitor_administrator
+msgid "Administrator"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_visit_all
+msgid "All Visits"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Approval"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__approval_date
+msgid "Approval Date"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Approve"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__approved
+msgid "Approved"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Approved / Scheduled"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__approved_by
+msgid "Approved By"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Archived"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_attachment_count
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_attachment_count
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:res.groups,name:smart_visitor_management.group_visitor_auditor
+msgid "Auditor"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.res_config_settings_view_form
+msgid "Automatically expire approved visits whose end time has passed"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__badge_number
+msgid "Badge Number"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_badge_template
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_config_badge_template
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_badge_template_list
+msgid "Badge Templates"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_blacklist
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_blacklist
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_blacklist_list
+msgid "Blacklist"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__blacklist_date
+msgid "Blacklist Date"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_blacklist_form
+msgid "Blacklist Entry"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_checkpoint_log__scan_result__blacklisted
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__blacklisted
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Blacklisted"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__blacklisted_by
+msgid "Blacklisted By"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Cancel"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_vehicle__vehicle_type__car
+msgid "Car"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-javascript
+#: code:addons/smart_visitor_management/static/src/xml/kiosk_scanner.xml:0
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Check In"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__check_in_datetime
+msgid "Check In Datetime"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__check_in_gate_id
+msgid "Check In Gate"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-javascript
+#: code:addons/smart_visitor_management/static/src/xml/kiosk_scanner.xml:0
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Check Out"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__check_out_datetime
+msgid "Check Out Datetime"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__check_out_gate_id
+msgid "Check Out Gate"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_checkpoint_log__scan_type__check_in
+msgid "Check-In"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Check-In / Check-Out"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.client,name:smart_visitor_management.action_visitor_kiosk
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_kiosk
+msgid "Check-In Kiosk"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_checkpoint_log__scan_type__check_out
+msgid "Check-Out"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__checked_in
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Checked In"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__checked_in_by_uid
+msgid "Checked In By Uid"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__checked_out
+msgid "Checked Out"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__checked_out_by_uid
+msgid "Checked Out By Uid"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Checked in successfully."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Checked out successfully."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_visit_checked_in
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_visit_checked_in
+msgid "Checked-In Visitors"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_checkpoint_log
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_scan_log
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_checkpoint_log_list
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_checkpoint_log_search
+msgid "Checkpoint Scan Log"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_checkpoint_log.py:0
+msgid "Checkpoint scan logs are immutable and cannot be deleted."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_checkpoint_log.py:0
+msgid "Checkpoint scan logs are immutable and cannot be modified."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__code
+msgid "Code"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__color
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_vehicle_permit_document
+msgid "Color"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__company_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__company_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__company_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__company_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__company_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__company_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__company_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__company_id
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Company"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_configuration
+msgid "Configuration"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.actions.act_window,help:smart_visitor_management.action_visitor_visit
+msgid "Create your first visitor invitation."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__create_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__create_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__create_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__create_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__create_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__create_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__create_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__create_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__create_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__create_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__create_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__create_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__create_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__create_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__create_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__create_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__is_default
+msgid "Default Template"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__department_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__department_id
+msgid "Department"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_department__manager_id
+msgid "Department Manager"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_department
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_config_department
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_department_list
+msgid "Departments"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__display_name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__display_name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__display_name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__display_name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__display_name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__display_name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__display_name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__display_name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__email
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__email
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Email"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-javascript
+#: code:addons/smart_visitor_management/static/src/xml/kiosk_scanner.xml:0
+msgid "Enter token manually"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Entry"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_gate__gate_type__both
+msgid "Entry & Exit"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__entry_grace_minutes
+msgid "Entry Grace Minutes"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_gate__gate_type__entry
+msgid "Entry Only"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__equipment_carried
+msgid "Equipment Carried"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Exit"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_gate__gate_type__exit
+msgid "Exit Only"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__gate_id
+msgid "Expected Gate"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_checkpoint_log__scan_result__expired
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__expired
+msgid "Expired"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_checkpoint_log_search
+msgid "Failed Scans"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_follower_ids
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_follower_ids
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_partner_ids
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_partner_ids
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__footer_text
+msgid "Footer Text"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__name
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Full Name"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__name_ar
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Full Name (Arabic)"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__gate_id
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_checkpoint_log_search
+msgid "Gate"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__gate_type
+msgid "Gate Type"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_gate
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_config_gate
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_gate_list
+msgid "Gates"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__visit_type__group
+msgid "Group"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_checkpoint_log_search
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Group By"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_guest_form
+msgid "Guest"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__guest_name
+msgid "Guest Name"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_guest
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_guests
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_guest_list
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_guest_search
+msgid "Guests"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__has_message
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__has_message
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__header_text
+msgid "Header Text"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__host_id
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Host"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:res.groups,name:smart_visitor_management.group_visitor_host
+msgid "Host Employee"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_host
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_config_host
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_host_list
+msgid "Hosts"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__id
+msgid "ID"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__identity_number
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__identity_number
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Identity Number"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__identity_type
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__identity_type
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Identity Type"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_blacklist__message_needaction
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_host__message_needaction
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_blacklist__message_has_error
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_blacklist__message_has_sms_error
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_host__message_has_error
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_host__message_has_sms_error
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__message_has_error
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__visit_type__individual
+msgid "Individual"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_checkpoint_log__scan_result__invalid_token
+msgid "Invalid Token"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Invalid or unknown QR code."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__invitation_completed
+msgid "Invitation Completed"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Invitation Link"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__invitation_token
+msgid "Invitation Token"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_is_follower
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_is_follower
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__is_overstayed
+msgid "Is Overstayed"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__write_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__write_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__write_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__write_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__write_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__write_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__write_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__write_uid
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__write_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__write_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__write_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__write_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__write_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__write_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__write_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__write_date
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__user_id
+msgid "Linked User"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__location_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__location_id
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_location_form
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Location"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_location
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_config_location
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_location_list
+msgid "Locations"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__make_model
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_vehicle_permit_document
+msgid "Make / Model"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Manual check-in"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Manual check-out"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Mark No Show"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Marked as No Show."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_has_error
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_has_error
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_ids
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_ids
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__entry_grace_minutes
+msgid "Minutes before Visit Start during which check-in is still allowed."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.res_config_settings_view_form
+msgid ""
+"Minutes before the scheduled start time during which check-in is allowed"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__mobile
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__mobile
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Mobile"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_vehicle__vehicle_type__motorcycle
+msgid "Motorcycle"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_gate__name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__name
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__name
+msgid "Name"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_blacklist__identity_type__national_id
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_guest__identity_type__national_id
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "National ID"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__nationality_id
+msgid "Nationality"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "New"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__note
+msgid "Note"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_location__notes
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__notes
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__notes
+msgid "Notes"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_needaction_counter
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_needaction_counter
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_has_error_counter
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_has_error_counter
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_blacklist__message_needaction_counter
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_host__message_needaction_counter
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_blacklist__message_has_error_counter
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_host__message_has_error_counter
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Only approved or scheduled visits can be marked as no-show."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Only draft or pending visits can be rejected."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Only draft visits can be submitted."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Only rejected, cancelled or expired visits can be reset."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Only visits pending approval can be approved."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_blacklist__identity_type__other
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_guest__identity_type__other
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_vehicle__vehicle_type__other
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Other"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_checkpoint_log__scan_result__outside_window
+msgid "Outside Allowed Window"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "Outside the allowed entry window."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Overstayed"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_blacklist__identity_type__passport
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_guest__identity_type__passport
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Passport"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__passport_number
+msgid "Passport Number"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_visit_pending
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__pending_approval
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_visit_pending
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Pending Approval"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__phone
+msgid "Phone"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__photo
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Photo"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__plate_number
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_vehicle_permit_document
+msgid "Plate Number"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__guest_id
+msgid "Primary Guest"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Print Badge"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "QR check-in"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "QR check-out"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__qr_expiry
+msgid "Qr Expiry"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__qr_revoked
+msgid "Qr Revoked"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__qr_token
+msgid "Qr Token"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__reason
+msgid "Reason"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_blacklist_form
+msgid "Reason for blacklisting..."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:res.groups,name:smart_visitor_management.group_visitor_receptionist
+msgid "Receptionist"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Reject"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__rejection_reason
+msgid "Rejection Reason"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_reports
+msgid "Reports"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.res_config_settings_view_form
+msgid "Require manager approval before a QR check-in code is issued"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_blacklist__identity_type__iqama
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_guest__identity_type__iqama
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Resident ID"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_checkpoint_log_search
+msgid "Result"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_checkpoint_log__scan_result__revoked
+msgid "Revoked / Not Approved"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__message_has_sms_error
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__message_has_sms_error
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__scan_datetime
+msgid "Scan Datetime"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__checkpoint_log_ids
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Scan Log"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-javascript
+#: code:addons/smart_visitor_management/static/src/xml/kiosk_scanner.xml:0
+msgid "Scan QR Code"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__scan_result
+msgid "Scan Result"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__scan_type
+msgid "Scan Type"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__scanned_by_uid
+msgid "Scanned By"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_visit__state__scheduled
+msgid "Scheduled"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:res.groups,name:smart_visitor_management.group_visitor_security
+msgid "Security Officer"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Send Invitation"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_config_settings
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_config_settings
+msgid "Settings"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__show_host
+msgid "Show Host"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__show_photo
+msgid "Show Photo"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_badge_template__show_qr
+msgid "Show Qr"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_checkpoint_log__guest_name
+msgid "Snapshot of the guest name at scan time."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__state
+msgid "State"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Status"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-javascript
+#: code:addons/smart_visitor_management/static/src/xml/kiosk_scanner.xml:0
+msgid "Submit"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Submit My Details"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Submit for Approval"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_checkpoint_log__scan_result__success
+msgid "Success"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_checkpoint_log_search
+msgid "Successful Scans"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid ""
+"Thank you, your details have been received. You will be notified once\n"
+"                                your visit is confirmed."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.constraint,message:smart_visitor_management.constraint_visitor_location_code_company_uniq
+msgid "The location code must be unique per company."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "The primary guest has no email address."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "This QR code has expired."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "This guest is blacklisted."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "This invitation link is no longer valid. Please contact your host."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "This visit cannot be cancelled anymore."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "This visit has no vehicle registered."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "This visit is not approved for check-in."
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "This visit is not currently checked in."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Today"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_visit_today
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_visit_today
+msgid "Today's Visitors"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_vehicle__vehicle_type__truck
+msgid "Truck"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_vehicle_permit_document
+msgid "Type"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_visitor_badge_document
+msgid "VISITOR"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Vehicle Color"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Vehicle Make / Model"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.report,name:smart_visitor_management.action_report_vehicle_permit
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Vehicle Permit"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_vehicle_permit_document
+msgid "Vehicle Permit -"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Vehicle Plate Number"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__vehicle_type
+msgid "Vehicle Type"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__vehicle_ids
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Vehicles"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_checkpoint_log__visit_id
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_vehicle__visit_id
+msgid "Visit"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__visit_end
+msgid "Visit End"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.constraint,message:smart_visitor_management.constraint_visitor_visit_visit_dates_check
+msgid "Visit End must be after Visit Start."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__visit_purpose
+msgid "Visit Purpose"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__visit_start
+msgid "Visit Start"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__visit_type
+msgid "Visit Type"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_res_company__visitor_auto_expire_enabled
+#: model:ir.model.fields,field_description:smart_visitor_management.field_res_config_settings__visitor_auto_expire_enabled
+msgid "Visitor Auto Expire Enabled"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.report,name:smart_visitor_management.action_report_visitor_badge
+msgid "Visitor Badge"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_visitor_badge_template
+msgid "Visitor Badge Template"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_visitor_blacklist
+msgid "Visitor Blacklist"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-javascript
+#: code:addons/smart_visitor_management/static/src/xml/kiosk_scanner.xml:0
+msgid "Visitor Check-In Kiosk"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_visitor_checkpoint_log
+msgid "Visitor Checkpoint Scan Log"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_guest__company_name
+msgid "Visitor Company"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_res_company__visitor_default_entry_grace_minutes
+#: model:ir.model.fields,field_description:smart_visitor_management.field_res_config_settings__visitor_default_entry_grace_minutes
+msgid "Visitor Default Entry Grace Minutes"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_visitor_gate
+msgid "Visitor Gate"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_visitor_guest
+msgid "Visitor Guest"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_visitor_host
+msgid "Visitor Host"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "Visitor Invitation"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_visitor_location
+msgid "Visitor Location"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.module.category,name:smart_visitor_management.module_category_visitor_management
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_root
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.res_config_settings_view_form
+msgid "Visitor Management"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.server,name:smart_visitor_management.ir_cron_expire_overdue_visits_ir_actions_server
+msgid "Visitor Management: Expire Overdue Visits"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:res.groups,name:smart_visitor_management.group_visitor_manager
+msgid "Visitor Manager"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_res_company__visitor_require_approval
+#: model:ir.model.fields,field_description:smart_visitor_management.field_res_config_settings__visitor_require_approval
+msgid "Visitor Require Approval"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:res.groups,name:smart_visitor_management.group_visitor_user
+msgid "Visitor User"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_visitor_vehicle
+msgid "Visitor Vehicle"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model,name:smart_visitor_management.model_visitor_visit
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_form
+msgid "Visitor Visit"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:mail.template,name:smart_visitor_management.mail_template_visitor_invitation
+msgid "Visitor: Invitation"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:mail.template,name:smart_visitor_management.mail_template_visitor_approved
+msgid "Visitor: Visit Approved"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:mail.template,name:smart_visitor_management.mail_template_visitor_rejected
+msgid "Visitor: Visit Rejected"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.actions.act_window,name:smart_visitor_management.action_visitor_visit
+#: model:ir.ui.menu,name:smart_visitor_management.menu_visitor_visits
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_calendar
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_list
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.view_visitor_visit_search
+msgid "Visits"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_blacklist__website_message_ids
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_host__website_message_ids
+#: model:ir.model.fields,field_description:smart_visitor_management.field_visitor_visit__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_blacklist__website_message_ids
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_host__website_message_ids
+#: model:ir.model.fields,help:smart_visitor_management.field_visitor_visit__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:ir.model.fields.selection,name:smart_visitor_management.selection__visitor_checkpoint_log__scan_result__wrong_state
+msgid "Wrong State"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:mail.template,subject:smart_visitor_management.mail_template_visitor_invitation
+msgid "You are invited to {{ object.company_id.name }}"
+msgstr ""
+
+#. module: smart_visitor_management
+#. odoo-python
+#: code:addons/smart_visitor_management/models/visitor_visit.py:0
+msgid "You are not allowed to perform this action."
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "You have been invited by"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:mail.template,subject:smart_visitor_management.mail_template_visitor_rejected
+msgid "Your visit request to {{ object.company_id.name }} was not approved"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model:mail.template,subject:smart_visitor_management.mail_template_visitor_approved
+msgid "Your visit to {{ object.company_id.name }} is approved"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "on"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.portal_invitation_page
+msgid "to"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_vehicle_permit_document
+msgid ""
+"|\n"
+"                        <strong>Host:</strong>"
+msgstr ""
+
+#. module: smart_visitor_management
+#: model_terms:ir.ui.view,arch_db:smart_visitor_management.report_vehicle_permit_document
+msgid ""
+"|\n"
+"                        <strong>Location:</strong>"
+msgstr ""

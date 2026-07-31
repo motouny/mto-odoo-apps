@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_visitor_root" name="Visitor Management" sequence="60"
+              web_icon="smart_visitor_management,static/description/icon.png"
+              groups="smart_visitor_management.group_visitor_user"/>
+
+    <menuitem id="menu_visitor_visits" name="Visits" parent="menu_visitor_root" sequence="10"/>
+    <menuitem id="menu_visitor_visit_all" name="All Visits" parent="menu_visitor_visits"
+              action="action_visitor_visit" sequence="10"/>
+    <menuitem id="menu_visitor_visit_today" name="Today's Visitors" parent="menu_visitor_visits"
+              action="action_visitor_visit_today" sequence="20"/>
+    <menuitem id="menu_visitor_visit_pending" name="Pending Approval" parent="menu_visitor_visits"
+              action="action_visitor_visit_pending" sequence="30"
+              groups="smart_visitor_management.group_visitor_manager"/>
+    <menuitem id="menu_visitor_visit_checked_in" name="Checked-In Visitors" parent="menu_visitor_visits"
+              action="action_visitor_visit_checked_in" sequence="40"/>
+
+    <menuitem id="menu_visitor_kiosk" name="Check-In Kiosk" parent="menu_visitor_root"
+              action="action_visitor_kiosk" sequence="20"
+              groups="smart_visitor_management.group_visitor_receptionist,smart_visitor_management.group_visitor_security"/>
+
+    <menuitem id="menu_visitor_guests" name="Guests" parent="menu_visitor_root"
+              action="action_visitor_guest" sequence="30"/>
+
+    <menuitem id="menu_visitor_blacklist" name="Blacklist" parent="menu_visitor_root"
+              action="action_visitor_blacklist" sequence="40"
+              groups="smart_visitor_management.group_visitor_security,smart_visitor_management.group_visitor_auditor,smart_visitor_management.group_visitor_manager"/>
+
+    <menuitem id="menu_visitor_reports" name="Reports" parent="menu_visitor_root" sequence="50"
+              groups="smart_visitor_management.group_visitor_manager,smart_visitor_management.group_visitor_auditor"/>
+    <menuitem id="menu_visitor_scan_log" name="Checkpoint Scan Log" parent="menu_visitor_reports"
+              action="action_visitor_checkpoint_log" sequence="10"/>
+
+    <menuitem id="menu_visitor_configuration" name="Configuration" parent="menu_visitor_root"
+              sequence="90" groups="smart_visitor_management.group_visitor_manager"/>
+    <menuitem id="menu_visitor_config_location" name="Locations" parent="menu_visitor_configuration"
+              action="action_visitor_location" sequence="10"/>
+    <menuitem id="menu_visitor_config_gate" name="Gates" parent="menu_visitor_configuration"
+              action="action_visitor_gate" sequence="20"/>
+    <menuitem id="menu_visitor_config_department" name="Departments" parent="menu_visitor_configuration"
+              action="action_visitor_department" sequence="25"/>
+    <menuitem id="menu_visitor_config_host" name="Hosts" parent="menu_visitor_configuration"
+              action="action_visitor_host" sequence="30"/>
+    <menuitem id="menu_visitor_config_badge_template" name="Badge Templates"
+              parent="menu_visitor_configuration" action="action_visitor_badge_template" sequence="40"/>
+    <menuitem id="menu_visitor_config_settings" name="Settings" parent="menu_visitor_configuration"
+              action="action_visitor_config_settings" sequence="50"/>
+</odoo>

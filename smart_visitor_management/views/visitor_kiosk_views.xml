@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_visitor_kiosk" model="ir.actions.client">
+        <field name="name">Check-In Kiosk</field>
+        <field name="tag">visitor_kiosk_scanner</field>
+    </record>
+</odoo>

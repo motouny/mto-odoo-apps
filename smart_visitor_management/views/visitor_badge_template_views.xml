@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_visitor_badge_template_list" model="ir.ui.view">
+        <field name="name">visitor.badge.template.list</field>
+        <field name="model">visitor.badge.template</field>
+        <field name="arch" type="xml">
+            <list string="Badge Templates" editable="bottom">
+                <field name="name"/>
+                <field name="header_text"/>
+                <field name="show_photo"/>
+                <field name="show_qr"/>
+                <field name="show_host"/>
+                <field name="is_default"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_visitor_badge_template" model="ir.actions.act_window">
+        <field name="name">Badge Templates</field>
+        <field name="res_model">visitor.badge.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

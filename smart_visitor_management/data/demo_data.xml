@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="demo_location_hq" model="visitor.location">
+        <field name="name">Headquarters</field>
+        <field name="code">HQ</field>
+    </record>
+    <record id="demo_location_warehouse" model="visitor.location">
+        <field name="name">Warehouse</field>
+        <field name="code">WH</field>
+    </record>
+
+    <record id="demo_gate_main" model="visitor.gate">
+        <field name="name">Main Gate</field>
+        <field name="location_id" ref="demo_location_hq"/>
+        <field name="gate_type">both</field>
+    </record>
+    <record id="demo_gate_service" model="visitor.gate">
+        <field name="name">Service Gate</field>
+        <field name="location_id" ref="demo_location_warehouse"/>
+        <field name="gate_type">both</field>
+    </record>
+
+    <record id="demo_department_sales" model="visitor.department">
+        <field name="name">Sales</field>
+        <field name="code">SALES</field>
+    </record>
+    <record id="demo_department_operations" model="visitor.department">
+        <field name="name">Operations</field>
+        <field name="code">OPS</field>
+    </record>
+
+    <record id="demo_host_sara" model="visitor.host">
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="name">Sara Al-Amin</field>
+        <field name="department_id" ref="demo_department_sales"/>
+        <field name="email">sara.demo@example.com</field>
+    </record>
+    <record id="demo_host_omar" model="visitor.host">
+        <field name="name">Omar Hassan</field>
+        <field name="department_id" ref="demo_department_operations"/>
+        <field name="email">omar.demo@example.com</field>
+    </record>
+
+    <record id="demo_guest_john" model="visitor.guest">
+        <field name="name">John Carter</field>
+        <field name="identity_type">passport</field>
+        <field name="identity_number">P1234567</field>
+        <field name="company_name">Acme Consulting</field>
+        <field name="mobile">+1 555 0100</field>
+        <field name="email">john.carter.demo@example.com</field>
+    </record>
+    <record id="demo_guest_layla" model="visitor.guest">
+        <field name="name">Layla Youssef</field>
+        <field name="name_ar">ليلى يوسف</field>
+        <field name="identity_type">national_id</field>
+        <field name="identity_number">1029384756</field>
+        <field name="company_name">Gulf Logistics</field>
+        <field name="mobile">+966 500000000</field>
+        <field name="email">layla.demo@example.com</field>
+    </record>
+    <record id="demo_guest_mark" model="visitor.guest">
+        <field name="name">Mark Chen</field>
+        <field name="identity_type">passport</field>
+        <field name="identity_number">P7654321</field>
+        <field name="company_name">Chen Trading</field>
+        <field name="mobile">+1 555 0199</field>
+        <field name="email">mark.chen.demo@example.com</field>
+    </record>
+    <record id="demo_guest_amina" model="visitor.guest">
+        <field name="name">Amina Khalid</field>
+        <field name="name_ar">أمينة خالد</field>
+        <field name="identity_type">iqama</field>
+        <field name="identity_number">2233445566</field>
+        <field name="company_name">Falcon Supplies</field>
+        <field name="mobile">+966 511111111</field>
+        <field name="email">amina.demo@example.com</field>
+    </record>
+
+    <record id="demo_blacklist_entry" model="visitor.blacklist">
+        <field name="name">Robert Danger</field>
+        <field name="identity_type">passport</field>
+        <field name="identity_number">P0000666</field>
+        <field name="reason">Security incident on a previous visit (demo record).</field>
+    </record>
+
+    <!-- Approved, upcoming visit - has a live QR token for kiosk demo -->
+    <record id="demo_visit_1" model="visitor.visit">
+        <field name="guest_id" ref="demo_guest_john"/>
+        <field name="host_id" ref="demo_host_sara"/>
+        <field name="location_id" ref="demo_location_hq"/>
+        <field name="gate_id" ref="demo_gate_main"/>
+        <field name="visit_purpose">Quarterly business review meeting</field>
+        <field name="visit_start" eval="(datetime.now() - relativedelta(minutes=15))"/>
+        <field name="visit_end" eval="(datetime.now() + relativedelta(hours=2))"/>
+        <field name="state">approved</field>
+        <field name="approved_by" ref="base.user_admin"/>
+        <field name="approval_date" eval="(datetime.now() - relativedelta(hours=1))"/>
+        <field name="qr_token">demo-qr-token-john-carter-0001</field>
+        <field name="qr_expiry" eval="(datetime.now() + relativedelta(hours=2))"/>
+    </record>
+
+    <!-- Draft visit awaiting submission -->
+    <record id="demo_visit_0" model="visitor.visit">
+        <field name="guest_id" ref="demo_guest_john"/>
+        <field name="host_id" ref="demo_host_sara"/>
+        <field name="location_id" ref="demo_location_hq"/>
+        <field name="visit_purpose">Follow-up meeting (draft, not submitted yet)</field>
+        <field name="visit_start" eval="(datetime.now() + relativedelta(days=2, hour=14, minute=0))"/>
+        <field name="visit_end" eval="(datetime.now() + relativedelta(days=2, hour=15, minute=0))"/>
+        <field name="state">draft</field>
+    </record>
+
+    <!-- Pending approval -->
+    <record id="demo_visit_2" model="visitor.visit">
+        <field name="guest_id" ref="demo_guest_layla"/>
+        <field name="host_id" ref="demo_host_omar"/>
+        <field name="location_id" ref="demo_location_warehouse"/>
+        <field name="gate_id" ref="demo_gate_service"/>
+        <field name="visit_purpose">Delivery inspection</field>
+        <field name="visit_start" eval="(datetime.now() + relativedelta(hours=2))"/>
+        <field name="visit_end" eval="(datetime.now() + relativedelta(hours=4))"/>
+        <field name="state">pending_approval</field>
+    </record>
+
+    <!-- Currently checked in (today) -->
+    <record id="demo_visit_3" model="visitor.visit">
+        <field name="guest_id" ref="demo_guest_mark"/>
+        <field name="host_id" ref="demo_host_sara"/>
+        <field name="location_id" ref="demo_location_hq"/>
+        <field name="gate_id" ref="demo_gate_main"/>
+        <field name="visit_purpose">Product demo</field>
+        <field name="visit_start" eval="(datetime.now() - relativedelta(hours=1))"/>
+        <field name="visit_end" eval="(datetime.now() + relativedelta(hours=3))"/>
+        <field name="state">checked_in</field>
+        <field name="check_in_datetime" eval="(datetime.now() - relativedelta(minutes=45))"/>
+        <field name="check_in_gate_id" ref="demo_gate_main"/>
+        <field name="checked_in_by_uid" ref="base.user_admin"/>
+        <field name="badge_number">BDG/00003</field>
+    </record>
+
+    <!-- Vehicle for demo_visit_3 -->
+    <record id="demo_visit_3_vehicle" model="visitor.vehicle">
+        <field name="visit_id" ref="demo_visit_3"/>
+        <field name="plate_number">ABC-1234</field>
+        <field name="vehicle_type">car</field>
+        <field name="color">White</field>
+        <field name="make_model">Toyota Camry</field>
+    </record>
+
+    <!-- Checked out (completed) -->
+    <record id="demo_visit_4" model="visitor.visit">
+        <field name="guest_id" ref="demo_guest_amina"/>
+        <field name="host_id" ref="demo_host_omar"/>
+        <field name="location_id" ref="demo_location_hq"/>
+        <field name="gate_id" ref="demo_gate_main"/>
+        <field name="visit_purpose">Contract signing</field>
+        <field name="visit_start" eval="(datetime.now() - relativedelta(days=1, hours=3))"/>
+        <field name="visit_end" eval="(datetime.now() - relativedelta(days=1))"/>
+        <field name="state">checked_out</field>
+        <field name="check_in_datetime" eval="(datetime.now() - relativedelta(days=1, hours=3))"/>
+        <field name="check_out_datetime" eval="(datetime.now() - relativedelta(days=1, hours=1))"/>
+        <field name="checked_in_by_uid" ref="base.user_admin"/>
+        <field name="checked_out_by_uid" ref="base.user_admin"/>
+        <field name="badge_number">BDG/00004</field>
+    </record>
+</odoo>

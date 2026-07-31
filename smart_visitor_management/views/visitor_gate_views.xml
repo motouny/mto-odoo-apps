@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_visitor_gate_list" model="ir.ui.view">
+        <field name="name">visitor.gate.list</field>
+        <field name="model">visitor.gate</field>
+        <field name="arch" type="xml">
+            <list string="Gates" editable="bottom">
+                <field name="name"/>
+                <field name="location_id"/>
+                <field name="gate_type"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_visitor_gate" model="ir.actions.act_window">
+        <field name="name">Gates</field>
+        <field name="res_model">visitor.gate</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
