@@ -42,6 +42,7 @@ paid application from this publisher.
     'price': 30.0,
     'currency': 'EUR',
     'support': 'support@mto-solutions.com',
+    'images': ['static/description/banner.png'],
     'depends': ['base', 'mail', 'portal', 'product', 'sale'],
     'data': [
         'security/booking_security.xml',
