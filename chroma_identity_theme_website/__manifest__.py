@@ -32,7 +32,7 @@ other paid application from this publisher beyond its own
     'website': 'https://mto-systems.com',
     'price': 0.0,
     'currency': 'EUR',
-    'support': 'support@mto-solutions.com',
+    'support': 'support@mto-systems.com',
     'images': ['static/description/banner.png'],
     'depends': ['chroma_identity_theme', 'website'],
     'data': [

@@ -1,6 +1,6 @@
 # Support
 
-- Email: support@mto-solutions.com
+- Email: support@mto-systems.com
 - Website: https://mto-systems.com
 
 Please include your Odoo version, the module version (see

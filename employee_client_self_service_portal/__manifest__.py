@@ -59,7 +59,7 @@ Enterprise's Payroll app).
     'author': 'MTO',
     'price': 49.0,
     'currency': 'EUR',
-    'support': 'support@mto-solutions.com',
+    'support': 'support@mto-systems.com',
     'images': ['static/description/banner.png'],
     'depends': ['portal', 'hr', 'hr_holidays', 'hr_attendance', 'project', 'mail'],
     'data': [

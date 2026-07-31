@@ -17,7 +17,7 @@ My Team, My Assignments) installs cleanly on Community, where
     'author': 'MTO',
     'price': 29.0,
     'currency': 'EUR',
-    'support': 'support@mto-solutions.com',
+    'support': 'support@mto-systems.com',
     'images': ['static/description/banner.png'],
     'depends': ['employee_client_self_service_portal', 'hr_payroll'],
     'data': [

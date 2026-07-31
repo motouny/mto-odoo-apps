@@ -43,7 +43,7 @@ Community).
     'website': 'https://mto-systems.com',
     'price': 30.0,
     'currency': 'EUR',
-    'support': 'support@mto-solutions.com',
+    'support': 'support@mto-systems.com',
     'images': ['static/description/banner.png'],
     'depends': ['base', 'mail', 'web'],
     'data': [
