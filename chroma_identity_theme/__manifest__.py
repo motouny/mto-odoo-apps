@@ -64,8 +64,7 @@ other paid application from this publisher.
     'price': 49.0,
     'currency': 'EUR',
     'support': 'support@mto-solutions.com',
-    # 'images' key intentionally omitted until static/description/banner.png
-    # is designed - a missing-but-referenced image is worse than no key.
+    'images': ['static/description/banner.png'],
     'depends': ['web', 'portal', 'mail'],
     'data': [
         'views/layout_templates.xml',
