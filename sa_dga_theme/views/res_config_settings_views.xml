@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sa.dga.theme</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="DGA Theme" string="DGA Theme" name="sa_dga_theme">
+                    <block title="Live Preview" help="See how the theme looks before saving">
+                        <widget name="sa_dga_theme_preview"/>
+                    </block>
+                    <block title="Colors" help="Pick a ready-made preset or set your own hex colors">
+                        <setting help="Detects your primary/accent colors straight from the company logo (Settings &gt; General Settings &gt; Companies), the same way Odoo's own Website Configurator does">
+                            <button name="action_sa_dga_extract_logo_colors" type="object"
+                                    string="Extract colors from logo" class="btn btn-secondary"/>
+                        </setting>
+                        <setting help="Choose a starting palette, or Custom to set your own colors below">
+                            <field name="sa_dga_color_preset" widget="dga_preset_radio"/>
+                        </setting>
+                        <setting help="Applied instantly, no page rebuild needed">
+                            <field name="sa_dga_primary_color" widget="dga_color_picker"/>
+                        </setting>
+                        <setting>
+                            <field name="sa_dga_accent_color" widget="dga_color_picker"/>
+                        </setting>
+                        <setting help="The dark background of the backend navbar, the app sidebar and their card-launcher dropdowns - separate from the primary/accent brand colors above">
+                            <field name="sa_dga_chrome_color" widget="dga_color_picker"/>
+                        </setting>
+                    </block>
+                    <block title="Backend Layout" help="Controls the persistent left app-switcher sidebar">
+                        <setting help="Turn off to use the standard top-navbar app dropdown only, without the left sidebar. Takes effect after reloading the page.">
+                            <field name="sa_dga_sidebar_enabled"/>
+                        </setting>
+                    </block>
+                    <block title="Typography" help="Arabic/Latin font pairing used across backend, portal and website">
+                        <setting help="All options are Google Fonts pairs aligned with public Saudi Design System typography guidance">
+                            <field name="sa_dga_font_pair"/>
+                        </setting>
+                    </block>
+                    <block title="Text Colors" help="Fine-tune heading, body and secondary text colors for readability">
+                        <setting help="Used for h1-h6 and bold titles">
+                            <field name="sa_dga_heading_color" widget="dga_color_picker"/>
+                        </setting>
+                        <setting help="Used for regular paragraph text">
+                            <field name="sa_dga_body_color" widget="dga_color_picker"/>
+                        </setting>
+                        <setting help="Used for captions, hints and secondary text">
+                            <field name="sa_dga_muted_color" widget="dga_color_picker"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_sa_dga_theme_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'sa_dga_theme'}</field>
+    </record>
+</odoo>

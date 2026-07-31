@@ -1,0 +1,70 @@
+// Design tokens for the DGA-Ready Theme.
+//
+// --dga-primary / --dga-accent / --dga-on-primary / --dga-on-accent are
+// runtime-overridable CSS custom properties: the defaults below are a
+// professional, WCAG 2.1 AA contrast-checked starting palette, and
+// views/layout_templates.xml injects the company's actual chosen colors
+// (Settings > DGA Theme, see models/res_company.py) with !important so
+// they always win, with no assets rebuild needed.
+:root {
+    // MTO Signature (purple/black) - the theme's own default brand
+    // identity (see DGA_COLOR_PRESETS in models/res_company.py). Still
+    // fully customer-overridable from Settings > DGA Theme.
+    --dga-primary: #5E4766;
+    --dga-accent: #010101;
+    --dga-on-primary: #FFFFFF;
+    --dga-on-accent: #FFFFFF;
+    // R,G,B channels, for rgba() tints - kept in sync with --dga-primary/
+    // --dga-accent above (also runtime-overridden together, see
+    // views/layout_templates.xml).
+    --dga-primary-rgb: 94, 71, 102;
+    --dga-accent-rgb: 1, 1, 1;
+
+    // Dark "frame" behind the navbar/sidebar/card-launcher dropdowns -
+    // customer-editable separately from primary/accent (Settings > DGA
+    // Theme > Colors), see views/layout_templates.xml.
+    --dga-chrome: #0A0A0A;
+    --dga-on-chrome: #FFFFFF;
+
+    // Text colors - also runtime-overridable (Settings > DGA Theme > Text
+    // Colors), same !important injection pattern as the brand colors above.
+    --dga-heading-color: #111827;
+    --dga-body-color: #1F2937;
+    --dga-muted-color: #6B7280;
+
+    // Neutral/chrome scale - a true black-based grayscale (not tinted),
+    // so --dga-neutral-900 itself reads as "black" for the sidebar/home
+    // menu/footer dark chrome, reinforcing the purple+black identity
+    // wherever a dark surface is used, not just in primary/accent.
+    --dga-neutral-900: #0A0A0A;
+    --dga-neutral-700: #3D3D3D;
+    --dga-neutral-500: #6B6B6B;
+    --dga-neutral-300: #B0B0B0;
+    --dga-neutral-200: #E0E0E0;
+    --dga-neutral-100: #F5F5F5;
+    --dga-neutral-0: #FFFFFF;
+
+    --dga-danger: #B3261E;
+    --dga-warning: #8A5A00;
+    --dga-success: #1B7A3D;
+
+    --dga-radius-sm: 6px;
+    --dga-radius-md: 10px;
+    --dga-radius-lg: 16px;
+
+    --dga-space-1: 4px;
+    --dga-space-2: 8px;
+    --dga-space-3: 16px;
+    --dga-space-4: 24px;
+    --dga-space-5: 32px;
+
+    --dga-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+    --dga-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.16);
+
+    --dga-focus-ring: 0 0 0 3px rgba(94, 71, 102, 0.45);
+    --dga-transition: 150ms ease-in-out;
+
+    // Persistent backend sidebar (static/src/js/app_launcher/app_sidebar.js)
+    --dga-sidebar-width-expanded: 208px;
+    --dga-sidebar-width-collapsed: 56px;
+}

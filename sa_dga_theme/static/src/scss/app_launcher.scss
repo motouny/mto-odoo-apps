@@ -1,0 +1,161 @@
+// Backend "dynamic professional cards" app launcher, replacing the plain
+// apps dropdown list. Works identically on Community (no Enterprise Home
+// Menu required) and layers cleanly on top if Enterprise is present.
+
+
+.o_dga_app_launcher_menu {
+    padding: 0;
+    // Whole-expression string interpolation so Sass emits this as literal
+    // CSS text instead of evaluating its own min()/max() (which requires
+    // matching units and throws "Incompatible units: 'px' and 'vw'" - or,
+    // for a partially-interpolated arg, "is not a number for 'min'" - either
+    // way it broke the ENTIRE web.assets_web bundle compile; found by testing).
+    width: #{"min(92vw, 640px)"};
+    max-height: #{"min(80vh, 620px)"};
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--dga-radius-lg);
+    border: 1px solid var(--dga-neutral-200);
+    box-shadow: var(--dga-shadow-md);
+}
+
+.o_dga_app_launcher {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+// Dark header/footer bars bookend the dropdown so the brand identity
+// (purple/black) is clearly visible even in this compact surface - the
+// grid itself stays light for readability at this smaller size (see
+// dga_home_menu.scss for the fully dark full-page version).
+.o_dga_app_launcher_search {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--dga-space-2);
+    padding: var(--dga-space-3);
+    background: var(--dga-chrome);
+
+    .fa {
+        color: var(--dga-on-chrome);
+        opacity: 0.7;
+    }
+
+    input {
+        flex: 1 1 auto;
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 0.95rem;
+        color: var(--dga-on-chrome);
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+    }
+}
+
+.o_dga_app_launcher_grid {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(136px, 1fr));
+    gap: var(--dga-space-2);
+    padding: var(--dga-space-3);
+}
+
+.o_dga_app_launcher_empty {
+    padding: var(--dga-space-5) var(--dga-space-3);
+    text-align: center;
+    color: var(--dga-neutral-500);
+}
+
+.o_dga_app_launcher_view_all {
+    flex: 0 0 auto !important;
+    display: block !important;
+    text-align: center !important;
+    padding: var(--dga-space-3) !important;
+    background: var(--dga-chrome);
+    color: var(--dga-on-chrome) !important;
+    font-weight: 600;
+
+    &:hover {
+        background: var(--dga-primary);
+    }
+}
+
+.o_dga_app_card {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--dga-space-2);
+    padding: var(--dga-space-4) var(--dga-space-2) !important;
+    border-radius: var(--dga-radius-md);
+    text-align: center;
+    background: var(--dga-neutral-0);
+    border: 1px solid var(--dga-neutral-200);
+    transition: box-shadow var(--dga-transition), transform var(--dga-transition), border-color var(--dga-transition);
+    white-space: normal !important;
+
+    &:hover,
+    &:focus-visible,
+    &.focus {
+        box-shadow: var(--dga-shadow-md);
+        border-color: var(--dga-primary);
+        transform: translateY(-2px);
+    }
+}
+
+.o_dga_app_card_icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--dga-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--dga-neutral-100);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .fa {
+        font-size: 1.25rem;
+        color: var(--dga-neutral-500);
+    }
+}
+
+.o_dga_app_card_label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--dga-neutral-900);
+}
+
+// Deterministic per-app accent (see hashAccent() in app_launcher.js) - a
+// small, muted set so the grid reads as one coherent system, not confetti.
+$dga-accents: (
+    a1: #046A38,
+    a2: #12608C,
+    a3: #8A5A00,
+    a4: #6E4A9E,
+    a5: #B3261E,
+    a6: #1B7A3D,
+    a7: #0B3D59,
+    a8: #7A4A1B,
+);
+
+@each $key, $color in $dga-accents {
+    .o_dga_accent_#{$key} {
+        background: rgba($color, 0.12);
+
+        .fa {
+            color: $color;
+        }
+    }
+}

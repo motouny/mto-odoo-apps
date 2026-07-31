@@ -1,0 +1,96 @@
+// Full-page "all apps" home screen (static/src/js/app_launcher/dga_home_menu.js).
+// Dark purple->black gradient background, matching the theme's own brand
+// identity (MTO Signature preset) - explicitly requested to make the
+// identity clearly visible here, not just in primary/accent accents.
+// Cards stay white (.o_dga_app_card, reused from app_launcher.scss) for
+// icon contrast, same pattern as Enterprise's own dark Home Menu with
+// light app tiles.
+
+.o_dga_home_menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, var(--dga-primary), var(--dga-chrome));
+    overflow: hidden;
+}
+
+.o_dga_home_menu_header {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--dga-space-3);
+    padding: var(--dga-space-4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.o_dga_home_menu_search {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--dga-space-2);
+    max-width: 480px;
+    padding: var(--dga-space-2) var(--dga-space-3);
+    border-radius: var(--dga-radius-md);
+    background: rgba(255, 255, 255, 0.12);
+
+    .fa {
+        color: var(--dga-neutral-0);
+        opacity: 0.7;
+    }
+
+    input {
+        flex: 1 1 auto;
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 1rem;
+        color: var(--dga-neutral-0);
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+    }
+}
+
+.o_dga_home_menu_close {
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--dga-neutral-0);
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.22);
+    }
+}
+
+.o_dga_home_menu_grid {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--dga-space-4);
+    padding: var(--dga-space-5);
+    align-content: start;
+}
+
+.o_dga_home_menu_card {
+    background: var(--dga-neutral-0);
+
+    .o_dga_app_card_icon {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+.o_dga_home_menu_empty {
+    padding: var(--dga-space-5);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.75);
+}

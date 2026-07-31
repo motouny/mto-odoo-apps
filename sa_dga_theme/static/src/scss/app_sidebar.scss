@@ -1,0 +1,170 @@
+// Persistent backend app sidebar (MuK-style icon rail). Pure CSS layout
+// shift: the sidebar is position:fixed, and .o_web_client (= <body>, a
+// flex column - see webclient.xml) gets padding-inline-start so the
+// navbar + content render to the right of it. inset-inline-start/
+// padding-inline-start are logical properties, so this mirrors correctly
+// for Arabic RTL automatically via Odoo's own rtlcss pipeline.
+
+// .o_web_client IS <body> itself (see webclient_templates.xml), not an
+// ancestor of it - these must be compound selectors (no descendant
+// combinator), otherwise they never match anything.
+body.o_web_client {
+    padding-inline-start: var(--dga-sidebar-width-expanded);
+    transition: padding-inline-start var(--dga-transition);
+}
+
+body.o_web_client.o_dga_sidebar_collapsed {
+    padding-inline-start: var(--dga-sidebar-width-collapsed);
+}
+
+body.o_web_client.o_dga_sidebar_hidden {
+    padding-inline-start: 0;
+}
+
+body.o_dga_sidebar_hidden .o_dga_app_sidebar {
+    display: none;
+}
+
+// Settings > DGA Theme > Backend Layout toggle (models/res_company.py
+// sa_dga_sidebar_enabled) - the component itself doesn't render when
+// off (app_sidebar.xml, t-if="enabled"), this just stops body from
+// reserving empty space for it.
+body.o_web_client.o_dga_sidebar_disabled {
+    padding-inline-start: 0;
+}
+
+.o_dga_app_sidebar {
+    position: fixed;
+    inset-inline-start: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--dga-sidebar-width-expanded);
+    background: var(--dga-chrome);
+    z-index: 1010;
+    display: flex;
+    flex-direction: column;
+    transition: width var(--dga-transition);
+
+    &.o_dga_collapsed {
+        width: var(--dga-sidebar-width-collapsed);
+
+        .o_dga_sidebar_app_label {
+            display: none;
+        }
+    }
+}
+
+// One-click "open the full card grid" trigger, pinned at the top of the
+// sidebar (the app-navigation surface) - see app_sidebar.js for why it
+// lives here rather than in the navbar's sections-tabs row.
+.o_dga_sidebar_home_btn {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--dga-space-2);
+    padding: var(--dga-space-3);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--dga-primary);
+    color: var(--dga-on-primary);
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+
+    .fa {
+        flex: 0 0 auto;
+        width: 28px;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .o_dga_sidebar_app_label {
+        color: var(--dga-on-primary);
+    }
+
+    &:hover {
+        background: var(--dga-accent);
+        color: var(--dga-on-accent);
+
+        .o_dga_sidebar_app_label {
+            color: var(--dga-on-accent);
+        }
+    }
+}
+
+.o_dga_collapsed .o_dga_sidebar_home_btn .o_dga_sidebar_app_label {
+    display: none;
+}
+
+.o_dga_sidebar_apps {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: var(--dga-space-2) 0;
+}
+
+.o_dga_sidebar_app {
+    display: flex;
+    align-items: center;
+    gap: var(--dga-space-2);
+    padding: var(--dga-space-2) var(--dga-space-3);
+    color: var(--dga-on-chrome);
+    text-decoration: none;
+    white-space: nowrap;
+    border-inline-start: 3px solid transparent;
+    transition: background var(--dga-transition);
+
+    &:hover,
+    &:focus-visible {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--dga-on-chrome);
+    }
+
+    &.o_dga_active {
+        background: rgba(255, 255, 255, 0.12);
+        border-inline-start-color: var(--dga-primary);
+    }
+}
+
+.o_dga_sidebar_app_icon {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--dga-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.08);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .fa {
+        color: var(--dga-on-chrome);
+    }
+}
+
+.o_dga_sidebar_app_label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.o_dga_sidebar_toggle {
+    flex: 0 0 auto;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    color: var(--dga-on-chrome);
+    padding: var(--dga-space-3);
+    cursor: pointer;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+}

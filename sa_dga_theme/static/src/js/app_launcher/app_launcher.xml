@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//Dropdown" position="attributes">
+            <attribute name="menuClass">'o_dga_app_launcher_menu'</attribute>
+        </xpath>
+        <xpath expr="//t[@t-set-slot='content']" position="replace">
+            <t t-set-slot="content">
+                <div class="o_dga_app_launcher">
+                    <div class="o_dga_app_launcher_search">
+                        <i class="fa fa-search"/>
+                        <input type="text"
+                               t-att-placeholder="dgaSearchPlaceholder"
+                               t-model="dgaLauncherState.query"
+                               t-on-input="onDgaLauncherSearchInput"/>
+                    </div>
+                    <div class="o_dga_app_launcher_grid" role="menu">
+                        <DropdownItem
+                            t-foreach="dgaFilteredApps"
+                            t-as="app"
+                            t-key="app.id"
+                            class="{ 'o_app': true, 'o_dga_app_card': true, focus: menuService.getCurrentApp() === app }"
+                            onSelected="() => this.onNavBarDropdownItemSelection(app)"
+                            attrs="{ href: getMenuItemHref(app), 'data-menu-xmlid': app.xmlid, 'data-section': app.id, 'data-dga-accent': dgaAppAccent(app) }"
+                        >
+                            <div class="o_dga_app_card_icon" t-att-class="'o_dga_accent_' + dgaAppAccent(app)">
+                                <img t-if="app.webIconData" t-att-src="app.webIconData" alt=""/>
+                                <i t-else="" class="fa fa-th-large"/>
+                            </div>
+                            <span class="o_dga_app_card_label" t-esc="app.name"/>
+                        </DropdownItem>
+                    </div>
+                    <div t-if="!dgaFilteredApps.length" class="o_dga_app_launcher_empty" t-esc="dgaNoResultsLabel"/>
+                    <DropdownItem
+                        class="'o_dga_app_launcher_view_all'"
+                        onSelected="() => this.onDgaViewAllApps()"
+                        t-esc="dgaViewAllAppsLabel"
+                    />
+                </div>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

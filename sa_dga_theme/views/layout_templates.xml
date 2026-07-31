@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Runtime color injection: lets Settings > DGA Theme change the palette
+         instantly for backend and frontend alike, without an assets rebuild. -->
+    <template id="layout_color_variables" inherit_id="web.layout">
+        <xpath expr="//head" position="inside">
+            <t t-if="request and request.env.company">
+                <t t-set="dga_primary" t-value="request.env.company.sa_dga_primary_color or '#046A38'"/>
+                <t t-set="dga_accent" t-value="request.env.company.sa_dga_accent_color or '#0B7A45'"/>
+                <t t-set="dga_chrome" t-value="request.env.company.sa_dga_chrome_color or '#0A0A0A'"/>
+                <t t-set="dga_font" t-value="request.env.company._sa_dga_font_pair_values()"/>
+                <!-- !important: guarantees this always wins over the stylesheet
+                     defaults in variables.scss/fonts.scss regardless of
+                     asset-bundle load order, so the Settings > DGA Theme
+                     picker (colors, text colors, font) applies instantly. -->
+                <style id="sa_dga_theme_color_vars">
+                    :root {
+                    --dga-primary: <t t-esc="dga_primary"/> !important;
+                    --dga-accent: <t t-esc="dga_accent"/> !important;
+                    --dga-on-primary: <t t-esc="request.env.company._sa_dga_readable_text_color(dga_primary)"/> !important;
+                    --dga-on-accent: <t t-esc="request.env.company._sa_dga_readable_text_color(dga_accent)"/> !important;
+                    <!-- The dark "frame" behind the backend navbar/sidebar
+                         and their card-launcher dropdowns - separate from
+                         primary/accent, since a customer picking a bright
+                         brand color doesn't necessarily want that same
+                         color as their whole navbar background too. -->
+                    --dga-chrome: <t t-esc="dga_chrome"/> !important;
+                    --dga-on-chrome: <t t-esc="request.env.company._sa_dga_readable_text_color(dga_chrome)"/> !important;
+                    <!-- R,G,B channels of primary/accent, so plain CSS
+                         (backend.scss) can build rgba() tints (focus
+                         rings, hover overlays) that stay tied to
+                         Settings > DGA Theme, not a compile-time hex. -->
+                    --dga-primary-rgb: <t t-esc="request.env.company._sa_dga_rgb_triplet(dga_primary)"/> !important;
+                    --dga-accent-rgb: <t t-esc="request.env.company._sa_dga_rgb_triplet(dga_accent)"/> !important;
+                    --dga-focus-ring: 0 0 0 3px rgba(<t t-esc="request.env.company._sa_dga_rgb_triplet(dga_primary)"/>, 0.45) !important;
+                    --dga-heading-color: <t t-esc="request.env.company.sa_dga_heading_color or '#111827'"/> !important;
+                    --dga-body-color: <t t-esc="request.env.company.sa_dga_body_color or '#1F2937'"/> !important;
+                    --dga-muted-color: <t t-esc="request.env.company.sa_dga_muted_color or '#6B7280'"/> !important;
+                    <!-- t-out, NOT t-esc: dga_font['arabic']/['latin'] are
+                         markupsafe.Markup-wrapped trusted constants from
+                         DGA_FONT_PAIRS (see _sa_dga_font_pair_values,
+                         models/res_company.py - not user input) that
+                         deliberately contain literal double quotes for CSS
+                         font-family syntax (e.g. '"IBM Plex Sans Arabic"')
+                         - t-esc HTML-escapes those quotes to "&#34;" inside
+                         this <style> tag, which isn't valid CSS syntax,
+                         silently invalidating the whole custom-property
+                         declaration and falling back to the browser's
+                         default font. Found by testing: getComputedStyle
+                         showed the raw broken "&#34;IBM Plex Sans&#34;..."
+                         token stream and the page rendered in Times, the
+                         CSS-invalid fallback. -->
+                    --dga-font-arabic: <t t-out="dga_font['arabic']"/>, <t t-out="dga_font['latin']"/>, Tahoma, Arial, sans-serif !important;
+                    --dga-font-latin: <t t-out="dga_font['latin']"/>, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
+                    }
+                </style>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Accessibility: skip-to-content link, first focusable element on every
+         frontend/portal page (Odoo's own rtlcss mirrors "start"/"end" automatically). -->
+    <template id="layout_skip_link" inherit_id="web.frontend_layout">
+        <xpath expr="//div[@id='wrapwrap']" position="before">
+            <a href="#o_dga_main_content" class="o_dga_skip_link">Skip to main content</a>
+        </xpath>
+        <xpath expr="//main" position="attributes">
+            <attribute name="id">o_dga_main_content</attribute>
+        </xpath>
+    </template>
+</odoo>

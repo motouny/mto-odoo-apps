@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="sa_dga_theme.DgaColorPickerField">
+        <div class="o_dga_color_picker d-flex align-items-center gap-2">
+            <!-- t-key forces a remount when value changes: an <input>'s
+                 value ATTRIBUTE only seeds the initial DOM value property -
+                 further t-att-value updates after first mount don't reflect
+                 visually (same well-known quirk as in React), unlike
+                 boolean attributes such as the radio's t-att-checked above,
+                 which do keep re-syncing. Found by testing. -->
+            <input type="color" class="o_dga_color_swatch" t-key="value"
+                   t-att-value="value" t-on-input="onColorInput" t-att-disabled="props.readonly"/>
+            <input type="text" class="o_dga_color_text form-control form-control-sm w-auto" t-key="value"
+                   t-att-value="value" t-on-change="onTextChange" t-att-readonly="props.readonly"/>
+        </div>
+    </t>
+
+    <t t-name="sa_dga_theme.DgaPresetRadioField">
+        <div class="o_dga_preset_radio">
+            <t t-foreach="selection" t-as="option" t-key="option[0]">
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" t-att-id="'o_dga_preset_' + option[0]"
+                           t-att-checked="value === option[0]" t-att-disabled="props.readonly"
+                           t-on-change="() => this.onSelect(option[0])"/>
+                    <label class="form-check-label" t-att-for="'o_dga_preset_' + option[0]" t-esc="option[1]"/>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>
