@@ -33,6 +33,7 @@ other paid application from this publisher beyond its own
     'price': 0.0,
     'currency': 'EUR',
     'support': 'support@mto-solutions.com',
+    'images': ['static/description/banner.png'],
     'depends': ['chroma_identity_theme', 'website'],
     'data': [
         'views/website_header_footer_templates.xml',
