@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_digital_signature_template_form" model="ir.ui.view">
+        <field name="name">digital.signature.template.form</field>
+        <field name="model">digital.signature.template</field>
+        <field name="arch" type="xml">
+            <form string="Signature Template">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <field name="description"/>
+                        <field name="template_file" filename="template_filename"/>
+                        <field name="template_filename" invisible="1"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="active"/>
+                    </group>
+                    <field name="field_ids">
+                        <list editable="bottom">
+                            <field name="signer_role"/>
+                            <field name="field_type"/>
+                            <field name="page_number"/>
+                            <field name="pos_x"/>
+                            <field name="pos_y"/>
+                            <field name="width"/>
+                            <field name="height"/>
+                            <field name="required"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digital_signature_template_list" model="ir.ui.view">
+        <field name="name">digital.signature.template.list</field>
+        <field name="model">digital.signature.template</field>
+        <field name="arch" type="xml">
+            <list string="Signature Templates">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_digital_signature_template" model="ir.actions.act_window">
+        <field name="name">Templates</field>
+        <field name="res_model">digital.signature.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

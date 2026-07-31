@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_digital_signature_event_list" model="ir.ui.view">
+        <field name="name">digital.signature.event.list</field>
+        <field name="model">digital.signature.event</field>
+        <field name="arch" type="xml">
+            <list string="Audit Trail" create="0" edit="0" delete="0">
+                <field name="event_date"/>
+                <field name="request_id"/>
+                <field name="event_type"/>
+                <field name="signer_id"/>
+                <field name="ip_address"/>
+                <field name="note"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_digital_signature_event_search" model="ir.ui.view">
+        <field name="name">digital.signature.event.search</field>
+        <field name="model">digital.signature.event</field>
+        <field name="arch" type="xml">
+            <search string="Audit Trail">
+                <field name="request_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Event Type" name="group_type" context="{'group_by': 'event_type'}"/>
+                    <filter string="Request" name="group_request" context="{'group_by': 'request_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_digital_signature_event" model="ir.actions.act_window">
+        <field name="name">Audit Trail</field>
+        <field name="res_model">digital.signature.event</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_digital_signature_event_search"/>
+    </record>
+</odoo>

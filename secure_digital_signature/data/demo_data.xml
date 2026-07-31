@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Demo 1: still Draft -->
+    <record id="demo_request_1" model="digital.signature.request">
+        <field name="subject">NDA - New Contractor</field>
+        <field name="description">Mutual non-disclosure agreement for the upcoming engagement.</field>
+        <field name="signing_mode">sequential</field>
+        <field name="created_by_uid" ref="base.user_admin"/>
+    </record>
+    <record id="demo_request_1_original" model="digital.signature.document">
+        <field name="request_id" ref="demo_request_1"/>
+        <field name="document_type">original</field>
+        <field name="filename">nda-draft.pdf</field>
+        <field name="file" type="base64"
+               file="secure_digital_signature/static/demo/sample_agreement.pdf"/>
+    </record>
+    <record id="demo_signer_1a" model="digital.signature.signer">
+        <field name="request_id" ref="demo_request_1"/>
+        <field name="sequence">10</field>
+        <field name="signer_type">external</field>
+        <field name="name">Alex Morgan</field>
+        <field name="email">alex.morgan.demo@example.com</field>
+    </record>
+    <record id="demo_field_1a_sig" model="digital.signature.field">
+        <field name="request_id" ref="demo_request_1"/>
+        <field name="signer_id" ref="demo_signer_1a"/>
+        <field name="field_type">signature</field>
+        <field name="page_number">1</field>
+        <field name="pos_x">10</field>
+        <field name="pos_y">80</field>
+        <field name="width">30</field>
+        <field name="height">8</field>
+    </record>
+    <record id="demo_field_1a_date" model="digital.signature.field">
+        <field name="request_id" ref="demo_request_1"/>
+        <field name="signer_id" ref="demo_signer_1a"/>
+        <field name="field_type">date</field>
+        <field name="page_number">1</field>
+        <field name="pos_x">50</field>
+        <field name="pos_y">80</field>
+        <field name="width">20</field>
+        <field name="height">6</field>
+    </record>
+
+    <!-- Demo 2: Ready to send / sent, sequential, two signers -->
+    <record id="demo_request_2" model="digital.signature.request">
+        <field name="subject">Purchase Order Approval - PO-2026-0142</field>
+        <field name="description">Two-step approval before releasing the purchase order.</field>
+        <field name="signing_mode">sequential</field>
+        <field name="created_by_uid" ref="base.user_admin"/>
+    </record>
+    <record id="demo_request_2_original" model="digital.signature.document">
+        <field name="request_id" ref="demo_request_2"/>
+        <field name="document_type">original</field>
+        <field name="filename">po-2026-0142.pdf</field>
+        <field name="file" type="base64"
+               file="secure_digital_signature/static/demo/sample_agreement.pdf"/>
+    </record>
+    <record id="demo_signer_2a" model="digital.signature.signer">
+        <field name="request_id" ref="demo_request_2"/>
+        <field name="sequence">10</field>
+        <field name="signer_type">internal</field>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="name">Mitchell Admin</field>
+        <field name="email">admin@example.com</field>
+    </record>
+    <record id="demo_field_2a_sig" model="digital.signature.field">
+        <field name="request_id" ref="demo_request_2"/>
+        <field name="signer_id" ref="demo_signer_2a"/>
+        <field name="field_type">signature</field>
+        <field name="page_number">1</field>
+        <field name="pos_x">10</field>
+        <field name="pos_y">80</field>
+        <field name="width">30</field>
+        <field name="height">8</field>
+    </record>
+    <record id="demo_signer_2b" model="digital.signature.signer">
+        <field name="request_id" ref="demo_request_2"/>
+        <field name="sequence">20</field>
+        <field name="signer_type">external</field>
+        <field name="name">Finance Approver</field>
+        <field name="email">finance.approver.demo@example.com</field>
+    </record>
+    <record id="demo_field_2b_sig" model="digital.signature.field">
+        <field name="request_id" ref="demo_request_2"/>
+        <field name="signer_id" ref="demo_signer_2b"/>
+        <field name="field_type">signature</field>
+        <field name="page_number">1</field>
+        <field name="pos_x">55</field>
+        <field name="pos_y">80</field>
+        <field name="width">30</field>
+        <field name="height">8</field>
+    </record>
+
+    <function model="digital.signature.request" name="action_mark_ready" eval="[[ref('demo_request_2')]]"/>
+    <function model="digital.signature.request" name="action_send" eval="[[ref('demo_request_2')]]"/>
+
+    <!-- Demo 3: fully Completed, using text-only fields so the real signing
+         engine (hashing + PDF field burn-in + certificate) runs during
+         install without needing a demo signature image. -->
+    <record id="demo_request_3" model="digital.signature.request">
+        <field name="subject">Consulting Agreement - Q3 Engagement</field>
+        <field name="description">Signed consulting agreement for the Q3 engagement.</field>
+        <field name="signing_mode">sequential</field>
+        <field name="created_by_uid" ref="base.user_admin"/>
+    </record>
+    <record id="demo_request_3_original" model="digital.signature.document">
+        <field name="request_id" ref="demo_request_3"/>
+        <field name="document_type">original</field>
+        <field name="filename">consulting-agreement.pdf</field>
+        <field name="file" type="base64"
+               file="secure_digital_signature/static/demo/sample_agreement.pdf"/>
+    </record>
+    <record id="demo_signer_3a" model="digital.signature.signer">
+        <field name="request_id" ref="demo_request_3"/>
+        <field name="sequence">10</field>
+        <field name="signer_type">external</field>
+        <field name="name">Jordan Lee</field>
+        <field name="email">jordan.lee.demo@example.com</field>
+    </record>
+    <record id="demo_field_3a_name" model="digital.signature.field">
+        <field name="request_id" ref="demo_request_3"/>
+        <field name="signer_id" ref="demo_signer_3a"/>
+        <field name="field_type">name</field>
+        <field name="page_number">1</field>
+        <field name="pos_x">10</field>
+        <field name="pos_y">78</field>
+        <field name="width">30</field>
+        <field name="height">6</field>
+    </record>
+    <record id="demo_field_3a_date" model="digital.signature.field">
+        <field name="request_id" ref="demo_request_3"/>
+        <field name="signer_id" ref="demo_signer_3a"/>
+        <field name="field_type">date</field>
+        <field name="page_number">1</field>
+        <field name="pos_x">50</field>
+        <field name="pos_y">78</field>
+        <field name="width">20</field>
+        <field name="height">6</field>
+    </record>
+
+    <function model="digital.signature.request" name="action_mark_ready" eval="[[ref('demo_request_3')]]"/>
+    <function model="digital.signature.request" name="action_send" eval="[[ref('demo_request_3')]]"/>
+</odoo>

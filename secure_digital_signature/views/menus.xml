@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_signature_root" name="Digital Signature" sequence="67"
+              web_icon="secure_digital_signature,static/description/icon.png"
+              groups="secure_digital_signature.group_signature_user"/>
+
+    <menuitem id="menu_signature_request_all" name="My Signature Requests" parent="menu_signature_root"
+              action="action_digital_signature_request" sequence="10"/>
+    <menuitem id="menu_signature_request_pending" name="Pending Signers" parent="menu_signature_root"
+              action="action_digital_signature_request_pending" sequence="20"/>
+
+    <menuitem id="menu_signature_reports" name="Reports" parent="menu_signature_root" sequence="50"
+              groups="secure_digital_signature.group_signature_manager"/>
+    <menuitem id="menu_signature_audit_trail" name="Audit Trail" parent="menu_signature_reports"
+              action="action_digital_signature_event" sequence="10"/>
+
+    <menuitem id="menu_signature_configuration" name="Configuration" parent="menu_signature_root"
+              sequence="90" groups="secure_digital_signature.group_signature_manager"/>
+    <menuitem id="menu_signature_template" name="Templates" parent="menu_signature_configuration"
+              action="action_digital_signature_template" sequence="10"/>
+</odoo>

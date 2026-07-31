@@ -1,0 +1,1291 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* secure_digital_signature
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-13 20:56+0000\n"
+"PO-Revision-Date: 2026-07-13 20:56+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "(page"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_template_field__pos_x
+msgid "0-100, from the left edge."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_template_field__pos_y
+msgid "0-100, from the top edge."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:mail.template,body_html:secure_digital_signature.mail_template_signature_completed
+msgid ""
+"<div>\n"
+"                <p>\n"
+"                    All signers have completed <strong t-out=\"object.subject\"/>\n"
+"                    (<t t-out=\"object.name\"/>).\n"
+"                </p>\n"
+"                <p>\n"
+"                    <a t-attf-href=\"{{ object.get_base_url() }}/sign/verify/{{ object.verification_token }}\">\n"
+"                        Verify this document online\n"
+"                    </a>\n"
+"                </p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:mail.template,body_html:secure_digital_signature.mail_template_signature_reminder
+msgid ""
+"<div>\n"
+"                <p>Dear <t t-out=\"object.name\"/>,</p>\n"
+"                <p>\n"
+"                    This is a reminder that <strong t-out=\"object.request_id.subject\"/> is still\n"
+"                    waiting for your signature.\n"
+"                </p>\n"
+"                <p>\n"
+"                    <a t-attf-href=\"{{ object.get_base_url() }}/sign/{{ object.token }}\">\n"
+"                        Review and Sign\n"
+"                    </a>\n"
+"                </p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:mail.template,body_html:secure_digital_signature.mail_template_signature_invitation
+msgid ""
+"<div>\n"
+"                <p>Dear <t t-out=\"object.name\"/>,</p>\n"
+"                <p>\n"
+"                    You have been asked to sign <strong t-out=\"object.request_id.subject\"/>\n"
+"                    (<t t-out=\"object.request_id.name\"/>).\n"
+"                </p>\n"
+"                <p>\n"
+"                    <a t-attf-href=\"{{ object.get_base_url() }}/sign/{{ object.token }}\">\n"
+"                        Review and Sign\n"
+"                    </a>\n"
+"                </p>\n"
+"                <p t-if=\"object.request_id.expiration_date\">\n"
+"                    This link expires on <t t-out=\"object.request_id.expiration_date\"/>.\n"
+"                </p>\n"
+"                <p>This link is personal, do not share it.</p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_verify_page
+msgid ""
+"<strong>✓ Valid</strong><br/>\n"
+"                                    This document was completed on"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__active
+msgid "Active"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "Add at least one signer before continuing."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_field__field_type__attachment
+msgid "Attachment"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__attachment_file
+msgid "Attachment File"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__attachment_filename
+msgid "Attachment Filename"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.actions.act_window,name:secure_digital_signature.action_digital_signature_event
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__event_ids
+#: model:ir.ui.menu,name:secure_digital_signature.menu_signature_audit_trail
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_event_list
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_event_search
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Audit Trail"
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_event.py:0
+msgid "Audit events are immutable and cannot be deleted."
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_event.py:0
+msgid "Audit events are immutable and cannot be modified."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Cancel"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__cancelled
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__state__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_field__field_type__checkbox
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_template_field__field_type__checkbox
+msgid "Checkbox"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "Clear"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_field__selection_options
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_template_field__selection_options
+msgid "Comma-separated options for a Selection field."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__company_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__company_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__company_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__company_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__company_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__company_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__company_id
+msgid "Company"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__completed
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__state__completed
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_search
+msgid "Completed"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__completed_date
+msgid "Completed Date"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:mail.template,subject:secure_digital_signature.mail_template_signature_completed
+msgid "Completed: {{ object.subject }}"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_document__document_type__certificate
+msgid "Completion Certificate"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.ui.menu,name:secure_digital_signature.menu_signature_configuration
+msgid "Configuration"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__partner_id
+msgid "Contact"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.actions.act_window,help:secure_digital_signature.action_digital_signature_request
+msgid "Create your first signature request."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__created
+msgid "Created"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_search
+msgid "Created By"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__created_by_uid
+msgid "Created By Uid"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__create_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__create_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__create_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__create_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__create_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__create_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__create_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__create_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__create_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__create_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__create_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__create_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__create_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__create_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_field__field_type__date
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_template_field__field_type__date
+msgid "Date"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__description
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__description
+msgid "Description"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.module.category,name:secure_digital_signature.module_category_signature
+#: model:ir.ui.menu,name:secure_digital_signature.menu_signature_root
+msgid "Digital Signature"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:mail.template,name:secure_digital_signature.mail_template_signature_completed
+msgid "Digital Signature: Completed"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.actions.server,name:secure_digital_signature.ir_cron_expire_signature_requests_ir_actions_server
+msgid "Digital Signature: Expire Overdue Requests"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:mail.template,name:secure_digital_signature.mail_template_signature_invitation
+msgid "Digital Signature: Invitation"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:mail.template,name:secure_digital_signature.mail_template_signature_reminder
+msgid "Digital Signature: Reminder"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.actions.server,name:secure_digital_signature.ir_cron_signature_reminders_ir_actions_server
+msgid "Digital Signature: Send Reminders"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__display_name
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__display_name
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__display_name
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__display_name
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__display_name
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__display_name
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__display_name
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__document_type
+msgid "Document Type"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_verify_page
+msgid "Document Verification"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__document_ids
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Documents"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "Download the final signed document"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__email
+msgid "Email"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__event_date
+msgid "Event Date"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__event_type
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_event_search
+msgid "Event Type"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__expiration_date
+msgid "Expiration Date"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__expired
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__state__expired
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_signer__status__expired
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_search
+msgid "Expired"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_signer__signer_type__external
+msgid "External (no Odoo account)"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__field_filled
+msgid "Field Filled"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__field_ids
+msgid "Field Layout"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__field_type
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__field_type
+msgid "Field Type"
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_field.py:0
+msgid ""
+"Field position/definition cannot change once the request has been sent - "
+"only the signer-filled value can."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__field_ids
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Fields"
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_field.py:0
+msgid "Fields cannot be removed once the request has been sent."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__file
+msgid "File"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__filename
+msgid "Filename"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__final_hash
+msgid "Final Hash"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_document__document_type__final
+msgid "Final Signed"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_template_field__signer_role
+msgid ""
+"Free-text role label (e.g. \"Signer 1\", \"Approver\") used to match this "
+"field to a signer when the template is applied."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_event_search
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_search
+msgid "Group By"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__height
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__height
+msgid "Height"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__id
+msgid "ID"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__message_has_error
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_field__field_type__initials
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_template_field__field_type__initials
+msgid "Initials"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__user_id
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_signer__signer_type__internal
+msgid "Internal User"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_verification__result__invalid
+msgid "Invalid / Tampered"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__ip_address
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__ip_address
+msgid "Ip Address"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__last_reminder_date
+msgid "Last Reminder Date"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__write_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__write_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__write_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__write_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__write_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__write_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__write_uid
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__write_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__write_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__write_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__write_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__write_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__write_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__write_date
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__locked
+msgid "Locked"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:res.groups,name:secure_digital_signature.group_signature_manager
+msgid "Manager"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Mark Ready"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.ui.menu,name:secure_digital_signature.menu_signature_request_all
+msgid "My Signature Requests"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__name
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__name
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__name
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_field__field_type__name
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_template_field__field_type__name
+msgid "Name"
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "New"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_verify_page
+msgid "No document was found for this verification code."
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "No original document found."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_verification__result__not_found
+msgid "Not Found"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__note
+msgid "Note"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "Only draft requests can be marked ready."
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "Only ready requests can be sent."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_document__document_type__original
+msgid "Original"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Original Document"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__original_filename
+msgid "Original Filename"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__original_hash
+msgid "Original Hash"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__original_file
+msgid "Original PDF"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__page_count
+msgid "Page Count"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__page_number
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__page_number
+msgid "Page Number"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__signing_mode__parallel
+msgid "Parallel"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__state__partially_signed
+msgid "Partially Signed"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_signer__status__pending
+msgid "Pending"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.actions.act_window,name:secure_digital_signature.action_digital_signature_request_pending
+#: model:ir.ui.menu,name:secure_digital_signature.menu_signature_request_pending
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_search
+msgid "Pending Signers"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_template_field__height
+msgid "Percent of page height."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_template_field__width
+msgid "Percent of page width."
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "Please complete all required fields before signing."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:mail.template,subject:secure_digital_signature.mail_template_signature_invitation
+msgid "Please sign: {{ object.request_id.subject }}"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_signer__signer_type__portal
+msgid "Portal Contact"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model,name:secure_digital_signature.model_digital_signature_verification
+msgid "Public Verification Attempt"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__verified
+msgid "Publicly Verified"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__state__ready
+msgid "Ready"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_verify_page
+msgid "Reference:"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "Reject Document"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "Reject with a reason (optional)"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__rejected
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__state__rejected
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_signer__status__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__rejection_reason
+msgid "Rejection Reason"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__reminder_interval_days
+msgid "Reminder Interval Days"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__reminded
+msgid "Reminder Sent"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:mail.template,subject:secure_digital_signature.mail_template_signature_reminder
+msgid "Reminder: please sign {{ object.request_id.subject }}"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.ui.menu,name:secure_digital_signature.menu_signature_reports
+msgid "Reports"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__request_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__request_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__request_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__request_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__request_id
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_event_search
+msgid "Request"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__required
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__required
+msgid "Required"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Resend"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__resent
+msgid "Resent"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__result
+msgid "Result"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_field__field_type__selection
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_template_field__field_type__selection
+msgid "Selection"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__selection_options
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__selection_options
+msgid "Selection Options"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Send"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__sent
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__state__sent
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_signer__status__sent
+msgid "Sent"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__sent_date
+msgid "Sent Date"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_request__signing_mode__sequential
+msgid "Sequential"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_document__sha256_hash
+msgid "Sha256 Hash"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "Sign Document"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_field__field_type__signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_template_field__field_type__signature
+msgid "Signature"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model,name:secure_digital_signature.model_digital_signature_event
+msgid "Signature Audit Event"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model,name:secure_digital_signature.model_digital_signature_document
+msgid "Signature Document Version"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model,name:secure_digital_signature.model_digital_signature_field
+msgid "Signature Field Placement"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__signature_image
+msgid "Signature Image"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model,name:secure_digital_signature.model_digital_signature_request
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Signature Request"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model,name:secure_digital_signature.model_digital_signature_signer
+msgid "Signature Request Signer"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model,name:secure_digital_signature.model_digital_signature_template
+msgid "Signature Request Template"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.actions.act_window,name:secure_digital_signature.action_digital_signature_request
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_list
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_search
+msgid "Signature Requests"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_template_form
+msgid "Signature Template"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model,name:secure_digital_signature.model_digital_signature_template_field
+msgid "Signature Template Field"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_template_list
+msgid "Signature Templates"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__signed
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_signer__status__signed
+msgid "Signed"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__signed_date
+msgid "Signed Date"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__signed_ip
+msgid "Signed Ip"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__signed_user_agent
+msgid "Signed User Agent"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__signer_id
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__signer_id
+msgid "Signer"
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "Signer %s has no fields placed on the document."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_signer_field_form
+msgid "Signer Field Placement"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__signer_role
+msgid "Signer Role"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__signer_type
+msgid "Signer Type"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "Signer:"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__signer_ids
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_form
+msgid "Signers"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__signing_mode
+msgid "Signing Mode"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_field__field_type__stamp
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_template_field__field_type__stamp
+msgid "Stamp"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__state
+msgid "State"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__status
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.view_digital_signature_request_search
+msgid "Status"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__subject
+msgid "Subject"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__tamper_detected
+msgid "Tamper Detected"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__template_id
+msgid "Template"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__template_filename
+msgid "Template Filename"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template__template_file
+msgid "Template PDF"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.actions.act_window,name:secure_digital_signature.action_digital_signature_template
+#: model:ir.ui.menu,name:secure_digital_signature.menu_signature_template
+msgid "Templates"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_field__field_type__text
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_template_field__field_type__text
+msgid "Text"
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_document.py:0
+msgid ""
+"The original document cannot be replaced once the request has left Draft."
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "This request can no longer be cancelled."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_verify_page
+msgid ""
+"This request is not yet completed, so there is no final\n"
+"                                    signed document to verify."
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "This signing link has expired."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "This signing link is no longer active."
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "This signing link is no longer valid."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__token
+msgid "Token"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__token_expiry
+msgid "Token Expiry"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__token_revoked
+msgid "Token Revoked"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_request.py:0
+msgid "Upload the original PDF before continuing."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:res.groups,name:secure_digital_signature.group_signature_user
+msgid "User"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_event__user_agent
+msgid "User Agent"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_verification__result__valid
+msgid "Valid"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__value
+msgid "Value"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__verification_token
+msgid "Verification Token"
+msgstr ""
+
+#. module: secure_digital_signature
+#. odoo-python
+#: code:addons/secure_digital_signature/models/digital_signature_verification.py:0
+msgid "Verification log entries are immutable."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_verification__verify_date
+msgid "Verify Date"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "View the original document"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_event__event_type__viewed
+#: model:ir.model.fields.selection,name:secure_digital_signature.selection__digital_signature_signer__status__viewed
+msgid "Viewed"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_signer__viewed_date
+msgid "Viewed Date"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_request__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,help:secure_digital_signature.field_digital_signature_request__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__width
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__width
+msgid "Width"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__pos_x
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__pos_x
+msgid "X (%)"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_field__pos_y
+#: model:ir.model.fields,field_description:secure_digital_signature.field_digital_signature_template_field__pos_y
+msgid "Y (%)"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "You already signed this document on"
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_sign_page
+msgid "You rejected this document."
+msgstr ""
+
+#. module: secure_digital_signature
+#: model_terms:ir.ui.view,arch_db:secure_digital_signature.portal_verify_page
+msgid "and its integrity is intact."
+msgstr ""
