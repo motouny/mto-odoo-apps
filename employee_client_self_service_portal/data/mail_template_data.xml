@@ -30,5 +30,32 @@
                 </div>
             </field>
         </record>
+        <record id="mail_template_task_overdue" model="mail.template">
+            <field name="name">Employee Portal: Task Overdue Alert</field>
+            <field name="model_id" ref="model_employee_portal_task"/>
+            <field name="subject">Overdue: {{ object.name }}</field>
+            <field name="email_from">{{ (object.employee_id.company_id.email or user.email) }}</field>
+            <field name="email_to">{{ object.employee_id.work_email }}</field>
+            <field name="lang">{{ object.employee_id.user_id.lang }}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px; font-family: Arial, sans-serif;">
+                    <p>Hello <t t-out="object.employee_id.name"/>,</p>
+                    <p>Your assigned task is now <strong style="color:#d9534f;">overdue</strong>:</p>
+                    <ul>
+                        <li>
+                            <strong t-out="object.name"/>
+                            <t t-if="object.deadline"> - Deadline was: <t t-out="object.deadline"/></t>
+                        </li>
+                    </ul>
+                    <p>Please update its status as soon as possible.</p>
+                    <p>
+                        <a t-attf-href="{{ object.get_base_url() }}/my/assignments" style="background-color:#d9534f;color:#fff;padding:8px 16px;text-decoration:none;border-radius:4px;">
+                            Update my assignment
+                        </a>
+                    </p>
+                </div>
+            </field>
+        </record>
     </data>
 </odoo>

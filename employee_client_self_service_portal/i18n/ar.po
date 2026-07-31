@@ -6,13 +6,84 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-17 11:43+0000\n"
+"PO-Revision-Date: 2026-07-17 11:43+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "%s left"
+msgstr "متبقى %s"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__customer_rating__1
+msgid "1 - Very Unsatisfied"
+msgstr "1 - غير راضٍ إطلاقًا"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__customer_rating__2
+msgid "2 - Unsatisfied"
+msgstr "2 - غير راضٍ"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__customer_rating__3
+msgid "3 - Neutral"
+msgstr "3 - محايد"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__customer_rating__4
+msgid "4 - Satisfied"
+msgstr "4 - راضٍ"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__customer_rating__5
+msgid "5 - Very Satisfied"
+msgstr "5 - راضٍ جدًا"
+
+#. module: employee_client_self_service_portal
+#: model:mail.template,body_html:employee_client_self_service_portal.mail_template_task_overdue
+msgid ""
+"<div style=\"margin: 0px; padding: 0px; font-family: Arial, sans-serif;\">\n"
+"                    <p>Hello <t t-out=\"object.employee_id.name\"/>,</p>\n"
+"                    <p>Your assigned task is now <strong style=\"color:#d9534f;\">overdue</strong>:</p>\n"
+"                    <ul>\n"
+"                        <li>\n"
+"                            <strong t-out=\"object.name\"/>\n"
+"                            <t t-if=\"object.deadline\"> - Deadline was: <t t-out=\"object.deadline\"/></t>\n"
+"                        </li>\n"
+"                    </ul>\n"
+"                    <p>Please update its status as soon as possible.</p>\n"
+"                    <p>\n"
+"                        <a t-attf-href=\"{{ object.get_base_url() }}/my/assignments\" style=\"background-color:#d9534f;color:#fff;padding:8px 16px;text-decoration:none;border-radius:4px;\">\n"
+"                            Update my assignment\n"
+"                        </a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px; font-family: Arial, sans-serif;\">\n"
+"                    <p>مرحبًا <t t-out=\"object.employee_id.name\"/>،</p>\n"
+"                    <p>مهمتك المسندة أصبحت الآن <strong style=\"color:#d9534f;\">متأخرة</strong>:</p>\n"
+"                    <ul>\n"
+"                        <li>\n"
+"                            <strong t-out=\"object.name\"/>\n"
+"                            <t t-if=\"object.deadline\"> - كان الموعد النهائي: <t t-out=\"object.deadline\"/></t>\n"
+"                        </li>\n"
+"                    </ul>\n"
+"                    <p>يرجى تحديث حالتها في أقرب وقت ممكن.</p>\n"
+"                    <p>\n"
+"                        <a t-attf-href=\"{{ object.get_base_url() }}/my/assignments\" style=\"background-color:#d9534f;color:#fff;padding:8px 16px;text-decoration:none;border-radius:4px;\">\n"
+"                            تحديث مهمتي\n"
+"                        </a>\n"
+"                    </p>\n"
+"                </div>\n"
+"            "
 
 #. module: employee_client_self_service_portal
 #: model:mail.template,body_html:employee_client_self_service_portal.mail_template_assignment_reminder
@@ -37,9 +108,9 @@ msgid ""
 "                </div>\n"
 "            "
 msgstr ""
-"<div style=\"margin: 0px; padding: 0px; font-family: Arial, sans-serif; direction: rtl; text-align: right;\">\n"
-"                    <p>مرحباً <t t-out=\"object.name\"/>،</p>\n"
-"                    <p>لديك مهام مسندة إليك ما زالت بحاجة إلى تحديث حالتها:</p>\n"
+"<div style=\"margin: 0px; padding: 0px; font-family: Arial, sans-serif;\">\n"
+"                    <p>مرحبًا <t t-out=\"object.name\"/>،</p>\n"
+"                    <p>لا يزال لديك مهام تحتاج إلى تحديث حالتها:</p>\n"
 "                    <ul>\n"
 "                        <t t-foreach=\"ctx.get('pending_tasks', [])\" t-as=\"task\">\n"
 "                            <li>\n"
@@ -56,6 +127,31 @@ msgstr ""
 "                    </p>\n"
 "                </div>\n"
 "            "
+
+#. module: employee_client_self_service_portal
+#: model:mail.template,body_html:employee_client_self_service_portal.mail_template_ess_request_status_update
+msgid ""
+"<div>\n"
+"                <p>\n"
+"                    Your request <t t-out=\"object.name\"/> (<t t-out=\"object.subject\"/>) is now:\n"
+"                    <strong t-out=\"dict(object._fields['state'].selection).get(object.state)\"/>.\n"
+"                </p>\n"
+"                <p>\n"
+"                    <a t-attf-href=\"/my/requests/{{ object.id }}\">View my request</a>\n"
+"                </p>\n"
+"            </div>\n"
+"        "
+msgstr ""
+"<div>\n"
+"                <p>\n"
+"                    طلبك <t t-out=\"object.name\"/> (<t t-out=\"object.subject\"/>) أصبح الآن:\n"
+"                    <strong t-out=\"dict(object._fields['state'].selection).get(object.state)\"/>.\n"
+"                </p>\n"
+"                <p>\n"
+"                    <a t-attf-href=\"/my/requests/{{ object.id }}\">عرض طلبي</a>\n"
+"                </p>\n"
+"            </div>\n"
+"        "
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
@@ -76,13 +172,54 @@ msgstr ""
 "                            </select>"
 
 #. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests_new
+msgid ""
+"<select name=\"priority\" class=\"form-select\">\n"
+"                        <option value=\"low\">Low</option>\n"
+"                        <option value=\"normal\" selected=\"selected\">Normal</option>\n"
+"                        <option value=\"high\">High</option>\n"
+"                        <option value=\"urgent\">Urgent</option>\n"
+"                    </select>"
+msgstr ""
+"<select name=\"priority\" class=\"form-select\">\n"
+"                        <option value=\"low\">منخفضة</option>\n"
+"                        <option value=\"normal\" selected=\"selected\">عادية</option>\n"
+"                        <option value=\"high\">عالية</option>\n"
+"                        <option value=\"urgent\">عاجلة</option>\n"
+"                    </select>"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_request_detail
+msgid ""
+"<select name=\"rating\" class=\"form-select w-auto d-inline-block\">\n"
+"                                <option value=\"5\">5 - Very Satisfied</option>\n"
+"                                <option value=\"4\">4 - Satisfied</option>\n"
+"                                <option value=\"3\">3 - Neutral</option>\n"
+"                                <option value=\"2\">2 - Unsatisfied</option>\n"
+"                                <option value=\"1\">1 - Very Unsatisfied</option>\n"
+"                            </select>"
+msgstr ""
+"<select name=\"rating\" class=\"form-select w-auto d-inline-block\">\n"
+"                                <option value=\"5\">5 - راضٍ جدًا</option>\n"
+"                                <option value=\"4\">4 - راضٍ</option>\n"
+"                                <option value=\"3\">3 - محايد</option>\n"
+"                                <option value=\"2\">2 - غير راضٍ</option>\n"
+"                                <option value=\"1\">1 - غير راضٍ إطلاقًا</option>\n"
+"                            </select>"
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
 msgid "<span class=\"fs-6 fw-normal\">days</span>"
 msgstr "<span class=\"fs-6 fw-normal\">يوم</span>"
 
 #. module: employee_client_self_service_portal
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+#: model:ess.request.type,description:employee_client_self_service_portal.ess_request_type_service
+msgid "A client-submitted request for service or support."
+msgstr "طلب مقدم من العميل للحصول على خدمة أو دعم."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_project_grid
 msgid "Absent"
 msgstr "غائب"
 
@@ -94,9 +231,65 @@ msgstr "قبول المهمة"
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__employee_portal_task__state__accepted
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
 msgid "Accepted"
 msgstr "مقبولة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__active
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "زخرفة استثناء النشاط"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_request_detail
+msgid "Add a comment..."
+msgstr "أضف تعليقًا..."
+
+#. module: employee_client_self_service_portal
+#: model:ir.ui.menu,name:employee_client_self_service_portal.menu_ess_request_all
+msgid "All Requests"
+msgstr "جميع الطلبات"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_project_project__attendance_radius
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_res_company__attendance_radius
+msgid "Allowed distance, in meters, from the attendance zone coordinates."
+msgstr "المسافة المسموح بها، بالأمتار، من إحداثيات نطاق الحضور."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.constraint,message:employee_client_self_service_portal.constraint_ess_request_requester_check
+msgid ""
+"An employee request needs an employee, a client request needs a client "
+"contact."
+msgstr ""
+"طلب الموظف يتطلب تحديد موظف، وطلب العميل يتطلب تحديد جهة اتصال العميل."
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
@@ -107,10 +300,13 @@ msgstr "الموافقات"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
 msgid "Approve"
 msgstr "موافقة"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__approved
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
 msgid "Approved"
 msgstr "تمت الموافقة"
@@ -132,25 +328,114 @@ msgid "Assigned By"
 msgstr "أُسندت بواسطة"
 
 #. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
+msgid "Assigned Tasks"
+msgstr "المهام المسندة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__assigned_team_id
+msgid "Assigned Team"
+msgstr "الفريق المسند"
+
+#. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__employee_id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__assigned_user_id
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
 msgid "Assigned To"
 msgstr "مسندة إلى"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,name:employee_client_self_service_portal.ess_request_type_attendance_correction
+msgid "Attendance Correction"
+msgstr "تصحيح الحضور"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_company_form_attendance_zone
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_project_form_portal_manager
+msgid "Attendance Zone"
+msgstr "نطاق الحضور"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_project_project__attendance_latitude
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_res_company__attendance_latitude
+msgid "Attendance Zone Latitude"
+msgstr "خط العرض لنطاق الحضور"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_project_project__attendance_longitude
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_res_company__attendance_longitude
+msgid "Attendance Zone Longitude"
+msgstr "خط الطول لنطاق الحضور"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_project_project__attendance_radius
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_res_company__attendance_radius
+msgid "Attendance Zone Radius (m)"
+msgstr "نصف قطر نطاق الحضور (متر)"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__author_user_id
+msgid "Author User"
+msgstr "المستخدم الكاتب"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
+msgid "Back to My Team"
+msgstr "العودة إلى فريقي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__body
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__body
+msgid "Body"
+msgstr "المحتوى"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request_type__requester_kind__both
+msgid "Both"
+msgstr "كلاهما"
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
 msgid "Cancel"
 msgstr "إلغاء"
 
 #. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_request_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
 msgid "Cancel Request"
 msgstr "إلغاء الطلب"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__cancelled
+msgid "Cancelled"
+msgstr "ملغى"
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
 msgid "Certificate Level"
 msgstr "المؤهل الدراسي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__change_date
+msgid "Change Date"
+msgstr "تاريخ التغيير"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__changed_by_uid
+msgid "Changed By Uid"
+msgstr "تم التغيير بواسطة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__chatter_message_id
+msgid "Chatter Message"
+msgstr "رسالة الدردشة"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_attendances
@@ -173,6 +458,87 @@ msgid "City"
 msgstr "المدينة"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__requester_kind__client
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request_type__requester_kind__client
+#: model:res.groups,name:employee_client_self_service_portal.group_ess_client
+msgid "Client"
+msgstr "عميل"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__partner_id
+msgid "Client Contact"
+msgstr "جهة اتصال العميل"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_project_project__portal_manager_id
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request_type__client_approver_role__client_pm
+msgid "Client Project Manager"
+msgstr "مدير البوابة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__client_approver_role
+msgid "Client-side Approver"
+msgstr "جهة الاعتماد لدى العميل"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__closed
+msgid "Closed"
+msgstr "مغلق"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__closed_date
+msgid "Closed Date"
+msgstr "تاريخ الإغلاق"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__comment_ids
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_request_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Comments"
+msgstr "التعليقات"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__company_id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__company_id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__company_id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__company_id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__company_id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__company_id
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
+msgid "Company"
+msgstr "الشركة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Complete"
+msgstr "إكمال"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__completed
+msgid "Completed"
+msgstr "مكتمل"
+
+#. module: employee_client_self_service_portal
+#: model:ir.ui.menu,name:employee_client_self_service_portal.menu_ess_request_configuration
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
 msgid "Contact Name"
 msgstr "اسم جهة الاتصال"
@@ -183,23 +549,58 @@ msgid "Contact Phone"
 msgstr "هاتف جهة الاتصال"
 
 #. module: employee_client_self_service_portal
+#: model:ess.request.type,description:employee_client_self_service_portal.ess_request_type_attendance_correction
+msgid "Correction to a missed or wrong check-in/check-out."
+msgstr "تصحيح لتسجيل حضور أو انصراف فائت أو خاطئ."
+
+#. module: employee_client_self_service_portal
+#. odoo-javascript
+#: code:addons/employee_client_self_service_portal/static/src/js/attendance_zone_map_field.xml:0
+msgid ""
+"Could not load the map. You can still enter the coordinates manually below."
+msgstr "تعذر تحميل الخريطة. لا يزال بإمكانك إدخال الإحداثيات يدوياً أدناه."
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
 msgid "Country"
 msgstr "الدولة"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__create_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__create_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__create_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__create_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__create_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__create_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__create_uid
 msgid "Created by"
 msgstr "أنشأه"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__create_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__create_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__create_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__create_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__create_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__create_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__create_date
 msgid "Created on"
 msgstr "أنشئ في"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__customer_rating
+msgid "Customer Rating"
+msgstr "تقييم العميل"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,name:employee_client_self_service_portal.ess_request_type_data_change
+msgid "Data Change Request"
+msgstr "طلب تعديل بيانات"
+
+#. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__deadline
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
 msgid "Deadline"
@@ -211,7 +612,20 @@ msgid "Deadline:"
 msgstr "الموعد النهائي:"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__default_assigned_team_id
+msgid "Default Team"
+msgstr "الفريق الافتراضي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__department
+msgid "Department"
+msgstr "القسم"
+
+#. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__description
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__description
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__description
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests_new
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
@@ -220,15 +634,37 @@ msgstr "الوصف"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__display_name
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__display_name
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__display_name
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__display_name
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__display_name
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__display_name
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__display_name
 msgid "Display Name"
 msgstr "الاسم المعروض"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__employee_portal_task__state__done
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
 msgid "Done"
 msgstr "منجزة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__due_date
+msgid "Due Date"
+msgstr "تاريخ الاستحقاق"
+
+#. module: employee_client_self_service_portal
+#: model:mail.template,name:employee_client_self_service_portal.mail_template_ess_request_status_update
+msgid "ESS Request: Status Update"
+msgstr "طلب الخدمة الذاتية: تحديث الحالة"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
@@ -242,11 +678,31 @@ msgstr "جهة الاتصال في حالات الطوارئ"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model,name:employee_client_self_service_portal.model_hr_employee
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__employee_id
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__requester_kind__employee
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request_type__requester_kind__employee
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
 msgid "Employee"
 msgstr "الموظف"
+
+#. module: employee_client_self_service_portal
+#: model:ir.module.category,name:employee_client_self_service_portal.module_category_ess_request
+#: model:ir.ui.menu,name:employee_client_self_service_portal.menu_ess_request_root
+msgid "Employee & Client Requests"
+msgstr "طلبات الموظفين والعملاء"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_ess_request
+msgid "Employee / Client Request"
+msgstr "طلب موظف / عميل"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_project_project__employee_count
+msgid "Employee Count"
+msgstr "عدد الموظفين"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_layout_company_branding
@@ -259,15 +715,77 @@ msgid "Employee Portal Task Assignment"
 msgstr "مهمة مسندة عبر بوابة الموظفين"
 
 #. module: employee_client_self_service_portal
+#: model:ir.actions.server,name:employee_client_self_service_portal.ir_cron_assignment_overdue_alert_ir_actions_server
+msgid "Employee Portal: Assignment Overdue Alert"
+msgstr "بوابة الموظفين: تنبيه تأخر التكليف"
+
+#. module: employee_client_self_service_portal
 #: model:ir.actions.server,name:employee_client_self_service_portal.ir_cron_assignment_reminder_ir_actions_server
 #: model:mail.template,name:employee_client_self_service_portal.mail_template_assignment_reminder
 msgid "Employee Portal: Assignment Status Reminder"
 msgstr "بوابة الموظفين: تذكير بتحديث حالة المهام"
 
 #. module: employee_client_self_service_portal
+#: model:mail.template,name:employee_client_self_service_portal.mail_template_task_overdue
+msgid "Employee Portal: Task Overdue Alert"
+msgstr "بوابة الموظفين: تنبيه تأخر المهمة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_ess_request_type
+msgid "Employee/Client Request Type"
+msgstr "نوع طلب الموظف/العميل"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_project_project__employee_ids
+msgid "Employees reported under this project in the employee portal."
+msgstr "الموظفون المسجلون تحت هذا المشروع في بوابة الموظفين."
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,description:employee_client_self_service_portal.ess_request_type_letter
+msgid "Employment letter, salary certificate, or similar document."
+msgstr "خطاب تعريف بالعمل، شهادة راتب، أو مستند مشابه."
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,name:employee_client_self_service_portal.ess_request_type_equipment
+msgid "Equipment / Custody Request"
+msgstr "طلب معدات / عهدة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_res_company__attendance_latitude
+msgid ""
+"Fallback site latitude for employee portal check in/out when the employee's "
+"project has no attendance zone of its own. Leave empty to not restrict "
+"attendance by location at the company level."
+msgstr ""
+"خط العرض الاحتياطي لتسجيل الحضور والانصراف من البوابة عندما لا يكون لمشروع "
+"الموظف نطاق حضور خاص به. اتركه فارغًا لعدم تقييد الحضور بالموقع على مستوى "
+"الشركة."
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
 msgid "Field of Study"
 msgstr "التخصص الدراسي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome مثل fa-tasks"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "For this request type, only %s can approve it."
+msgstr "بالنسبة لنوع الطلب هذا، لا يمكن الموافقة عليه إلا من قبل %s."
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
@@ -278,22 +796,118 @@ msgid "From"
 msgstr "من"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__from_state
+msgid "From State"
+msgstr "من الحالة"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,description:employee_client_self_service_portal.ess_request_type_internal_support
+msgid "General internal support (IT, facilities, HR, ...)."
+msgstr "دعم داخلي عام (تقنية المعلومات، المرافق، الموارد البشرية، ...)."
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_employee_form_portal_access
 msgid "Grant Portal Access"
 msgstr "منح صلاحية دخول البوابة"
 
 #. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__priority__high
+msgid "High"
+msgstr "عالية"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
+msgid "History"
+msgstr "السجل"
+
+#. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__id
 msgid "ID"
 msgstr "المعرّف"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة للإشارة إلى نشاط استثنائي."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا تم التحديد، فإن الرسائل الجديدة تتطلب انتباهك."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__message_has_error
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا تم التحديد، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: employee_client_self_service_portal
 #: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__employee_portal_task__state__in_progress
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__in_progress
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
 msgid "In Progress"
 msgstr "قيد التنفيذ"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__internal_notes
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Internal Notes"
+msgstr "ملاحظات داخلية"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,name:employee_client_self_service_portal.ess_request_type_internal_support
+msgid "Internal Support Request"
+msgstr "طلب دعم داخلي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request_comment__is_internal
+msgid "Internal notes are never shown to the requester in the portal."
+msgstr "الملاحظات الداخلية لا تُعرض أبدًا لمقدم الطلب في البوابة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Invalid rating."
+msgstr "تقييم غير صالح."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__is_internal
+msgid "Is Internal"
+msgstr "داخلي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__is_read
+msgid "Is Read"
+msgstr "مقروء"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__last_update_date
@@ -302,19 +916,90 @@ msgstr "آخر تحديث"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__write_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__write_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__write_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__write_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__write_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__write_uid
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__write_uid
 msgid "Last Updated by"
 msgstr "آخر من قام بالتحديث"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__write_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__write_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__write_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__write_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__write_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__write_date
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__write_date
 msgid "Last Updated on"
 msgstr "تاريخ آخر تحديث"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__status_note
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
 msgid "Latest Update"
 msgstr "آخر تحديث للحالة"
+
+#. module: employee_client_self_service_portal
+#. odoo-javascript
+#: code:addons/employee_client_self_service_portal/static/src/js/attendance_zone_map_field.xml:0
+msgid "Latitude"
+msgstr "خط العرض"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,name:employee_client_self_service_portal.ess_request_type_letter
+msgid "Letter / Certificate Request"
+msgstr "طلب خطاب / شهادة"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/hr_employee.py:0
+msgid ""
+"Location access is required to check in/out for this project. Please allow "
+"location access and try again."
+msgstr ""
+"الوصول إلى الموقع مطلوب للحضور/الانصراف في هذا المشروع. يرجى السماح بالوصول "
+"إلى الموقع والمحاولة مرة أخرى."
+
+#. module: employee_client_self_service_portal
+#. odoo-javascript
+#: code:addons/employee_client_self_service_portal/static/src/js/attendance_zone_map_field.xml:0
+msgid "Longitude"
+msgstr "خط الطول"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__priority__low
+msgid "Low"
+msgstr "منخفضة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__member_ids
+msgid "Members"
+msgstr "الأعضاء"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "More information needed"
+msgstr "مطلوب معلومات إضافية"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
@@ -340,7 +1025,10 @@ msgid "My Profile"
 msgstr "ملفي الشخصي"
 
 #. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_ess_requests
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_ess_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
 msgid "My Requests"
 msgstr "طلباتي"
 
@@ -361,6 +1049,13 @@ msgid "My Team"
 msgstr "فريقي"
 
 #. module: employee_client_self_service_portal
+#: model:ir.actions.act_window,name:employee_client_self_service_portal.action_ess_request_my_tickets
+#: model:ir.ui.menu,name:employee_client_self_service_portal.menu_ess_request_my_tickets
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
+msgid "My Tickets"
+msgstr "تذاكري"
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
@@ -368,14 +1063,26 @@ msgid "My Time Off"
 msgstr "إجازاتي"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__name
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_team__name
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
 #: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__employee_portal_task__state__new
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
 msgid "New"
 msgstr "جديدة"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests_new
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
 msgid "New Request"
 msgstr "طلب جديد"
@@ -384,6 +1091,26 @@ msgstr "طلب جديد"
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
 msgid "New Time Off Request"
 msgstr "طلب إجازة جديد"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "حدث التقويم للنشاط التالي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
@@ -397,9 +1124,14 @@ msgid "No employee record is linked to your account."
 msgstr "لا يوجد سجل موظف مرتبط بحسابك."
 
 #. module: employee_client_self_service_portal
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_project_grid
 msgid "No employees are assigned to this project yet."
 msgstr "لا يوجد موظفون مسندون لهذا المشروع بعد."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_notifications
+msgid "No notifications yet."
+msgstr "لا توجد إشعارات بعد."
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
@@ -407,9 +1139,20 @@ msgid "No pending requests from your team."
 msgstr "لا توجد طلبات معلّقة من فريقك."
 
 #. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_requests
+msgid "No requests are waiting for your decision."
+msgstr "لا توجد طلبات بانتظار قرارك."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.actions.act_window,help:employee_client_self_service_portal.action_ess_request
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
 msgid "No requests yet."
 msgstr "لا توجد طلبات بعد."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
+msgid "No tasks assigned to this employee yet."
+msgstr "لا توجد مهام مسندة لهذا الموظف بعد."
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
@@ -417,32 +1160,166 @@ msgid "No tasks assigned to your team yet."
 msgstr "لا توجد مهام مسندة لفريقك بعد."
 
 #. module: employee_client_self_service_portal
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__priority__normal
+msgid "Normal"
+msgstr "عادية"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__note
+msgid "Note"
+msgstr "ملاحظة"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_ess_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_ess_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_notifications
+msgid "Notifications"
+msgstr "الإشعارات"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراء"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_project_grid
 msgid "On Leave"
 msgstr "في إجازة"
 
 #. module: employee_client_self_service_portal
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_project_grid
 msgid "On Permission"
 msgstr "مستأذن"
 
 #. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Only approved requests can start progress."
+msgstr "يمكن فقط بدء تنفيذ الطلبات الموافق عليها."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Only completed requests can be closed."
+msgstr "يمكن فقط إغلاق الطلبات المكتملة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Only draft requests can be submitted."
+msgstr "يمكن فقط تقديم الطلبات في حالة المسودة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Only in-progress requests can be completed."
+msgstr "يمكن فقط إكمال الطلبات قيد التنفيذ."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Only submitted or under-review requests can be approved."
+msgstr "يمكن فقط الموافقة على الطلبات المقدمة أو قيد المراجعة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Only submitted or under-review requests can be rejected."
+msgstr "يمكن فقط رفض الطلبات المقدمة أو قيد المراجعة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Only submitted requests can move to review."
+msgstr "يمكن فقط نقل الطلبات المقدمة إلى المراجعة."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
+msgid "Open"
+msgstr "مفتوح"
+
+#. module: employee_client_self_service_portal
+#: model:ir.ui.menu,name:employee_client_self_service_portal.menu_ess_request_overdue
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
+msgid "Overdue"
+msgstr "متأخرة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__overdue_alert_sent
+msgid "Overdue Alert Sent"
+msgstr "تم إرسال تنبيه التأخير"
+
+#. module: employee_client_self_service_portal
+#: model:ir.actions.act_window,name:employee_client_self_service_portal.action_ess_request_overdue
+msgid "Overdue Requests"
+msgstr "الطلبات المتأخرة"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "Overdue by %s"
+msgstr "متأخر بـ %s"
+
+#. module: employee_client_self_service_portal
+#: model:mail.template,subject:employee_client_self_service_portal.mail_template_task_overdue
+msgid "Overdue: {{ object.name }}"
+msgstr "متأخر: {{ object.name }}"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,name:employee_client_self_service_portal.ess_request_type_overtime
+msgid "Overtime Request"
+msgstr "طلب عمل إضافي"
+
+#. module: employee_client_self_service_portal
 #: model:hr.leave.type,name:employee_client_self_service_portal.holiday_status_permission
 msgid "Permission"
-msgstr "استئذان"
+msgstr "إذن"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,name:employee_client_self_service_portal.ess_request_type_permission
+msgid "Permission Request"
+msgstr "طلب إذن"
 
 #. module: employee_client_self_service_portal
 #. odoo-python
 #: code:addons/employee_client_self_service_portal/controllers/portal.py:0
 msgid "Pick a valid employee and title."
-msgstr "اختر موظفاً صالحاً وعنواناً للمهمة."
+msgstr "اختر موظفاً وعنواناً صالحين."
 
 #. module: employee_client_self_service_portal
-#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_project_project__portal_manager_id
-msgid "Portal Manager"
-msgstr "مدير البوابة"
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "Pick a valid request type and subject."
+msgstr "اختر نوع طلب وموضوعاً صالحين."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Please provide more information for request %s."
+msgstr "يرجى تقديم معلومات إضافية للطلب %s."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_ess_portal_notification
+msgid "Portal Notification"
+msgstr "إشعار البوابة"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_hr_employee__project_id
@@ -452,24 +1329,48 @@ msgstr "مشروع البوابة"
 #. module: employee_client_self_service_portal
 #: model:ir.model,name:employee_client_self_service_portal.model_portal_wizard_user
 msgid "Portal User Config"
-msgstr "إعداد مستخدم البوابة"
+msgstr "تهيئة مستخدم البوابة "
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_project_project__project_owner_id
+msgid ""
+"Portal user representing the client entity/project owner. Sees the same team"
+" and statuses as the Client Project Manager, and can submit or approve "
+"requests depending on the request type's configured approver."
+msgstr ""
+"مستخدم بورتال يمثل جهة العميل/مالك المشروع. يرى نفس الفريق والحالات التي "
+"يراها مدير مشروع الجهة، ويمكنه تقديم أو اعتماد الطلبات حسب المعتمد المحدد "
+"لنوع الطلب."
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,help:employee_client_self_service_portal.field_project_project__portal_manager_id
 msgid ""
-"Portal user who can review this project's employees and approve their time "
-"off requests from the employee portal. Independent from the Project Manager "
-"above, which requires an internal user."
+"Portal user, appointed by the client entity, who can review this project's "
+"employees, approve their time off requests, and relay requests on to the "
+"company. Independent from the Project Manager above, which requires an "
+"internal user."
 msgstr ""
 "مستخدم البوابة الذي يمكنه مراجعة موظفي هذا المشروع والموافقة على طلبات "
-"إجازاتهم من بوابة الموظفين. مستقل عن مدير المشروع أعلاه، الذي يتطلب "
-"مستخدماً داخلياً."
+"إجازاتهم من بوابة الموظفين. مستقل عن مدير المشروع أعلاه، الذي يتطلب مستخدماً"
+" داخلياً."
 
 #. module: employee_client_self_service_portal
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_request_detail
+msgid "Post Comment"
+msgstr "نشر تعليق"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_project_grid
 msgid "Present"
 msgstr "حاضر"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__priority
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests_new
+msgid "Priority"
+msgstr "الأولوية"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
@@ -484,9 +1385,22 @@ msgstr "الهاتف الشخصي"
 #. module: employee_client_self_service_portal
 #: model:ir.model,name:employee_client_self_service_portal.model_project_project
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__project_id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__project_id
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests_new
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_requests
 msgid "Project"
 msgstr "المشروع"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request_type__client_approver_role__owner
+msgid "Project Owner"
+msgstr "مالك المشروع"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_project_project__project_owner_id
+msgid "Project Owner (Client Entity)"
+msgstr "مالك المشروع (جهة العميل)"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,help:employee_client_self_service_portal.field_employee_portal_task__project_id
@@ -496,14 +1410,62 @@ msgid ""
 "project's Portal Manager can see this employee's status and approve their "
 "time off requests from the portal."
 msgstr ""
-"المشروع الذي يتبع له هذا الموظف في بوابة الموظفين. يمكن لمدير البوابة "
-"الخاص بهذا المشروع رؤية حالة الموظف والموافقة على طلبات إجازاته من "
-"البوابة."
+"المشروع الذي يتبع له هذا الموظف في بوابة الموظفين. يمكن لمدير البوابة الخاص "
+"بهذا المشروع رؤية حالة الموظف والموافقة على طلبات إجازاته من البوابة."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__project_id
+msgid ""
+"Project this request is scoped to. Auto-filled from the employee for "
+"employee requests; set explicitly for client requests tied to a project "
+"owner/client project manager's project."
+msgstr ""
+"المشروع الذي يتبعه هذا الطلب. يُملأ تلقائيًا من الموظف بالنسبة لطلبات "
+"الموظفين؛ ويُحدَّد صراحةً لطلبات العملاء المرتبطة بمشروع مالك المشروع/مدير "
+"مشروع الجهة."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "Projects Managed"
+msgstr "المشاريع المُدارة"
+
+#. module: employee_client_self_service_portal
+#. odoo-javascript
+#: code:addons/employee_client_self_service_portal/static/src/js/attendance_zone_map_field.xml:0
+msgid "Radius (meters)"
+msgstr "نصف القطر (متر)"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_request_detail
+msgid "Rate this request"
+msgstr "قيّم هذا الطلب"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__rating_ids
+msgid "Ratings"
+msgstr "التقييمات"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_requests
+msgid "Reference"
+msgstr "المرجع"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
 msgid "Refuse"
 msgstr "رفض"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__rejected
+msgid "Rejected"
+msgstr "مرفوض"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
@@ -513,13 +1475,138 @@ msgstr "الرصيد المتبقي - عرض وتقديم طلبات الإجا�
 #. module: employee_client_self_service_portal
 #: model:mail.template,subject:employee_client_self_service_portal.mail_template_assignment_reminder
 msgid "Reminder: you have assignments waiting for a status update"
-msgstr "تذكير: لديك مهام بانتظار تحديث الحالة"
+msgstr "تذكير: لديك تكليفات بانتظار تحديث الحالة"
 
 #. module: employee_client_self_service_portal
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__request_id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_comment__request_id
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__request_id
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Request"
+msgstr "طلب"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_ess_request_comment
+msgid "Request Comment"
+msgstr "تعليق الطلب"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_ess_request_team
+msgid "Request Handling Team"
+msgstr "فريق معالجة الطلبات"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Request Info"
+msgstr "طلب معلومات"
+
+#. module: employee_client_self_service_portal
+#: model:res.groups,name:employee_client_self_service_portal.group_ess_request_manager
+msgid "Request Manager"
+msgstr "مدير الطلبات"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model,name:employee_client_self_service_portal.model_ess_request_status_history
+msgid "Request Status History"
+msgstr "سجل حالة الطلب"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__request_type_id
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests_new
+msgid "Request Type"
+msgstr "نوع الطلب"
+
+#. module: employee_client_self_service_portal
+#: model:ir.actions.act_window,name:employee_client_self_service_portal.action_ess_request_type
+#: model:ir.ui.menu,name:employee_client_self_service_portal.menu_ess_request_type
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_type_list
+msgid "Request Types"
+msgstr "أنواع الطلبات"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,description:employee_client_self_service_portal.ess_request_type_data_change
+msgid "Request a change to personal data not editable from My Profile."
+msgstr "طلب تعديل بيانات شخصية لا يمكن تعديلها من صفحة ملفي الشخصي."
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,description:employee_client_self_service_portal.ess_request_type_overtime
+msgid "Request approval for overtime worked or planned."
+msgstr "طلب الموافقة على عمل إضافي تم أداؤه أو مخطط له."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Request approved"
+msgstr "تمت الموافقة على الطلب"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Request completed"
+msgstr "تم إكمال الطلب"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,description:employee_client_self_service_portal.ess_request_type_equipment
+msgid "Request equipment, or report a change to items already in custody."
+msgstr "طلب معدات، أو الإبلاغ عن تغيير في عناصر موجودة بالعهدة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Request forwarded"
+msgstr "تم إحالة الطلب"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Request rejected"
+msgstr "تم رفض الطلب"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Request submitted"
+msgstr "تم تقديم الطلب"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__requester_kind
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__requester_kind
+msgid "Requester Kind"
+msgstr "نوع مقدم الطلب"
+
+#. module: employee_client_self_service_portal
+#: model:ir.actions.act_window,name:employee_client_self_service_portal.action_ess_request
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_graph
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_list
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_pivot
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
+msgid "Requests"
+msgstr "الطلبات"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+msgid "Requests waiting for your decision before they reach the company"
+msgstr "طلبات بانتظار قرارك قبل وصولها إلى الشركة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__requires_approval
+msgid "Requires Approval"
+msgstr "يتطلب الموافقة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
 msgid "Review Approvals"
 msgstr "مراجعة الموافقات"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في تسليم الرسائل القصيرة"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
@@ -532,22 +1619,99 @@ msgid "School"
 msgstr "المدرسة/الجامعة"
 
 #. module: employee_client_self_service_portal
+#. odoo-javascript
+#: code:addons/employee_client_self_service_portal/static/src/js/attendance_zone_map_field.xml:0
+msgid "Search"
+msgstr "بحث"
+
+#. module: employee_client_self_service_portal
+#. odoo-javascript
+#: code:addons/employee_client_self_service_portal/static/src/js/attendance_zone_map_field.js:0
+msgid "Search an address…"
+msgstr "ابحث عن عنوان…"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_type__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,name:employee_client_self_service_portal.ess_request_type_service
+msgid "Service Request"
+msgstr "طلب خدمة"
+
+#. module: employee_client_self_service_portal
+#: model:ess.request.type,description:employee_client_self_service_portal.ess_request_type_permission
+msgid "Short, hourly permission to leave during working hours."
+msgstr "إذن قصير بالساعة للمغادرة أثناء ساعات العمل."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_project_project__attendance_latitude
+msgid ""
+"Site latitude employees assigned to this project must be near to check "
+"in/out from the employee portal. Leave empty to not restrict attendance by "
+"location for this project."
+msgstr ""
+"خط عرض الموقع الذي يجب أن يكون الموظفون المعينون على هذا المشروع بالقرب منه "
+"لتسجيل الحضور/الانصراف من بوابة الموظفين. اتركه فارغًا لعدم تقييد الحضور "
+"بالموقع لهذا المشروع."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__internal_notes
+msgid "Staff-only notes, never shown to the requester."
+msgstr "ملاحظات خاصة بالموظفين فقط، لا تُعرض أبدًا لمقدم الطلب."
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
 msgid "Stage"
 msgstr "المرحلة"
 
 #. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Start Progress"
+msgstr "بدء التنفيذ"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Start Review"
+msgstr "بدء المراجعة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__state
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
 msgid "State"
 msgstr "المحافظة/الولاية"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__state
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
 msgid "Status"
 msgstr "الحالة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__status_history_ids
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_request_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_form
+msgid "Status History"
+msgstr "سجل الحالة"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة استنادًا إلى الأنشطة\n"
+"متأخر: تاريخ الاستحقاق قد مر بالفعل\n"
+"اليوم: تاريخ النشاط هو اليوم\n"
+"مخطط: أنشطة مستقبلية."
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
@@ -565,9 +1729,38 @@ msgid "Street 2"
 msgstr "الشارع 2"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__subject
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests_new
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_requests
+msgid "Subject"
+msgstr "الموضوع"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_request_detail
+msgid "Submit Rating"
+msgstr "إرسال التقييم"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests_new
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_new
 msgid "Submit Request"
 msgstr "إرسال الطلب"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_ess_requests
+msgid "Submit and track your requests"
+msgstr "قدّم طلباتك وتابعها"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__submitted
+msgid "Submitted"
+msgstr "تم الإرسال"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__submitted_date
+msgid "Submitted Date"
+msgstr "تاريخ الإرسال"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
@@ -578,6 +1771,27 @@ msgstr "المهمة"
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
 msgid "Tasks assigned to you"
 msgstr "المهام المسندة إليك"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+msgid "Team Member"
+msgstr "عضو الفريق"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_project_project__employee_ids
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_project_form_portal_manager
+msgid "Team Members"
+msgstr "أعضاء الفريق"
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_employee_self
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_requests
+msgid "Team Requests"
+msgstr "طلبات الفريق"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_breadcrumbs_employee_self
@@ -592,22 +1806,102 @@ msgid "Team status and time off approvals"
 msgstr "حالة الفريق والموافقة على طلبات الإجازة"
 
 #. module: employee_client_self_service_portal
+#: model:ir.actions.act_window,name:employee_client_self_service_portal.action_ess_request_team
+#: model:ir.ui.menu,name:employee_client_self_service_portal.menu_ess_request_team
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_team_list
+msgid "Teams"
+msgstr "الفرق"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request_comment__chatter_message_id
+msgid ""
+"The chatter message this comment was mirrored to, so staff watching the "
+"record's chatter see it without having to open the Comments tab."
+msgstr ""
+"رسالة الدردشة التي تمت مطابقة هذا التعليق معها، حتى يراها الموظفون المتابعون"
+" لدردشة السجل دون الحاجة لفتح تبويب التعليقات."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request_status_history.py:0
+msgid "The request status history is immutable."
+msgstr "سجل حالة الطلب غير قابل للتعديل."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.constraint,message:employee_client_self_service_portal.constraint_ess_request_type_code_company_uniq
+msgid "The request type code must be unique per company."
+msgstr "يجب أن يكون رمز نوع الطلب فريدًا لكل شركة."
+
+#. module: employee_client_self_service_portal
 #. odoo-python
 #: code:addons/employee_client_self_service_portal/controllers/portal.py:0
 msgid "This assignment does not belong to you."
-msgstr "هذه المهمة ليست مسندة إليك."
+msgstr "هذه المهمة لا تخصك."
 
 #. module: employee_client_self_service_portal
 #. odoo-python
 #: code:addons/employee_client_self_service_portal/models/hr_employee.py:0
 msgid "This employee has no related contact to grant portal access to."
-msgstr "لا توجد جهة اتصال مرتبطة بهذا الموظف لمنحها صلاحية دخول البوابة."
+msgstr "لا يوجد جهة اتصال مرتبطة بهذا الموظف لمنحه صلاحية الوصول إلى البوابة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "This request can no longer be cancelled."
+msgstr "لم يعد بالإمكان إلغاء هذا الطلب."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "This request does not belong to you."
+msgstr "هذا الطلب لا يخصك."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "This request does not exist."
+msgstr "هذا الطلب غير موجود."
 
 #. module: employee_client_self_service_portal
 #. odoo-python
 #: code:addons/employee_client_self_service_portal/controllers/portal.py:0
 msgid "This request does not require your approval."
 msgstr "هذا الطلب لا يتطلب موافقتك."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "This request is no longer awaiting your approval."
+msgstr "هذا الطلب لم يعد في انتظار موافقتك."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "This request is not awaiting review."
+msgstr "هذا الطلب ليس في انتظار المراجعة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "This request is not awaiting the client project manager."
+msgstr "هذا الطلب ليس في انتظار مدير مشروع الجهة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "This request is not part of a project you manage."
+msgstr "هذا الطلب ليس جزءاً من مشروع تديره."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "This request is not waiting for information."
+msgstr "هذا الطلب ليس في انتظار معلومات إضافية."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
+msgid "Time Off Approvals"
+msgstr "موافقات الإجازات"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
@@ -626,6 +1920,8 @@ msgstr "طلبات إجازة بانتظار موافقتك"
 
 #. module: employee_client_self_service_portal
 #: model:ir.model.fields,field_description:employee_client_self_service_portal.field_employee_portal_task__name
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__title
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_employee_detail
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_tasks_new
 msgid "Title"
@@ -640,16 +1936,39 @@ msgid "To"
 msgstr "إلى"
 
 #. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request_status_history__to_state
+msgid "To State"
+msgstr "إلى الحالة"
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
 msgid "Total Remaining Balance"
 msgstr "إجمالي الرصيد المتبقي"
 
 #. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_approvals
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team_requests
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_time_off_detail
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
 msgid "Type"
 msgstr "النوع"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع نشاط الاستثناء المسجل."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.view_ess_request_search
+msgid "Unassigned"
+msgstr "غير معين"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__under_review
+msgid "Under Review"
+msgstr "قيد المراجعة"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_assignments
@@ -662,9 +1981,61 @@ msgid "Update your personal and emergency information"
 msgstr "تحديث بياناتك الشخصية وبيانات الطوارئ"
 
 #. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_home_ess_requests
+msgid "Updates on your requests"
+msgstr "تحديثات على طلباتك"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__priority__urgent
+msgid "Urgent"
+msgstr "عاجلة"
+
+#. module: employee_client_self_service_portal
+#. odoo-javascript
+#: code:addons/employee_client_self_service_portal/static/src/js/attendance_zone_map_field.xml:0
+msgid "Use my current location"
+msgstr "استخدم موقعي الحالي"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_portal_notification__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
 msgid "View all"
 msgstr "عرض الكل"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__waiting_info
+msgid "Waiting for Information"
+msgstr "بانتظار معلومات"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,field_description:employee_client_self_service_portal.field_ess_request__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع الإلكتروني"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request__website_message_ids
+msgid "Website communication history"
+msgstr "سجل التواصل عبر الموقع الإلكتروني"
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields,help:employee_client_self_service_portal.field_ess_request_type__client_approver_role
+msgid ""
+"Which entity-side role can approve/reject a client-submitted request of this"
+" type before it reaches the company. Leave empty to let either the project's"
+" Owner or Client Project Manager act."
+msgstr ""
+"الدور من جهة العميل الذي يمكنه اعتماد/رفض طلب مقدم من العميل من هذا النوع "
+"قبل وصوله إلى الشركة. اتركه فارغًا للسماح لمالك المشروع أو مدير مشروع الجهة "
+"بالتصرف."
+
+#. module: employee_client_self_service_portal
+#: model:ir.model.fields.selection,name:employee_client_self_service_portal.selection__ess_request__state__with_client_pm
+msgid "With Client Project Manager"
+msgstr "لدى مدير مشروع الجهة"
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_attendances
@@ -672,20 +2043,44 @@ msgid "Worked Hours"
 msgstr "ساعات العمل"
 
 #. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "You are not allowed to perform this action."
+msgstr "غير مسموح لك بتنفيذ هذا الإجراء."
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_team
-msgid "You are not the Portal Manager of any project yet."
-msgstr "أنت لست مدير بوابة لأي مشروع حتى الآن."
+msgid ""
+"You are not the Project Owner or Client Project Manager of any project yet."
+msgstr "أنت لست مالك مشروع أو مدير مشروع جهة لأي مشروع بعد."
 
 #. module: employee_client_self_service_portal
 #. odoo-python
 #: code:addons/employee_client_self_service_portal/controllers/portal.py:0
 msgid "You are not the approver of this request."
-msgstr "أنت لست الجهة المخوّلة للموافقة على هذا الطلب."
+msgstr "أنت لست المعتمِد لهذا الطلب."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "You can only rate a closed request."
+msgstr "يمكنك فقط تقييم طلب مغلق."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "You do not manage this project."
+msgstr "أنت لا تدير هذا المشروع."
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_attendances
 msgid "You have no attendance records yet."
 msgstr "لا توجد سجلات حضور بعد."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_requests
+msgid "You have no requests yet."
+msgstr "ليس لديك أي طلبات بعد."
 
 #. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_tasks
@@ -698,16 +2093,67 @@ msgid "You have no time off requests yet."
 msgstr "لا توجد طلبات إجازة بعد."
 
 #. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/hr_employee.py:0
+msgid ""
+"You must be on-site (within your project's or the company's location) to "
+"check in or out."
+msgstr ""
+"يجب أن تكون في الموقع (ضمن نطاق مشروعك أو الشركة) لتسجيل الحضور أو الانصراف."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/controllers/portal.py:0
+msgid "Your account is not linked to an employee or client record."
+msgstr "حسابك غير مرتبط بسجل موظف أو عميل."
+
+#. module: employee_client_self_service_portal
+#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_request_detail
+msgid "Your rating:"
+msgstr "تقييمك:"
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Your request %s has been approved and forwarded to the company."
+msgstr "تمت الموافقة على طلبك %s وتمت إحالته إلى الشركة."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Your request %s has been approved."
+msgstr "تمت الموافقة على طلبك %s."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Your request %s has been completed."
+msgstr "تم إكمال طلبك %s."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Your request %s has been submitted."
+msgstr "تم تقديم طلبك %s."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Your request %s was rejected by the project manager."
+msgstr "تم رفض طلبك %s من قبل مدير المشروع."
+
+#. module: employee_client_self_service_portal
+#. odoo-python
+#: code:addons/employee_client_self_service_portal/models/ess_request.py:0
+msgid "Your request %s was rejected."
+msgstr "تم رفض طلبك %s."
+
+#. module: employee_client_self_service_portal
 #: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_profile
 msgid "Zip"
 msgstr "الرمز البريدي"
 
 #. module: employee_client_self_service_portal
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
-msgid "open tasks"
-msgstr "مهام مفتوحة"
-
-#. module: employee_client_self_service_portal
-#: model_terms:ir.ui.view,arch_db:employee_client_self_service_portal.portal_my_dashboard
-msgid "pending leaves"
-msgstr "إجازات معلّقة"
+#: model:mail.template,subject:employee_client_self_service_portal.mail_template_ess_request_status_update
+msgid "{{ object.name }} - {{ object.state }}"
+msgstr "{{ object.name }} - {{ object.state }}"

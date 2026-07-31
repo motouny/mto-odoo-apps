@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ==================== Home tiles (additive) ==================== -->
+    <template id="portal_my_home_ess_requests" name="ESS Requests Home Tiles"
+              inherit_id="portal.portal_my_home" priority="31">
+        <xpath expr="//div[@id='portal_common_category']" position="after">
+            <div t-if="request.env.user.employee_id or request.env.user.has_group('employee_client_self_service_portal.group_ess_client')"
+                 class="o_portal_category row g-2 mt-3" id="portal_ess_request_category">
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">My Requests</t>
+                    <t t-set="text">Submit and track your requests</t>
+                    <t t-set="url" t-value="'/my/requests'"/>
+                    <t t-set="placeholder_count" t-value="'ess_request_count'"/>
+                    <t t-set="config_card" t-value="True"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Notifications</t>
+                    <t t-set="text">Updates on your requests</t>
+                    <t t-set="url" t-value="'/my/notifications'"/>
+                    <t t-set="placeholder_count" t-value="'ess_notification_unread_count'"/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="portal_breadcrumbs_ess_requests" name="ESS Requests Breadcrumbs"
+              inherit_id="portal.portal_breadcrumbs" priority="31">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'ess_requests'" class="breadcrumb-item active">My Requests</li>
+            <li t-if="page_name == 'ess_notifications'" class="breadcrumb-item active">Notifications</li>
+        </xpath>
+    </template>
+
+    <!-- ==================== My Requests (list) ==================== -->
+    <template id="portal_my_requests" name="My Requests">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">My Requests</t>
+            </t>
+            <div class="mb-3">
+                <a href="/my/requests/new" class="btn btn-primary">New Request</a>
+            </div>
+            <ul t-if="show_tabs" class="nav nav-tabs mb-3">
+                <li class="nav-item">
+                    <a t-attf-class="nav-link #{'active' if active_tab == 'open' else ''}" href="/my/requests?tab=open">
+                        Open <span class="badge text-bg-secondary"><t t-esc="open_count"/></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a t-attf-class="nav-link #{'active' if active_tab == 'history' else ''}" href="/my/requests?tab=history">
+                        History <span class="badge text-bg-secondary"><t t-esc="history_count"/></span>
+                    </a>
+                </li>
+            </ul>
+            <div t-if="not requests" class="alert alert-info" role="alert">
+                You have no requests yet.
+            </div>
+            <t t-if="requests" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Reference</th>
+                        <th>Type</th>
+                        <th>Subject</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <t t-foreach="requests" t-as="req">
+                    <tr>
+                        <td><a t-attf-href="/my/requests/#{req.id}" t-out="req.name"/></td>
+                        <td t-out="req.request_type_id.name"/>
+                        <td t-out="req.subject"/>
+                        <td t-out="req._fields['priority'].convert_to_export(req.priority, req)"/>
+                        <td t-out="req._fields['state'].convert_to_export(req.state, req)"/>
+                    </tr>
+                </t>
+            </t>
+            <t t-call="portal.pager"/>
+        </t>
+    </template>
+
+    <!-- ==================== New Request ==================== -->
+    <template id="portal_my_requests_new" name="New Request">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">New Request</t>
+            </t>
+            <div t-if="error" class="alert alert-danger" role="alert" t-out="error"/>
+            <form action="/my/requests/new/submit" method="post" class="row g-2">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div t-if="managed_projects" class="col-md-6">
+                    <label class="form-label">Project</label>
+                    <select name="project_id" class="form-select" required="required">
+                        <t t-foreach="managed_projects" t-as="proj">
+                            <option t-att-value="proj.id" t-out="proj.name"/>
+                        </t>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Request Type</label>
+                    <select name="request_type_id" class="form-select" required="required">
+                        <t t-foreach="request_types" t-as="rt">
+                            <option t-att-value="rt.id" t-out="rt.name"/>
+                        </t>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Priority</label>
+                    <select name="priority" class="form-select">
+                        <option value="low">Low</option>
+                        <option value="normal" selected="selected">Normal</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Subject</label>
+                    <input type="text" name="subject" class="form-control" required="required"/>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="4"/>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary mt-2">Submit Request</button>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <!-- ==================== Request Detail ==================== -->
+    <template id="portal_my_request_detail" name="Request Detail">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 t-out="req.name"/>
+                    <p class="text-muted" t-out="req.subject"/>
+                    <p>
+                        <span class="badge text-bg-secondary" t-out="req._fields['state'].convert_to_export(req.state, req)"/>
+                        <span class="badge text-bg-light" t-out="req._fields['priority'].convert_to_export(req.priority, req)"/>
+                    </p>
+                    <p t-if="req.description" t-out="req.description"/>
+
+                    <h5 class="mt-4">Status History</h5>
+                    <ul class="list-group mb-4">
+                        <li t-foreach="req.status_history_ids" t-as="h" class="list-group-item">
+                            <span t-out="req._fields['state'].convert_to_export(h.to_state, h)"/> - <span t-field="h.change_date"/>
+                            <span t-if="h.note" t-out="h.note"/>
+                        </li>
+                    </ul>
+
+                    <h5>Comments</h5>
+                    <ul class="list-group mb-3">
+                        <li t-foreach="thread_entries" t-as="entry" class="list-group-item">
+                            <strong t-out="entry['author']"/>: <span t-out="entry['body']"/>
+                        </li>
+                    </ul>
+                    <form t-attf-action="/my/requests/#{req.id}/comment" method="post" class="mb-4">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <textarea name="body" class="form-control mb-2" rows="2" placeholder="Add a comment..."/>
+                        <button type="submit" class="btn btn-outline-primary btn-sm">Post Comment</button>
+                    </form>
+
+                    <form t-if="req.state not in ('completed', 'closed', 'cancelled')"
+                          t-attf-action="/my/requests/#{req.id}/cancel" method="post" class="d-inline">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Cancel Request</button>
+                    </form>
+
+                    <div t-if="req.state == 'closed' and not req.customer_rating" class="mt-4">
+                        <h5>Rate this request</h5>
+                        <form t-attf-action="/my/requests/#{req.id}/rate" method="post">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <select name="rating" class="form-select w-auto d-inline-block">
+                                <option value="5">5 - Very Satisfied</option>
+                                <option value="4">4 - Satisfied</option>
+                                <option value="3">3 - Neutral</option>
+                                <option value="2">2 - Unsatisfied</option>
+                                <option value="1">1 - Very Unsatisfied</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-sm">Submit Rating</button>
+                        </form>
+                    </div>
+                    <p t-if="req.customer_rating" class="mt-3">
+                        Your rating: <strong t-out="req.customer_rating"/>/5
+                    </p>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- ==================== Notifications ==================== -->
+    <template id="portal_my_notifications" name="My Notifications">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Notifications</t>
+            </t>
+            <div t-if="not notifications" class="alert alert-info" role="alert">
+                No notifications yet.
+            </div>
+            <ul class="list-group">
+                <li t-foreach="notifications" t-as="n" class="list-group-item">
+                    <strong t-out="n.title"/>
+                    <div t-out="n.body"/>
+                    <small class="text-muted" t-field="n.create_date"/>
+                </li>
+            </ul>
+        </t>
+    </template>
+
+</odoo>

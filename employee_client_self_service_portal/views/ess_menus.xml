@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ess_request_root" name="Employee &amp; Client Requests" sequence="65"
+              web_icon="employee_client_self_service_portal,static/description/icon.png"
+              groups="employee_client_self_service_portal.group_ess_request_manager"/>
+
+    <menuitem id="menu_ess_request_all" name="All Requests" parent="menu_ess_request_root"
+              action="action_ess_request" sequence="10"/>
+    <menuitem id="menu_ess_request_my_tickets" name="My Tickets" parent="menu_ess_request_root"
+              action="action_ess_request_my_tickets" sequence="20"/>
+    <menuitem id="menu_ess_request_overdue" name="Overdue" parent="menu_ess_request_root"
+              action="action_ess_request_overdue" sequence="30"/>
+
+    <menuitem id="menu_ess_request_configuration" name="Configuration" parent="menu_ess_request_root"
+              sequence="90"/>
+    <menuitem id="menu_ess_request_type" name="Request Types" parent="menu_ess_request_configuration"
+              action="action_ess_request_type" sequence="10"/>
+    <menuitem id="menu_ess_request_team" name="Teams" parent="menu_ess_request_configuration"
+              action="action_ess_request_team" sequence="20"/>
+</odoo>

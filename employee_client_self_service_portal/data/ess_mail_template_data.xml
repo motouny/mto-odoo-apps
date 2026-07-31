@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="mail_template_ess_request_status_update" model="mail.template">
+        <field name="name">ESS Request: Status Update</field>
+        <field name="model_id" ref="model_ess_request"/>
+        <field name="subject">{{ object.name }} - {{ object.state }}</field>
+        <field name="email_to">{{ (object.employee_id.work_email or object.partner_id.email) }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>
+                    Your request <t t-out="object.name"/> (<t t-out="object.subject"/>) is now:
+                    <strong t-out="dict(object._fields['state'].selection).get(object.state)"/>.
+                </p>
+                <p>
+                    <a t-attf-href="/my/requests/{{ object.id }}">View my request</a>
+                </p>
+            </div>
+        </field>
+    </record>
+</odoo>

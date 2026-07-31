@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Wire up the existing Portal Manager / Portal Project demo scenario
+         so the "My Team" / "Approvals" / "Team Tasks" portal pages have
+         something real to show out of the box. -->
+    <record id="project.project_project_1" model="project.project">
+        <field name="portal_manager_id" ref="base.user_admin"/>
+        <field name="project_owner_id" ref="base.demo_user0"/>
+        <field name="attendance_latitude">24.7136</field>
+        <field name="attendance_longitude">46.6753</field>
+        <field name="attendance_radius">300</field>
+    </record>
+    <!-- The demo Project Owner is an external client contact: needs the
+         Client group so /my/requests treats them as a 'client' requester. -->
+    <record id="employee_client_self_service_portal.group_ess_client" model="res.groups">
+        <field name="users" eval="[(4, ref('base.demo_user0'))]"/>
+    </record>
+    <record id="hr.employee_hne" model="hr.employee">
+        <field name="project_id" ref="project.project_project_1"/>
+    </record>
+    <record id="hr.employee_al" model="hr.employee">
+        <field name="project_id" ref="project.project_project_1"/>
+    </record>
+</odoo>
