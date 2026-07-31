@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_visitor_visit_form" model="ir.ui.view">
+        <field name="name">visitor.visit.form</field>
+        <field name="model">visitor.visit</field>
+        <field name="arch" type="xml">
+            <form string="Visitor Visit">
+                <header>
+                    <button name="action_submit" type="object" string="Submit for Approval"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_send_invitation" type="object" string="Send Invitation"
+                            invisible="state in ('cancelled', 'rejected', 'checked_out', 'expired')"
+                            groups="smart_visitor_management.group_visitor_receptionist"/>
+                    <button name="action_approve" type="object" string="Approve"
+                            class="oe_highlight" invisible="state != 'pending_approval'"
+                            groups="smart_visitor_management.group_visitor_manager"/>
+                    <button name="action_reject" type="object" string="Reject"
+                            invisible="state != 'pending_approval'"
+                            groups="smart_visitor_management.group_visitor_manager"/>
+                    <button name="action_manual_checkin" type="object" string="Check In"
+                            class="oe_highlight" invisible="state not in ('approved', 'scheduled')"
+                            groups="smart_visitor_management.group_visitor_receptionist,smart_visitor_management.group_visitor_security"/>
+                    <button name="action_manual_checkout" type="object" string="Check Out"
+                            class="oe_highlight" invisible="state != 'checked_in'"
+                            groups="smart_visitor_management.group_visitor_receptionist,smart_visitor_management.group_visitor_security"/>
+                    <button name="action_mark_no_show" type="object" string="Mark No Show"
+                            invisible="state not in ('approved', 'scheduled')"
+                            groups="smart_visitor_management.group_visitor_receptionist"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('checked_out', 'cancelled')"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft"
+                            invisible="state not in ('rejected', 'cancelled', 'expired')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,pending_approval,approved,checked_in,checked_out"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Blacklisted" bg_color="text-bg-danger"
+                            invisible="state != 'blacklisted'"/>
+                    <widget name="web_ribbon" title="Overstayed" bg_color="text-bg-warning"
+                            invisible="not is_overstayed"/>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_print_badge" type="object" string="Print Badge"
+                                class="oe_stat_button" icon="fa-id-badge"/>
+                        <button name="action_print_vehicle_permit" type="object" string="Vehicle Permit"
+                                class="oe_stat_button" icon="fa-car"
+                                invisible="not vehicle_ids"/>
+                        <button name="action_add_to_blacklist" type="object" string="Add to Blacklist"
+                                class="oe_stat_button" icon="fa-ban"
+                                groups="smart_visitor_management.group_visitor_manager,smart_visitor_management.group_visitor_receptionist"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="visit_type"/>
+                            <field name="guest_id"/>
+                            <field name="guest_ids" widget="many2many_tags"/>
+                            <field name="host_id"/>
+                            <field name="department_id"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="location_id"/>
+                            <field name="gate_id"/>
+                            <field name="visit_start"/>
+                            <field name="visit_end"/>
+                            <field name="entry_grace_minutes"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="visit_purpose"/>
+                        <field name="equipment_carried"/>
+                        <field name="notes"/>
+                    </group>
+                    <notebook>
+                        <page string="Vehicles">
+                            <field name="vehicle_ids">
+                                <list editable="bottom">
+                                    <field name="plate_number"/>
+                                    <field name="vehicle_type"/>
+                                    <field name="color"/>
+                                    <field name="make_model"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Check-In / Check-Out">
+                            <group>
+                                <group string="Entry">
+                                    <field name="check_in_datetime"/>
+                                    <field name="check_in_gate_id"/>
+                                    <field name="checked_in_by_uid"/>
+                                </group>
+                                <group string="Exit">
+                                    <field name="check_out_datetime"/>
+                                    <field name="check_out_gate_id"/>
+                                    <field name="checked_out_by_uid"/>
+                                </group>
+                            </group>
+                            <field name="badge_number"/>
+                            <field name="qr_token" groups="smart_visitor_management.group_visitor_manager"/>
+                        </page>
+                        <page string="Approval">
+                            <group>
+                                <field name="approved_by"/>
+                                <field name="approval_date"/>
+                                <field name="rejection_reason"/>
+                            </group>
+                        </page>
+                        <page string="Scan Log">
+                            <field name="checkpoint_log_ids" readonly="1">
+                                <list>
+                                    <field name="scan_datetime"/>
+                                    <field name="scan_type"/>
+                                    <field name="scan_result"/>
+                                    <field name="gate_id"/>
+                                    <field name="scanned_by_uid"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Invitation Link"
+                              groups="smart_visitor_management.group_visitor_receptionist">
+                            <field name="invitation_token" readonly="1"/>
+                            <field name="invitation_completed" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_visitor_visit_list" model="ir.ui.view">
+        <field name="name">visitor.visit.list</field>
+        <field name="model">visitor.visit</field>
+        <field name="arch" type="xml">
+            <list string="Visits" decoration-danger="state == 'blacklisted'"
+                  decoration-warning="is_overstayed" decoration-success="state == 'checked_in'">
+                <field name="name"/>
+                <field name="guest_id"/>
+                <field name="host_id"/>
+                <field name="location_id"/>
+                <field name="visit_start"/>
+                <field name="visit_end"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state" widget="badge"/>
+                <field name="is_overstayed" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_visitor_visit_kanban" model="ir.ui.view">
+        <field name="name">visitor.visit.kanban</field>
+        <field name="model">visitor.visit</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="name"/>
+                <field name="state"/>
+                <field name="guest_id"/>
+                <field name="host_id"/>
+                <field name="visit_start"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click p-2">
+                            <strong t-out="record.name.value"/>
+                            <div t-out="record.guest_id.value"/>
+                            <div t-out="record.host_id.value"/>
+                            <div class="text-muted">
+                                <t t-out="record.visit_start.value"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_visitor_visit_calendar" model="ir.ui.view">
+        <field name="name">visitor.visit.calendar</field>
+        <field name="model">visitor.visit</field>
+        <field name="arch" type="xml">
+            <calendar date_start="visit_start" date_stop="visit_end" string="Visits" color="state">
+                <field name="guest_id"/>
+                <field name="host_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_visitor_visit_search" model="ir.ui.view">
+        <field name="name">visitor.visit.search</field>
+        <field name="model">visitor.visit</field>
+        <field name="arch" type="xml">
+            <search string="Visits">
+                <field name="name"/>
+                <field name="guest_id"/>
+                <field name="host_id"/>
+                <field name="location_id"/>
+                <field name="department_id"/>
+                <filter string="Today" name="today"
+                        domain="[('visit_start', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))),
+                                 ('visit_start', '&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
+                <filter string="Pending Approval" name="pending_approval" domain="[('state', '=', 'pending_approval')]"/>
+                <filter string="Approved / Scheduled" name="approved" domain="[('state', 'in', ('approved', 'scheduled'))]"/>
+                <filter string="Checked In" name="checked_in" domain="[('state', '=', 'checked_in')]"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Host" name="group_host" context="{'group_by': 'host_id'}"/>
+                    <filter string="Department" name="group_department" context="{'group_by': 'department_id'}"/>
+                    <filter string="Location" name="group_location" context="{'group_by': 'location_id'}"/>
+                    <filter string="Company" name="group_company" context="{'group_by': 'company_id'}"
+                            groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_visitor_visit" model="ir.actions.act_window">
+        <field name="name">Visits</field>
+        <field name="res_model">visitor.visit</field>
+        <field name="view_mode">list,kanban,calendar,form</field>
+        <field name="search_view_id" ref="view_visitor_visit_search"/>
+        <field name="context">{'search_default_today': 0}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smart_action">Create your first visitor invitation.</p>
+        </field>
+    </record>
+
+    <record id="action_visitor_visit_today" model="ir.actions.act_window">
+        <field name="name">Today's Visitors</field>
+        <field name="res_model">visitor.visit</field>
+        <field name="view_mode">list,kanban,calendar,form</field>
+        <field name="search_view_id" ref="view_visitor_visit_search"/>
+        <field name="context">{'search_default_today': 1}</field>
+    </record>
+
+    <record id="action_visitor_visit_pending" model="ir.actions.act_window">
+        <field name="name">Pending Approval</field>
+        <field name="res_model">visitor.visit</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_visitor_visit_search"/>
+        <field name="context">{'search_default_pending_approval': 1}</field>
+    </record>
+
+    <record id="action_visitor_visit_checked_in" model="ir.actions.act_window">
+        <field name="name">Checked-In Visitors</field>
+        <field name="res_model">visitor.visit</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="search_view_id" ref="view_visitor_visit_search"/>
+        <field name="context">{'search_default_checked_in': 1}</field>
+    </record>
+</odoo>

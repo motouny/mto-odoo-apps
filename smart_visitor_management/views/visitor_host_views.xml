@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_visitor_host_list" model="ir.ui.view">
+        <field name="name">visitor.host.list</field>
+        <field name="model">visitor.host</field>
+        <field name="arch" type="xml">
+            <list string="Hosts" editable="bottom">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="department_id"/>
+                <field name="phone"/>
+                <field name="mobile"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_visitor_host" model="ir.actions.act_window">
+        <field name="name">Hosts</field>
+        <field name="res_model">visitor.host</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

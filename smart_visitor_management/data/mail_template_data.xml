@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="mail_template_visitor_invitation" model="mail.template">
+        <field name="name">Visitor: Invitation</field>
+        <field name="model_id" ref="model_visitor_visit"/>
+        <field name="subject">You are invited to {{ object.company_id.name }}</field>
+        <field name="email_to">{{ object.guest_id.email }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Dear <t t-out="object.guest_id.name"/>,</p>
+                <p>
+                    You have been invited by <t t-out="object.host_id.name"/> to visit
+                    <t t-out="object.location_id.name"/> on <t t-out="object.visit_start"/>.
+                </p>
+                <p>Please complete your visitor details using the link below before your visit:</p>
+                <p>
+                    <a t-attf-href="/visitor/invitation/{{ object.invitation_token }}">
+                        Complete My Visitor Registration
+                    </a>
+                </p>
+                <p>This link is personal, do not share it.</p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_visitor_approved" model="mail.template">
+        <field name="name">Visitor: Visit Approved</field>
+        <field name="model_id" ref="model_visitor_visit"/>
+        <field name="subject">Your visit to {{ object.company_id.name }} is approved</field>
+        <field name="email_to">{{ object.guest_id.email }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Dear <t t-out="object.guest_id.name"/>,</p>
+                <p>
+                    Your visit (<t t-out="object.name"/>) has been approved. Please present a valid
+                    ID at the reception desk on arrival.
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_visitor_rejected" model="mail.template">
+        <field name="name">Visitor: Visit Rejected</field>
+        <field name="model_id" ref="model_visitor_visit"/>
+        <field name="subject">Your visit request to {{ object.company_id.name }} was not approved</field>
+        <field name="email_to">{{ object.guest_id.email }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Dear <t t-out="object.guest_id.name"/>,</p>
+                <p>
+                    Unfortunately your visit request (<t t-out="object.name"/>) was not approved.
+                </p>
+                <p t-if="object.rejection_reason">
+                    Reason: <t t-out="object.rejection_reason"/>
+                </p>
+            </div>
+        </field>
+    </record>
+</odoo>

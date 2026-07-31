@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_visitor_blacklist_form" model="ir.ui.view">
+        <field name="name">visitor.blacklist.form</field>
+        <field name="model">visitor.blacklist</field>
+        <field name="arch" type="xml">
+            <form string="Blacklist Entry">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="identity_type"/>
+                            <field name="identity_number"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="blacklisted_by" readonly="1"/>
+                            <field name="blacklist_date" readonly="1"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <field name="reason" placeholder="Reason for blacklisting..."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_visitor_blacklist_list" model="ir.ui.view">
+        <field name="name">visitor.blacklist.list</field>
+        <field name="model">visitor.blacklist</field>
+        <field name="arch" type="xml">
+            <list string="Blacklist">
+                <field name="name"/>
+                <field name="identity_type"/>
+                <field name="identity_number"/>
+                <field name="blacklist_date"/>
+                <field name="blacklisted_by"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_visitor_blacklist" model="ir.actions.act_window">
+        <field name="name">Blacklist</field>
+        <field name="res_model">visitor.blacklist</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

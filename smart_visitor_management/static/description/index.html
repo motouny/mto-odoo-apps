@@ -1,0 +1,149 @@
+<section style="font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#2b2b3a; max-width: 980px; margin: 0 auto; line-height:1.55;">
+
+  <!-- Hero -->
+  <div style="background: linear-gradient(135deg,#5b3a5e,#3f2a52); color:#fff; border-radius:12px; padding:40px 32px; text-align:center;">
+    <h1 style="margin:0 0 8px; font-size:32px;">Smart Visitor Management</h1>
+    <p style="margin:0 0 16px; font-size:18px; opacity:.9;">Secure QR Check-In &bull; Approvals &bull; Badges &bull; Live Occupancy</p>
+    <div>
+      <span style="display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:6px 16px; margin:4px; font-size:14px;">Odoo 18</span>
+      <span style="display:inline-block; background:#fff; color:#3f2a52; border-radius:20px; padding:6px 18px; margin:4px; font-size:14px; font-weight:700;">€30</span>
+      <span style="display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:6px 16px; margin:4px; font-size:14px;">Community &amp; Enterprise</span>
+    </div>
+  </div>
+
+  <p style="font-size:17px; margin:28px 0; text-align:center; color:#444;">
+    Manage visitor invitations, approvals, secure QR-based check-in and check-out,
+    printed visitor badges, vehicle permits, a blacklist and a live occupancy view
+    &mdash; entirely inside Odoo.
+  </p>
+
+  <!-- Screenshots -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px;">Screenshots</h2>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin:20px 0;">
+    <figure style="margin:0;">
+      <img src="screenshots/01_visitor_dashboard.png" alt="Visitor dashboard" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Today's visitors dashboard</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/02_invitation_form.png" alt="Invitation form" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Visit invitation form</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/03_qr_invitation.png" alt="Guest self-registration page" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Public, token-protected guest self-registration</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/04_security_checkin.png" alt="Check-in kiosk" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Security check-in kiosk (camera QR scan)</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/05_visitor_badge.png" alt="Visitor badge" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Printable visitor badge with QR code</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/06_current_occupancy.png" alt="Current occupancy" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Currently checked-in visitors</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/08_departments.png" alt="Departments" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Department master data</figcaption>
+    </figure>
+  </div>
+  <figure style="margin:0 auto; max-width:320px;">
+    <img src="screenshots/07_mobile_view.png" alt="Mobile view" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+    <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Responsive mobile view</figcaption>
+  </figure>
+
+  <!-- Feature groups -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Features</h2>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px; margin:16px 0;">
+    <div>
+      <h3 style="margin-bottom:6px;">Invitations &amp; approvals</h3>
+      <ul>
+        <li>Draft → Pending Approval → Approved/Scheduled → Checked In → Checked Out</li>
+        <li>Reject with reason, cancel, mark no-show, reset to draft</li>
+        <li>Optional auto-approval per company</li>
+        <li>Public self-registration link for the guest</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-bottom:6px;">Secure check-in</h3>
+      <ul>
+        <li>Random, single-purpose QR token (never the record id)</li>
+        <li>Allowed entry window with configurable grace period</li>
+        <li>Automatic expiry and revocation</li>
+        <li>Camera-based kiosk scanner + manual token entry</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-bottom:6px;">On-site operations</h3>
+      <ul>
+        <li>Vehicle permits per visit</li>
+        <li>Printable visitor badges with QR</li>
+        <li>Blacklist screening on every check-in</li>
+        <li>Immutable checkpoint scan audit log</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="margin-bottom:6px;">Administration</h3>
+      <ul>
+        <li>Multiple locations and gates</li>
+        <li>Department master data, linked to hosts and visits</li>
+        <li>Multi-company support</li>
+        <li>Dedicated security groups per role</li>
+        <li>English and Arabic, RTL-ready</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Security -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Security</h2>
+  <ul>
+    <li>QR check-in tokens are generated with Python's <code>secrets</code> module (cryptographically random), scoped to a single visit, time-windowed and revoked on rejection/cancellation/checkout.</li>
+    <li>The public guest registration page is looked up strictly by its own random token - never by database id - so it cannot be used to enumerate or view any other visit.</li>
+    <li>A Host Employee can only see and submit their own visits (enforced by record rules), and cannot approve their own or anyone else's visit - only a Visitor Manager can.</li>
+    <li>A Security Officer has no direct write access to visit records; check-in/check-out is performed through a narrowly-scoped server method with its own validation, not a general write permission.</li>
+    <li>The checkpoint scan log is immutable - it cannot be edited or deleted through the UI, by any role.</li>
+    <li>All company-scoped models are protected by multi-company record rules.</li>
+  </ul>
+
+  <!-- Supported editions -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Supported editions</h2>
+  <p>Works fully on Odoo 18 Community. No Enterprise-only feature is required.</p>
+
+  <!-- Installation -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Installation</h2>
+  <ol>
+    <li>Copy the module into your addons path and restart Odoo.</li>
+    <li>Go to <strong>Apps</strong>, search "Smart Visitor Management", click <strong>Install</strong>.</li>
+  </ol>
+
+  <!-- Configuration -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Configuration</h2>
+  <ol>
+    <li>Create your locations under <strong>Configuration → Locations</strong>.</li>
+    <li>Add at least one gate per location under <strong>Configuration → Gates</strong>.</li>
+    <li>Create host records under <strong>Configuration → Hosts</strong>.</li>
+    <li>Review approval and grace-period defaults under <strong>Settings → Visitor Management</strong>.</li>
+    <li>Assign security groups to your users.</li>
+  </ol>
+
+  <!-- FAQ -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">FAQ</h2>
+  <p><strong>Does this require Odoo Enterprise?</strong><br/>No, it runs fully on Community.</p>
+  <p><strong>Does it depend on any other paid app?</strong><br/>No, it only depends on standard Odoo modules (base, mail, portal, web).</p>
+  <p><strong>Can guests check in without an Odoo account?</strong><br/>Yes - via the QR code shown at the gate, or the security desk can enter the token manually.</p>
+  <p><strong>Can it prevent QR code sharing or GPS spoofing?</strong><br/>The token is single-purpose, time-windowed and logged on every scan, which strongly discourages misuse, but no software can guarantee 100% prevention of a guest sharing their own code with someone else.</p>
+
+  <!-- Changelog -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Changelog</h2>
+  <p><strong>18.0.1.0.3</strong> - Visitor Badge now prints on its own compact card-sized layout instead of the company's default A4/Letter format, and skips the one-time company document-layout setup screen. Fixed the QR code/badge number overflowing the printed card. Added Department master data (Configuration → Departments), linked to Hosts and Visits.</p>
+  <p><strong>18.0.1.0.2</strong> - Added the MTO publisher icon and set <code>web_icon</code> on the app's root menu.</p>
+  <p><strong>18.0.1.0.1</strong> - Fixed the Vehicle Permit PDF report failing to render due to a QWeb restriction on <code>&lt;td&gt;</code> elements.</p>
+  <p><strong>18.0.1.0.0</strong> - Initial release: invitations, approvals, secure QR check-in/out, kiosk scanner, badges, vehicle permits, blacklist, scan log, multi-company.</p>
+
+  <!-- Support -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Support</h2>
+  <p>Email: support@mto-solutions.com &nbsp;|&nbsp; Website: https://www.mto-solutions.com</p>
+
+</section>

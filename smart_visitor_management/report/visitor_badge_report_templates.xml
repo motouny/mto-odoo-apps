@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_visitor_badge" model="ir.actions.report">
+        <field name="name">Visitor Badge</field>
+        <field name="model">visitor.visit</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">smart_visitor_management.report_visitor_badge_document</field>
+        <field name="report_file">smart_visitor_management.report_visitor_badge_document</field>
+        <field name="print_report_name">'Badge - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_visitor_visit"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_visitor_badge"/>
+    </record>
+
+    <template id="report_visitor_badge_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="box-sizing:border-box;width:100mm;min-height:140mm;padding:0.4cm;border:2px solid #333;margin:0 auto;text-align:center;">
+                    <h3 t-esc="o.company_id.name"/>
+                    <h2 style="letter-spacing:2px;">VISITOR</h2>
+                    <t t-if="o.guest_id.photo">
+                        <img t-att-src="image_data_uri(o.guest_id.photo)"
+                             style="width:2.5cm;height:2.5cm;object-fit:cover;border-radius:4px;"/>
+                    </t>
+                    <h3 t-field="o.guest_id.name"/>
+                    <p t-if="o.guest_id.company_name" t-field="o.guest_id.company_name"/>
+                    <p>
+                        <strong>Host:</strong> <span t-field="o.host_id.name"/>
+                    </p>
+                    <p>
+                        <strong>Purpose:</strong> <span t-field="o.visit_purpose"/>
+                    </p>
+                    <p>
+                        <strong>Valid:</strong>
+                        <span t-field="o.visit_start" t-options="{'widget': 'datetime'}"/> -
+                        <span t-field="o.visit_end" t-options="{'widget': 'datetime'}"/>
+                    </p>
+                    <t t-if="o.qr_token">
+                        <img t-att-src="'/report/barcode/QR/%s?width=130&amp;height=130' % o.qr_token"
+                             style="width:3.4cm;height:3.4cm;"/>
+                    </t>
+                    <p t-esc="o.badge_number"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_vehicle_permit" model="ir.actions.report">
+        <field name="name">Vehicle Permit</field>
+        <field name="model">visitor.visit</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">smart_visitor_management.report_vehicle_permit_document</field>
+        <field name="report_file">smart_visitor_management.report_vehicle_permit_document</field>
+        <field name="print_report_name">'Vehicle Permit - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="model_visitor_visit"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_vehicle_permit_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="padding:1cm;">
+                    <h2>Vehicle Permit - <span t-esc="o.name"/></h2>
+                    <p>
+                        <strong>Guest:</strong> <span t-field="o.guest_id.name"/> |
+                        <strong>Host:</strong> <span t-field="o.host_id.name"/> |
+                        <strong>Location:</strong> <span t-field="o.location_id.name"/>
+                    </p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Plate Number</th>
+                                <th>Type</th>
+                                <th>Color</th>
+                                <th>Make / Model</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.vehicle_ids" t-as="v">
+                                <td><span t-field="v.plate_number"/></td>
+                                <td><span t-field="v.vehicle_type"/></td>
+                                <td><span t-field="v.color"/></td>
+                                <td><span t-field="v.make_model"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        <strong>Valid:</strong>
+                        <span t-field="o.visit_start" t-options="{'widget': 'datetime'}"/> -
+                        <span t-field="o.visit_end" t-options="{'widget': 'datetime'}"/>
+                    </p>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

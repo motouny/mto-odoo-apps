@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_invitation_page" name="Visitor Invitation">
+        <t t-call="portal.frontend_layout">
+            <div class="container mt-4 mb-5" style="max-width:640px;">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="mb-3">Visitor Invitation</h2>
+
+                        <t t-if="expired">
+                            <div class="alert alert-warning">
+                                This invitation link is no longer valid. Please contact your host.
+                            </div>
+                        </t>
+                        <t t-elif="submitted">
+                            <div class="alert alert-success">
+                                Thank you, your details have been received. You will be notified once
+                                your visit is confirmed.
+                            </div>
+                        </t>
+
+                        <t t-if="not expired">
+                            <p class="text-muted">
+                                You have been invited by <strong t-esc="visit.host_id.name"/>
+                                to <strong t-esc="visit.location_id.name"/> on
+                                <span t-field="visit.visit_start" t-options="{'widget': 'datetime'}"/>.
+                            </p>
+
+                            <form t-attf-action="/visitor/invitation/#{visit.invitation_token}/submit"
+                                  method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                <div class="row g-2">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" name="name" class="form-control"
+                                               t-att-value="guest.name" required="required"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Full Name (Arabic)</label>
+                                        <input type="text" name="name_ar" class="form-control"
+                                               t-att-value="guest.name_ar"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Identity Type</label>
+                                        <select name="identity_type" class="form-select">
+                                            <option value="national_id"
+                                                    t-att-selected="guest.identity_type == 'national_id' or None">National ID</option>
+                                            <option value="iqama"
+                                                    t-att-selected="guest.identity_type == 'iqama' or None">Resident ID</option>
+                                            <option value="passport"
+                                                    t-att-selected="guest.identity_type == 'passport' or None">Passport</option>
+                                            <option value="other"
+                                                    t-att-selected="guest.identity_type == 'other' or None">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Identity Number</label>
+                                        <input type="text" name="identity_number" class="form-control"
+                                               t-att-value="guest.identity_number" required="required"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Company</label>
+                                        <input type="text" name="company_name" class="form-control"
+                                               t-att-value="guest.company_name"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Mobile</label>
+                                        <input type="text" name="mobile" class="form-control"
+                                               t-att-value="guest.mobile"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" name="email" class="form-control"
+                                               t-att-value="guest.email"/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Photo</label>
+                                        <input type="file" name="photo" class="form-control" accept="image/*"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Vehicle Plate Number</label>
+                                        <input type="text" name="plate_number" class="form-control"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Vehicle Color</label>
+                                        <input type="text" name="vehicle_color" class="form-control"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Vehicle Make / Model</label>
+                                        <input type="text" name="vehicle_make_model" class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary mt-4">
+                                    Submit My Details
+                                </button>
+                            </form>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
