@@ -1,0 +1,117 @@
+// Backend chrome restyle using the shared design tokens from variables.scss.
+
+// One unified dark-chrome frame (navbar + sidebar, both --chroma-chrome -
+// customer-editable from Settings > Chroma Identity > Colors, separate from
+// primary/accent) around the whole app, with the brand color reserved
+// as the accent on top of it - matching Enterprise's own "one solid
+// color" navbar look, and consistent with the sidebar/home-menu already
+// being dark. Replaces an earlier white-navbar-with-colored-tabs version
+// that read as two different, uncoordinated color systems - found via
+// user feedback on a real screenshot, not assumed.
+.o_main_navbar {
+    background: var(--chroma-chrome);
+    color: var(--chroma-on-chrome);
+    border-bottom: none;
+
+    // Most icons/text inherit `color` (currentColor), but a few core
+    // elements set their own dark color explicitly and need a direct
+    // override to stay legible on the new dark background.
+    .o_menu_brand,
+    .o_menu_toggle,
+    .oi, .fa,
+    .o_menu_systray > * {
+        color: var(--chroma-on-chrome);
+    }
+
+    .o_menu_brand {
+        font-weight: 700;
+    }
+
+    // Core web (navbar.scss:147-174) already exposes these as CSS
+    // custom properties - overriding them here, in plain CSS, re-themes
+    // the "sections menu" tabs (e.g. Configuration/Tags/Assets under an
+    // app) to follow Settings > Chroma Identity, without touching Odoo's own
+    // Sass variables (which would bake a fixed color in at compile time
+    // and stop responding to the runtime color picker).
+    //
+    // --NavBar-entry-backgroundColor (NO --active suffix) is each tab's
+    // normal resting background - EVERY section tab gets a solid
+    // colored pill by default in Odoo, not just the current one; found
+    // by testing (getComputedStyle showed every tab at Odoo's own
+    // default #71639e purple, not just the active one) after an earlier
+    // pass only patched --active and left this one untouched. Resting
+    // tabs are transparent (blend into the now-dark bar) so the primary
+    // color reads as a deliberate accent only on hover/active, not
+    // "every tab is a colored pill" competing with the unified bar.
+    --NavBar-entry-color: var(--chroma-on-chrome);
+    --NavBar-entry-backgroundColor: transparent;
+    --NavBar-entry-backgroundColor--hover: rgba(255, 255, 255, 0.08);
+    --NavBar-entry-backgroundColor--focus: rgba(255, 255, 255, 0.08);
+    // The --active variant marks the currently-open dropdown with the
+    // brand primary color - the one deliberate accent moment in the bar.
+    --NavBar-entry-color--active: var(--chroma-on-primary);
+    --NavBar-entry-borderColor-active: var(--chroma-primary);
+    --NavBar-entry-backgroundColor--active: var(--chroma-primary);
+}
+
+// Same reasoning for the notebook (tabs) active-tab accent border.
+.o_notebook {
+    --notebook-link-border-color-active-accent: var(--chroma-primary);
+}
+
+// Standard Bootstrap form controls: Odoo's own SCSS ties these to
+// $o-brand-primary/$o-action at compile time (no CSS custom-property
+// indirection to hook into), so they need a direct override here to
+// follow the runtime color too.
+.form-check-input:checked {
+    background-color: var(--chroma-primary) !important;
+    border-color: var(--chroma-primary) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--chroma-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(var(--chroma-primary-rgb), 0.25) !important;
+}
+
+.list-group-item.active {
+    background-color: var(--chroma-primary) !important;
+    border-color: var(--chroma-primary) !important;
+    color: var(--chroma-on-primary) !important;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--chroma-primary) !important;
+}
+
+.o_navbar_apps_menu > .o-dropdown > button {
+    color: var(--chroma-primary);
+
+    &:hover {
+        background: var(--chroma-neutral-100);
+    }
+}
+
+.btn-primary {
+    background-color: var(--chroma-primary);
+    border-color: var(--chroma-primary);
+    color: var(--chroma-on-primary);
+
+    &:hover,
+    &:focus,
+    &:not(:disabled):not(.disabled):active {
+        background-color: var(--chroma-accent);
+        border-color: var(--chroma-accent);
+        color: var(--chroma-on-accent);
+    }
+}
+
+.o_breadcrumb .o_breadcrumb_item.active {
+    color: var(--chroma-primary);
+    font-weight: 600;
+}
+
+.o_form_view .o_form_statusbar .o_arrow_button.btn-primary,
+.o_list_view .o_data_row.o_data_row_selected {
+    box-shadow: inset 3px 0 0 var(--chroma-primary);
+}

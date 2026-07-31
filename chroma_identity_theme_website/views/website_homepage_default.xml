@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Real, industry-neutral homepage content, replacing core's genuinely-empty
+         default (`website.homepage` ships with a bare
+         `<div id="wrap" class="oe_structure oe_empty"/>` - confirmed in
+         odoo/addons/website/data/website_data.xml, not a bug on our side).
+         Active by default (unlike the header/footer variants): there is no
+         existing "homepage template picker" to slot into as an opt-in
+         choice in Odoo, and a blank homepage is the actual gap being
+         fixed here. Copy is deliberately generic/business-neutral (not
+         government-flavored) so it fits any customer out of the box - the
+         government-styled header/footer is the opt-in pack for public-sector
+         customers (see website_header_footer_templates.xml), this homepage
+         is the universal default. Everything below still lives inside an
+         oe_structure-compatible <div id="wrap">, so the website builder
+         can freely edit/reorder/remove any of it afterward, exactly like
+         any other Odoo homepage - none of this is locked content. -->
+    <template id="website_homepage_default" inherit_id="website.homepage" name="Chroma Identity Homepage Content">
+        <xpath expr="//div[@id='wrap']" position="attributes">
+            <attribute name="class">oe_structure</attribute>
+        </xpath>
+        <xpath expr="//div[@id='wrap']" position="inside">
+
+            <!-- Hero: s_banner-style classes (display-3, lead,
+                 btn btn-lg btn-primary) so it reads as a normal Odoo
+                 snippet to the website builder, brand-colored via the
+                 theme's own chroma design tokens. -->
+            <section class="o_chroma_hero pt96 pb96" data-snippet="s_banner" data-name="Hero">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto text-center">
+                            <h1 class="display-3 text-white">A Modern Digital Experience, Built for You</h1>
+                            <p class="lead text-white-50">Fast, secure and accessible online services for your customers.</p>
+                            <a href="#o_chroma_services" class="btn btn-lg btn-light">Explore Services</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services: s_features-style 3-column icon+title+text
+                 cards. Sample content - meant to be replaced per customer. -->
+            <section id="o_chroma_services" class="o_chroma_services pt64 pb64" data-snippet="s_features" data-name="Our Services">
+                <div class="container">
+                    <h2 class="text-center mb-5">Our Services</h2>
+                    <div class="row">
+                        <div class="col-lg-4 pb32">
+                            <span class="o_chroma_service_icon"><i class="fa fa-rocket" role="img" aria-label="Get Started"/></span>
+                            <h3 class="h5-fs">Get Started Quickly</h3>
+                            <p>Get up and running in minutes, no complex setup required.</p>
+                        </div>
+                        <div class="col-lg-4 pb32">
+                            <span class="o_chroma_service_icon"><i class="fa fa-search" role="img" aria-label="Track"/></span>
+                            <h3 class="h5-fs">Track a Request</h3>
+                            <p>Check the live status of any order, ticket or submitted request.</p>
+                        </div>
+                        <div class="col-lg-4 pb32">
+                            <span class="o_chroma_service_icon"><i class="fa fa-phone" role="img" aria-label="Support"/></span>
+                            <h3 class="h5-fs">Contact Support</h3>
+                            <p>Reach our support team for help whenever you need it.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats: s_numbers-style markup, counted up by
+                 static/src/js/counter_widget.js (no equivalent exists in
+                 Odoo core to reuse - confirmed by research). -->
+            <section class="o_chroma_stats pt64 pb64" data-snippet="s_numbers" data-name="Stats">
+                <div class="container">
+                    <div class="row text-center">
+                        <div class="col-lg-4 pb24">
+                            <span class="o_chroma_counter display-3" data-count="1000" data-suffix="+">0</span>
+                            <p class="o_chroma_counter_label">Happy Clients</p>
+                        </div>
+                        <div class="col-lg-4 pb24">
+                            <span class="o_chroma_counter display-3" data-count="99" data-suffix="%">0</span>
+                            <p class="o_chroma_counter_label">Satisfaction Rate</p>
+                        </div>
+                        <div class="col-lg-4 pb24">
+                            <span class="o_chroma_counter display-3" data-count="150" data-suffix="+">0</span>
+                            <p class="o_chroma_counter_label">Services Offered</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News/announcements: same card pattern as the services grid.
+                 Static demo content - not wired to website_blog (not a
+                 dependency of this module); installing website_blog for a
+                 real dynamic feed is a documented follow-up. -->
+            <section class="o_chroma_news pt64 pb64" data-snippet="s_features" data-name="Latest Updates">
+                <div class="container">
+                    <h2 class="text-center mb-5">Latest Updates</h2>
+                    <div class="row">
+                        <div class="col-lg-4 pb32">
+                            <div class="o_chroma_news_card">
+                                <span class="o_chroma_news_date">2026-08-01</span>
+                                <h3 class="h5-fs">New Feature Released</h3>
+                                <p>A new feature is now available - check it out.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 pb32">
+                            <div class="o_chroma_news_card">
+                                <span class="o_chroma_news_date">2026-07-20</span>
+                                <h3 class="h5-fs">Scheduled Maintenance</h3>
+                                <p>The site will undergo scheduled maintenance this weekend.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 pb32">
+                            <div class="o_chroma_news_card">
+                                <span class="o_chroma_news_date">2026-07-05</span>
+                                <h3 class="h5-fs">We're Hiring</h3>
+                                <p>Join our growing team - see our open positions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </xpath>
+    </template>
+</odoo>

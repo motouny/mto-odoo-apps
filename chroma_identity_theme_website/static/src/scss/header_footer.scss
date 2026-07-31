@@ -1,0 +1,50 @@
+// "Government / Public Sector" header/footer variants (optional pack)
+// (views/website_header_footer_templates.xml), selectable in Website >
+// Configure > Theme alongside every other built-in header/footer choice.
+
+.o_chroma_gov_topbar {
+    background: var(--chroma-primary);
+    color: var(--chroma-on-primary);
+}
+
+.o_chroma_gov_topbar_text {
+    font-weight: 600;
+}
+
+.o_chroma_gov_topbar_link {
+    color: var(--chroma-on-primary);
+    opacity: 0.9;
+    text-decoration: none;
+
+    &:hover {
+        opacity: 1;
+        text-decoration: underline;
+        color: var(--chroma-on-primary);
+    }
+}
+
+.o_chroma_gov_footer {
+    background: var(--chroma-neutral-900);
+    color: var(--chroma-neutral-100);
+
+    h5 {
+        color: var(--chroma-neutral-0);
+    }
+
+    a {
+        color: var(--chroma-neutral-200);
+
+        &:hover {
+            color: var(--chroma-neutral-0);
+        }
+    }
+}
+
+.o_chroma_gov_footer_tagline {
+    color: var(--chroma-neutral-300);
+}
+
+.o_chroma_gov_footer_bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--chroma-neutral-300);
+}

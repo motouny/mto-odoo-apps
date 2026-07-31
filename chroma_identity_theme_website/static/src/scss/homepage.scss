@@ -1,0 +1,73 @@
+// Default homepage sections (views/website_homepage_default.xml) - uses the same
+// --chroma-* tokens as the backend/portal/header/footer, so the whole site
+// reads as one system.
+
+.o_chroma_hero {
+    background: linear-gradient(135deg, var(--chroma-primary), var(--chroma-accent));
+
+    .btn-light {
+        color: var(--chroma-primary);
+        font-weight: 600;
+
+        &:hover {
+            color: var(--chroma-accent);
+        }
+    }
+}
+
+.o_chroma_services {
+    background: var(--chroma-neutral-0);
+}
+
+.o_chroma_service_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--chroma-neutral-100);
+    color: var(--chroma-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--chroma-space-3);
+}
+
+.o_chroma_stats {
+    background: var(--chroma-neutral-100);
+}
+
+.o_chroma_counter {
+    display: block;
+    font-weight: 700;
+    color: var(--chroma-primary);
+}
+
+.o_chroma_counter_label {
+    color: var(--chroma-muted-color);
+    margin-top: var(--chroma-space-1);
+}
+
+.o_chroma_news {
+    background: var(--chroma-neutral-0);
+}
+
+.o_chroma_news_card {
+    border: 1px solid var(--chroma-neutral-200);
+    border-radius: var(--chroma-radius-md);
+    padding: var(--chroma-space-3);
+    height: 100%;
+    transition: box-shadow var(--chroma-transition), transform var(--chroma-transition);
+
+    &:hover {
+        box-shadow: var(--chroma-shadow-md);
+        transform: translateY(-2px);
+    }
+}
+
+.o_chroma_news_date {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--chroma-accent);
+    margin-bottom: var(--chroma-space-2);
+}

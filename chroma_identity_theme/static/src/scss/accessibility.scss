@@ -1,0 +1,70 @@
+// Accessibility layer - WCAG 2.1 AA aligned focus visibility, skip link and
+// font-size adjuster support (see static/src/js/accessibility/).
+
+*:focus-visible {
+    outline: none;
+    box-shadow: var(--chroma-focus-ring);
+    border-radius: var(--chroma-radius-sm);
+}
+
+.o_chroma_skip_link {
+    position: absolute;
+    inset-inline-start: -9999px;
+    top: 0;
+    z-index: 2000;
+    padding: var(--chroma-space-2) var(--chroma-space-3);
+    background: var(--chroma-primary);
+    color: var(--chroma-on-primary);
+    border-radius: 0 0 var(--chroma-radius-sm) 0;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:focus {
+        inset-inline-start: 0;
+    }
+}
+
+// Cycled by static/src/js/accessibility/font_size_adjuster.js and persisted
+// in localStorage, mirroring the font-size adjuster tool on dga.gov.sa.
+html.o_chroma_font_scale_lg {
+    font-size: 112.5%;
+}
+
+html.o_chroma_font_scale_xl {
+    font-size: 125%;
+}
+
+.o_chroma_font_adjuster {
+    position: fixed;
+    inset-block-end: var(--chroma-space-4);
+    inset-inline-end: var(--chroma-space-4);
+    z-index: 1030;
+    display: flex;
+    gap: 2px;
+    background: var(--chroma-neutral-0);
+    border: 1px solid var(--chroma-neutral-300);
+    border-radius: var(--chroma-radius-md);
+    box-shadow: var(--chroma-shadow-md);
+    padding: 2px;
+
+    button {
+        border: none;
+        background: transparent;
+        color: var(--chroma-neutral-900);
+        min-width: 2rem;
+        min-height: 2rem;
+        border-radius: var(--chroma-radius-sm);
+        font-weight: 600;
+        cursor: pointer;
+        transition: background var(--chroma-transition);
+
+        &:hover {
+            background: var(--chroma-neutral-100);
+        }
+
+        &.active {
+            background: var(--chroma-primary);
+            color: var(--chroma-on-primary);
+        }
+    }
+}

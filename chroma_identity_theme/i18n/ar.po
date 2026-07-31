@@ -1,0 +1,415 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* chroma_identity_theme
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-26 22:29+0000\n"
+"PO-Revision-Date: 2026-07-26 22:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "A secondary brand color used for hover and active states"
+msgstr "لون ثانوي للهوية يُستخدم في حالات التحويم والتفعيل"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/accessibility/font_size_adjuster.js:0
+msgid "Adjust text size"
+msgstr "تعديل حجم الخط"
+
+#. module: chroma_identity_theme
+#: model:ir.actions.client,name:chroma_identity_theme.action_chroma_home_menu
+msgid "All Apps"
+msgstr "كل التطبيقات"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Arabic + Latin font pairing used across backend, portal and website"
+msgstr ""
+"زوج الخطوط العربي/الإنجليزي المستخدم في الواجهة الخلفية والبوابة والموقع"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,help:chroma_identity_theme.field_res_company__chroma_chrome_color
+#: model:ir.model.fields,help:chroma_identity_theme.field_res_config_settings__chroma_chrome_color
+msgid ""
+"Background of the backend navbar, the app sidebar (if shown) and their card-"
+"launcher dropdowns - the dark \"frame\" around the app, separate from the "
+"primary/accent brand colors."
+msgstr ""
+"خلفية الشريط العلوي والشريط الجانبي (إن ظهر) وقوائم عرض التطبيقات المنسدلة -"
+" \"الإطار\" الغامق حول التطبيق، منفصل عن ألوان الهوية الأساسية/المميزة."
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_company__chroma_body_color
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_config_settings__chroma_body_color
+msgid "Body Text Color"
+msgstr "لون نص المحتوى"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_company__chroma_accent_color
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_config_settings__chroma_accent_color
+msgid "Brand Accent Color"
+msgstr "لون الهوية الثانوي"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Brand Colors"
+msgstr "ألوان الهوية"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_company__chroma_primary_color
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_config_settings__chroma_primary_color
+msgid "Brand Primary Color"
+msgstr "لون الهوية الأساسي"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields.selection,name:chroma_identity_theme.selection__res_company__chroma_font_pair__cairo
+msgid "Cairo"
+msgstr "Cairo"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Choose a starting palette, or Custom to set your own colors below"
+msgstr "اختر لوحة ألوان جاهزة، أو خصص ألوانك الخاصة أدناه"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/theme_preview_widget.xml:0
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Chroma Identity"
+msgstr "Chroma Identity"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_company__chroma_chrome_color
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_config_settings__chroma_chrome_color
+msgid "Chrome Color"
+msgstr "لون الإطار"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/app_launcher/chroma_home_menu.js:0
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/app_launcher/app_sidebar.js:0
+msgid "Collapse sidebar"
+msgstr "طي الشريط الجانبي"
+
+#. module: chroma_identity_theme
+#: model:ir.model,name:chroma_identity_theme.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: chroma_identity_theme
+#: model:ir.model,name:chroma_identity_theme.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: chroma_identity_theme
+#. odoo-python
+#: code:addons/chroma_identity_theme/models/res_config_settings.py:0
+msgid ""
+"Couldn't detect colors in this logo - it may be too light or fully "
+"transparent. Try a different image, or set the colors manually below."
+msgstr ""
+"تعذّر اكتشاف ألوان في هذا الشعار - قد يكون فاتحًا جدًا أو شفافًا بالكامل. "
+"جرّب صورة أخرى، أو حدد الألوان يدويًا أدناه."
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid ""
+"Curated Google Fonts pairs, each covering both Arabic and Latin scripts "
+"cleanly"
+msgstr ""
+"أزواج خطوط مُنتقاة من Google Fonts، كل زوج يغطي العربية والإنجليزية بشكل "
+"نظيف"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields.selection,name:chroma_identity_theme.selection__res_company__chroma_color_preset__custom
+msgid "Custom"
+msgstr "مخصص"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid ""
+"Detects your primary/accent colors straight from the company logo (Settings "
+"> General Settings > Companies), the same way Odoo's own Website "
+"Configurator does"
+msgstr ""
+"يكتشف ألوانك الأساسية والثانوية مباشرة من شعار الشركة (الإعدادات > الإعدادات"
+" العامة > الشركات)، بنفس طريقة معالج إعداد الموقع الإلكتروني في أودو"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/app_launcher/app_sidebar.js:0
+msgid "Expand sidebar"
+msgstr "توسيع الشريط الجانبي"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Extract colors from logo"
+msgstr "استخراج الألوان من الشعار"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Fine-tune heading, body and secondary text colors for readability"
+msgstr "اضبط ألوان العناوين والنصوص الأساسية والثانوية لتحسين القراءة"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_company__chroma_font_pair
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_config_settings__chroma_font_pair
+msgid "Font Pair"
+msgstr "زوج الخط"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid ""
+"Full control of your platform's color identity - pick a preset or set your "
+"own"
+msgstr ""
+"تحكم كامل في هوية الألوان لمنصتك - اختر إعدادًا جاهزًا أو حدد ألوانك الخاصة"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields.selection,name:chroma_identity_theme.selection__res_company__chroma_color_preset__gov_navy
+msgid "Government Navy"
+msgstr "كحلي حكومي"
+
+#. module: chroma_identity_theme
+#: model:ir.model,name:chroma_identity_theme.model_ir_http
+msgid "HTTP Routing"
+msgstr ""
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_company__chroma_heading_color
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_config_settings__chroma_heading_color
+msgid "Heading Color"
+msgstr "لون العناوين"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields.selection,name:chroma_identity_theme.selection__res_company__chroma_font_pair__ibm_plex
+msgid "IBM Plex Sans Arabic"
+msgstr "IBM Plex Sans Arabic"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Layout"
+msgstr "التخطيط"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Live Preview"
+msgstr "معاينة حية"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields.selection,name:chroma_identity_theme.selection__res_company__chroma_color_preset__mto_signature
+msgid "MTO Signature (Purple/Black)"
+msgstr "توقيع MTO (بنفسجي/أسود)"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_company__chroma_muted_color
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_config_settings__chroma_muted_color
+msgid "Muted Text Color"
+msgstr "لون النص الثانوي"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/theme_preview_widget.xml:0
+msgid "Navbar / Sidebar"
+msgstr "الشريط العلوي / الجانبي"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/app_launcher/app_launcher.js:0
+#: code:addons/chroma_identity_theme/static/src/js/app_launcher/chroma_home_menu.js:0
+msgid "No apps match your search"
+msgstr "لا توجد تطبيقات مطابقة لبحثك"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields.selection,name:chroma_identity_theme.selection__res_company__chroma_font_pair__noto_kufi
+msgid "Noto Kufi Arabic"
+msgstr "Noto Kufi Arabic"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,help:chroma_identity_theme.field_res_company__chroma_sidebar_enabled
+#: model:ir.model.fields,help:chroma_identity_theme.field_res_config_settings__chroma_sidebar_enabled
+msgid ""
+"Persistent left icon rail for switching between apps. Turn off to use the "
+"standard top-navbar app dropdown only."
+msgstr ""
+"شريط جانبي ثابت للتنقل بين التطبيقات. أوقفه لاستخدام القائمة المنسدلة "
+"الافتراضية في الشريط العلوي فقط."
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/theme_preview_widget.xml:0
+msgid "Preview: backend navbar / sidebar color"
+msgstr "معاينة: لون الشريط العلوي/الجانبي للواجهة الخلفية"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields.selection,name:chroma_identity_theme.selection__res_company__chroma_color_preset__saudi_green
+msgid "Saudi Green"
+msgstr "أخضر سعودي"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/app_launcher/app_launcher.js:0
+#: code:addons/chroma_identity_theme/static/src/js/app_launcher/chroma_home_menu.js:0
+msgid "Search apps…"
+msgstr "ابحث عن تطبيق…"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid ""
+"See your brand identity in action - navbar, headings, body text and buttons "
+"- before you save anything"
+msgstr ""
+"شاهد هويتك البصرية أثناء العمل - الشريط العلوي، العناوين، النصوص، والأزرار -"
+" قبل حفظ أي تغيير"
+
+#. module: chroma_identity_theme
+#: model:ir.actions.act_window,name:chroma_identity_theme.action_chroma_identity_theme_config_settings
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Shape how the backend navigation looks and feels"
+msgstr "تحكم في شكل وتجربة التنقل في الواجهة الخلفية"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_company__chroma_sidebar_enabled
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_config_settings__chroma_sidebar_enabled
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Show Backend App Sidebar"
+msgstr "إظهار الشريط الجانبي للتطبيقات"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.layout_skip_link
+msgid "Skip to main content"
+msgstr "تخطَّ إلى المحتوى الرئيسي"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields.selection,name:chroma_identity_theme.selection__res_company__chroma_font_pair__tajawal
+msgid "Tajawal"
+msgstr "Tajawal"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Text Colors"
+msgstr "ألوان النصوص"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/accessibility/font_size_adjuster.js:0
+msgid "Text size %s"
+msgstr "حجم الخط %s"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid ""
+"The dark background of the backend navbar, the app sidebar and their card-"
+"launcher dropdowns - separate from the primary/accent brand colors above"
+msgstr ""
+"الخلفية الغامقة للشريط العلوي والشريط الجانبي وقوائم عرض التطبيقات المنسدلة "
+"- منفصلة عن ألوان الهوية الأساسية/المميزة أعلاه"
+
+#. module: chroma_identity_theme
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_company__chroma_color_preset
+#: model:ir.model.fields,field_description:chroma_identity_theme.field_res_config_settings__chroma_color_preset
+msgid "Theme Color Preset"
+msgstr "إعداد ألوان الثيم"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid ""
+"Turn off to use the standard top-navbar app dropdown only, without the left "
+"sidebar. Takes effect after reloading the page."
+msgstr ""
+"أوقفه لاستخدام القائمة المنسدلة الافتراضية في الشريط العلوي فقط، بدون الشريط"
+" الجانبي. يسري التغيير بعد إعادة تحميل الصفحة."
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Typography"
+msgstr "الطباعة"
+
+#. module: chroma_identity_theme
+#. odoo-python
+#: code:addons/chroma_identity_theme/models/res_config_settings.py:0
+msgid ""
+"Upload a company logo first (Settings > General Settings > Companies), then "
+"try again."
+msgstr ""
+"ارفع شعار الشركة أولًا (الإعدادات > الإعدادات العامة > الشركات)، ثم أعد "
+"المحاولة."
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Used for captions, hints and secondary text"
+msgstr "يُستخدم للتسميات التوضيحية والتلميحات والنصوص الثانوية"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Used for h1-h6 and bold titles"
+msgstr "يُستخدم للعناوين الرئيسية والفرعية"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid "Used for regular paragraph text"
+msgstr "يُستخدم لنص الفقرات العادي"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/app_launcher/app_launcher.js:0
+#: code:addons/chroma_identity_theme/static/src/js/app_launcher/app_sidebar.js:0
+msgid "View All Apps"
+msgstr "عرض كل التطبيقات"
+
+#. module: chroma_identity_theme
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme.res_config_settings_view_form
+msgid ""
+"Your main brand color - buttons, links and highlighted elements. Applied "
+"instantly, no page rebuild needed"
+msgstr ""
+"لون هويتك الأساسي - الأزرار والروابط والعناصر المميزة. يُطبَّق فورًا دون "
+"إعادة بناء الصفحة"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/theme_preview_widget.xml:0
+msgid "زر أساسي · Primary Button"
+msgstr "زر أساسي · Primary Button"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/theme_preview_widget.xml:0
+msgid "عنوان تجريبي · Sample Heading"
+msgstr "عنوان تجريبي · Sample Heading"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/theme_preview_widget.xml:0
+msgid "نص ثانوي · Secondary / muted text"
+msgstr "نص ثانوي · Secondary / muted text"
+
+#. module: chroma_identity_theme
+#. odoo-javascript
+#: code:addons/chroma_identity_theme/static/src/js/theme_preview_widget.xml:0
+msgid ""
+"هذا نص تجريبي لمعاينة شكل الثيم قبل الحفظ.\n"
+"                    This is sample body text to preview the theme before saving."
+msgstr ""
+"هذا نص تجريبي لمعاينة شكل الثيم قبل الحفظ.\n"
+"                    This is sample body text to preview the theme before saving."

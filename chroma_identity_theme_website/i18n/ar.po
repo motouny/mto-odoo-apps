@@ -1,0 +1,257 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* chroma_identity_theme_website
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-26 22:29+0000\n"
+"PO-Revision-Date: 2026-07-26 22:29+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid ". All rights reserved."
+msgstr ". جميع الحقوق محفوظة."
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid ""
+"<span class=\"o_chroma_counter display-3\" data-count=\"1000\" data-"
+"suffix=\"+\">0</span>"
+msgstr ""
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid ""
+"<span class=\"o_chroma_counter display-3\" data-count=\"150\" data-"
+"suffix=\"+\">0</span>"
+msgstr ""
+"<span class=\"o_chroma_counter display-3\" data-count=\"150\" data-"
+"suffix=\"+\">0</span>"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid ""
+"<span class=\"o_chroma_counter display-3\" data-count=\"99\" data-"
+"suffix=\"%\">0</span>"
+msgstr ""
+"<span class=\"o_chroma_counter display-3\" data-count=\"99\" data-"
+"suffix=\"%\">0</span>"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "<span class=\"o_chroma_news_date\">2026-07-05</span>"
+msgstr "<span class=\"o_chroma_news_date\">2026-07-05</span>"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "<span class=\"o_chroma_news_date\">2026-07-20</span>"
+msgstr "<span class=\"o_chroma_news_date\">2026-07-20</span>"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "<span class=\"o_chroma_news_date\">2026-08-01</span>"
+msgstr "<span class=\"o_chroma_news_date\">2026-08-01</span>"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid ""
+"<span class=\"o_chroma_service_icon\"><i class=\"fa fa-phone\" role=\"img\" "
+"aria-label=\"Support\"/></span>"
+msgstr ""
+"<span class=\"o_chroma_service_icon\"><i class=\"fa fa-phone\" role=\"img\" "
+"aria-label=\"Support\"/></span>"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid ""
+"<span class=\"o_chroma_service_icon\"><i class=\"fa fa-rocket\" role=\"img\""
+" aria-label=\"Get Started\"/></span>"
+msgstr ""
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid ""
+"<span class=\"o_chroma_service_icon\"><i class=\"fa fa-search\" role=\"img\""
+" aria-label=\"Track\"/></span>"
+msgstr ""
+"<span class=\"o_chroma_service_icon\"><i class=\"fa fa-search\" role=\"img\""
+" aria-label=\"Track\"/></span>"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "A Modern Digital Experience, Built for You"
+msgstr "تجربة رقمية عصرية، مصممة من أجلك"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "A new feature is now available - check it out."
+msgstr "ميزة جديدة متاحة الآن - جرّبها."
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "Accessibility"
+msgstr "إمكانية الوصول"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Check the live status of any order, ticket or submitted request."
+msgstr "تحقق من الحالة الحية لأي طلب أو تذكرة مُرسلة."
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "Contact"
+msgstr "التواصل"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Contact Support"
+msgstr "تواصل مع الدعم"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_header_government
+msgid "Contact Us"
+msgstr "تواصل معنا"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "Contact us"
+msgstr "تواصل معنا"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Explore Services"
+msgstr "استكشف الخدمات"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "Facebook"
+msgstr ""
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Fast, secure and accessible online services for your customers."
+msgstr "خدمات إلكترونية سريعة وآمنة وسهلة الوصول لعملائك."
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Get Started Quickly"
+msgstr "ابدأ بسرعة"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Get up and running in minutes, no complex setup required."
+msgstr "ابدأ العمل خلال دقائق، دون إعداد معقّد."
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_header_footer_options
+msgid "Government / Public Sector"
+msgstr "حكومي / القطاع العام"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Happy Clients"
+msgstr "عملاء سعداء"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "Home"
+msgstr "الرئيسية"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Join our growing team - see our open positions."
+msgstr "انضم إلى فريقنا المتنامي - اطّلع على الوظائف الشاغرة."
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Latest Updates"
+msgstr "آخر التحديثات"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "LinkedIn"
+msgstr ""
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "New Feature Released"
+msgstr "إصدار ميزة جديدة"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "Official website - Kingdom of Saudi Arabia"
+msgstr "الموقع الرسمي - المملكة العربية السعودية"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Our Services"
+msgstr "خدماتنا"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "Quick Links"
+msgstr "روابط سريعة"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Reach our support team for help whenever you need it."
+msgstr "تواصل مع فريق الدعم للحصول على المساعدة وقتما تحتاج."
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Satisfaction Rate"
+msgstr "نسبة الرضا"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Scheduled Maintenance"
+msgstr "صيانة مجدولة"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Services Offered"
+msgstr "الخدمات المقدَّمة"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "Terms of Use"
+msgstr "شروط الاستخدام"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "The site will undergo scheduled maintenance this weekend."
+msgstr "سيخضع الموقع لصيانة مجدولة نهاية هذا الأسبوع."
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "Track a Request"
+msgstr "تتبع طلب"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.website_homepage_default
+msgid "We're Hiring"
+msgstr "نحن نوظّف"
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "X"
+msgstr ""
+
+#. module: chroma_identity_theme_website
+#: model_terms:ir.ui.view,arch_db:chroma_identity_theme_website.template_footer_government
+msgid "info@yourcompany.example.com"
+msgstr ""
