@@ -38,7 +38,7 @@ This app is fully independent - it does not require or depend on any other
 paid application from this publisher.
 """,
     'author': 'MTO',
-    'website': 'https://www.mto-solutions.com',
+    'website': 'https://mto-systems.com',
     'price': 30.0,
     'currency': 'EUR',
     'support': 'support@mto-solutions.com',

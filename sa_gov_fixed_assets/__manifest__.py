@@ -40,7 +40,7 @@ Enterprise's Assets module (it ships its own, so it installs cleanly on
 Community).
 """,
     'author': 'MTO',
-    'website': 'https://www.mto-solutions.com',
+    'website': 'https://mto-systems.com',
     'price': 30.0,
     'currency': 'EUR',
     'support': 'support@mto-solutions.com',

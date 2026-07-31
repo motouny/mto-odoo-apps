@@ -50,6 +50,6 @@ live occupancy view - entirely inside Odoo 18.
 ## Support
 
 - Email: support@mto-solutions.com
-- Website: https://www.mto-solutions.com
+- Website: https://mto-systems.com
 
 See `INSTALLATION.md`, `USER_GUIDE.md` and `CHANGELOG.md` for more detail.
