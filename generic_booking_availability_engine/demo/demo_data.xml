@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="demo_category_hotel" model="booking.resource.category">
+        <field name="name">Hotel Rooms</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="demo_category_transport" model="booking.resource.category">
+        <field name="name">Transportation</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="demo_category_guide" model="booking.resource.category">
+        <field name="name">Tour Guides</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="demo_policy_flexible" model="booking.cancellation.policy">
+        <field name="name">Flexible</field>
+        <field name="description">Full refund up to 7 days before arrival, 50% up to 3 days, no refund after.</field>
+    </record>
+    <record id="demo_policy_flexible_line_1" model="booking.cancellation.policy.line">
+        <field name="policy_id" ref="demo_policy_flexible"/>
+        <field name="days_before_start">7</field>
+        <field name="refund_percentage">100.0</field>
+    </record>
+    <record id="demo_policy_flexible_line_2" model="booking.cancellation.policy.line">
+        <field name="policy_id" ref="demo_policy_flexible"/>
+        <field name="days_before_start">3</field>
+        <field name="refund_percentage">50.0</field>
+    </record>
+    <record id="demo_policy_flexible_line_3" model="booking.cancellation.policy.line">
+        <field name="policy_id" ref="demo_policy_flexible"/>
+        <field name="days_before_start">0</field>
+        <field name="refund_percentage">0.0</field>
+    </record>
+
+    <record id="demo_policy_strict" model="booking.cancellation.policy">
+        <field name="name">Strict</field>
+        <field name="description">Full refund up to 14 days before arrival, no refund after.</field>
+    </record>
+    <record id="demo_policy_strict_line_1" model="booking.cancellation.policy.line">
+        <field name="policy_id" ref="demo_policy_strict"/>
+        <field name="days_before_start">14</field>
+        <field name="refund_percentage">100.0</field>
+    </record>
+    <record id="demo_policy_strict_line_2" model="booking.cancellation.policy.line">
+        <field name="policy_id" ref="demo_policy_strict"/>
+        <field name="days_before_start">0</field>
+        <field name="refund_percentage">0.0</field>
+    </record>
+
+    <record id="demo_resource_deluxe_room" model="booking.resource">
+        <field name="name">Deluxe Room - Haram View</field>
+        <field name="code">RM-DLX</field>
+        <field name="category_id" ref="demo_category_hotel"/>
+        <field name="capacity">10</field>
+        <field name="unit_price">500.0</field>
+        <field name="cancellation_policy_id" ref="demo_policy_flexible"/>
+        <field name="min_advance_booking_hours">24</field>
+    </record>
+    <record id="demo_resource_standard_room" model="booking.resource">
+        <field name="name">Standard Room</field>
+        <field name="code">RM-STD</field>
+        <field name="category_id" ref="demo_category_hotel"/>
+        <field name="capacity">20</field>
+        <field name="unit_price">250.0</field>
+        <field name="cancellation_policy_id" ref="demo_policy_strict"/>
+    </record>
+    <record id="demo_resource_airport_transfer" model="booking.resource">
+        <field name="name">Airport Transfer Vehicle</field>
+        <field name="code">TR-AIR</field>
+        <field name="category_id" ref="demo_category_transport"/>
+        <field name="capacity">5</field>
+        <field name="unit_price">150.0</field>
+        <field name="cancellation_policy_id" ref="demo_policy_flexible"/>
+    </record>
+    <record id="demo_resource_guide_en" model="booking.resource">
+        <field name="name">English-speaking Guide</field>
+        <field name="code">GD-EN</field>
+        <field name="category_id" ref="demo_category_guide"/>
+        <field name="capacity">3</field>
+        <field name="unit_price">200.0</field>
+        <field name="max_quantity_per_booking">1</field>
+    </record>
+
+    <record id="demo_pricing_rule_peak_season" model="booking.pricing.rule">
+        <field name="name">Peak Season</field>
+        <field name="resource_id" ref="demo_resource_deluxe_room"/>
+        <field name="rule_type">seasonal</field>
+        <field name="date_from" eval="(DateTime.today() + relativedelta(days=20)).strftime('%Y-%m-%d')"/>
+        <field name="date_to" eval="(DateTime.today() + relativedelta(days=40)).strftime('%Y-%m-%d')"/>
+        <field name="price">750.0</field>
+        <field name="priority">20</field>
+    </record>
+
+    <record id="demo_availability_blackout" model="booking.availability">
+        <field name="resource_id" ref="demo_resource_deluxe_room"/>
+        <field name="date" eval="(DateTime.today() + relativedelta(days=5)).strftime('%Y-%m-%d')"/>
+        <field name="capacity_total">10</field>
+        <field name="is_blackout" eval="True"/>
+        <field name="note">Maintenance day</field>
+    </record>
+
+    <record id="demo_booking_order_1" model="booking.order">
+        <field name="partner_id" ref="base.res_partner_2"/>
+        <field name="date_order" eval="DateTime.today().strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="state">confirmed</field>
+    </record>
+    <record id="demo_booking_order_1_line_1" model="booking.order.line">
+        <field name="order_id" ref="demo_booking_order_1"/>
+        <field name="resource_id" ref="demo_resource_deluxe_room"/>
+        <field name="date_from" eval="(DateTime.today() + relativedelta(days=15)).strftime('%Y-%m-%d')"/>
+        <field name="date_to" eval="(DateTime.today() + relativedelta(days=18)).strftime('%Y-%m-%d')"/>
+        <field name="quantity">1</field>
+        <field name="unit_price">500.0</field>
+    </record>
+
+    <record id="demo_booking_order_2" model="booking.order">
+        <field name="partner_id" ref="base.res_partner_3"/>
+        <field name="date_order" eval="(DateTime.today() - relativedelta(days=30)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="state">completed</field>
+    </record>
+    <record id="demo_booking_order_2_line_1" model="booking.order.line">
+        <field name="order_id" ref="demo_booking_order_2"/>
+        <field name="resource_id" ref="demo_resource_standard_room"/>
+        <field name="date_from" eval="(DateTime.today() - relativedelta(days=25)).strftime('%Y-%m-%d')"/>
+        <field name="date_to" eval="(DateTime.today() - relativedelta(days=22)).strftime('%Y-%m-%d')"/>
+        <field name="quantity">2</field>
+        <field name="unit_price">250.0</field>
+    </record>
+    <record id="demo_booking_order_2_line_2" model="booking.order.line">
+        <field name="order_id" ref="demo_booking_order_2"/>
+        <field name="resource_id" ref="demo_resource_guide_en"/>
+        <field name="date_from" eval="(DateTime.today() - relativedelta(days=25)).strftime('%Y-%m-%d')"/>
+        <field name="date_to" eval="(DateTime.today() - relativedelta(days=22)).strftime('%Y-%m-%d')"/>
+        <field name="quantity">1</field>
+        <field name="unit_price">200.0</field>
+    </record>
+
+    <record id="demo_booking_order_3" model="booking.order">
+        <field name="partner_id" ref="base.res_partner_4"/>
+        <field name="date_order" eval="DateTime.today().strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="state">draft</field>
+    </record>
+    <record id="demo_booking_order_3_line_1" model="booking.order.line">
+        <field name="order_id" ref="demo_booking_order_3"/>
+        <field name="resource_id" ref="demo_resource_airport_transfer"/>
+        <field name="date_from" eval="(DateTime.today() + relativedelta(days=10)).strftime('%Y-%m-%d')"/>
+        <field name="date_to" eval="(DateTime.today() + relativedelta(days=10)).strftime('%Y-%m-%d')"/>
+        <field name="quantity">1</field>
+        <field name="unit_price">150.0</field>
+    </record>
+
+</odoo>

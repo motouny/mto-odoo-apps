@@ -1,0 +1,90 @@
+// Live theme preview card in Settings > Chroma Identity (see
+// static/src/js/theme_preview_widget.js). Uses its own --chroma-preview-*
+// custom properties (set inline per keystroke by the widget) rather than
+// the global --chroma-* tokens, so it reflects unsaved edits instantly
+// without touching the rest of the page.
+
+.o_chroma_theme_preview {
+    padding: var(--chroma-space-2) 0 var(--chroma-space-4);
+}
+
+.o_chroma_theme_preview_chrome {
+    max-width: 480px;
+    display: flex;
+    align-items: center;
+    gap: var(--chroma-space-2);
+    padding: var(--chroma-space-2) var(--chroma-space-3);
+    background: var(--chroma-preview-chrome);
+    border-radius: var(--chroma-radius-lg) var(--chroma-radius-lg) 0 0;
+}
+
+.o_chroma_theme_preview_chrome_dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--chroma-preview-on-chrome);
+    opacity: 0.5;
+}
+
+.o_chroma_theme_preview_chrome_label {
+    margin-inline-start: auto;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--chroma-preview-on-chrome);
+    opacity: 0.75;
+}
+
+.o_chroma_theme_preview_card {
+    max-width: 480px;
+    border: 1px solid var(--chroma-neutral-200);
+    border-top: none;
+    border-radius: 0 0 var(--chroma-radius-lg) var(--chroma-radius-lg);
+    box-shadow: var(--chroma-shadow-sm);
+    padding: var(--chroma-space-4);
+    background: var(--chroma-neutral-0);
+}
+
+.o_chroma_theme_preview_badge {
+    display: inline-block;
+    background: var(--chroma-preview-primary);
+    color: #fff;
+    padding: 2px 12px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: var(--chroma-space-2);
+}
+
+.o_chroma_theme_preview_heading {
+    color: var(--chroma-preview-heading);
+    margin: 0 0 var(--chroma-space-2);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.o_chroma_theme_preview_body {
+    color: var(--chroma-preview-body);
+    margin: 0 0 var(--chroma-space-2);
+    line-height: 1.6;
+}
+
+.o_chroma_theme_preview_muted {
+    color: var(--chroma-preview-muted);
+    font-size: 0.85rem;
+    margin: 0 0 var(--chroma-space-3);
+}
+
+.o_chroma_theme_preview_btn {
+    background: var(--chroma-preview-primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--chroma-radius-sm);
+    padding: 8px 22px;
+    font-weight: 600;
+    cursor: default;
+
+    &:hover {
+        background: var(--chroma-preview-accent);
+    }
+}

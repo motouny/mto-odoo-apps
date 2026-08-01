@@ -1,0 +1,113 @@
+<section style="font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; color:#2b2b3a; max-width: 980px; margin: 0 auto; line-height:1.55;">
+
+  <!-- Hero -->
+  <div style="background: linear-gradient(135deg,#5b3a5e,#3f2a52); color:#fff; border-radius:12px; padding:40px 32px; text-align:center;">
+    <h1 style="margin:0 0 8px; font-size:32px;">Secure Digital Signature Workflow</h1>
+    <p style="margin:0 0 16px; font-size:18px; opacity:.9;">PDF Signing &bull; Audit Trail &bull; QR Verification</p>
+    <div>
+      <span style="display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:6px 16px; margin:4px; font-size:14px;">Odoo 18</span>
+      <span style="display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.4); border-radius:20px; padding:6px 16px; margin:4px; font-size:14px;">Community &amp; Enterprise</span>
+    </div>
+  </div>
+
+  <p style="font-size:17px; margin:28px 0; text-align:center; color:#444;">
+    Send PDF documents for sequential or parallel electronic signing, track every action,
+    generate a completion certificate, and verify signed documents using secure QR codes.
+  </p>
+
+  <div style="background:#fff8e1; border:1px solid #f0d98c; border-radius:10px; padding:16px 20px; margin-bottom:28px;">
+    <strong>Legal disclaimer:</strong> this is an internal electronic signature workflow with an
+    audit trail and document verification. It does not claim to be a government-certified or
+    legally-qualified electronic signature service (eIDAS, ESIGN Act, or similar) - it is a
+    self-hosted document signing workflow you fully control.
+  </div>
+
+  <!-- Screenshots -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px;">Screenshots</h2>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin:20px 0;">
+    <figure style="margin:0;">
+      <img src="screenshots/01_signature_dashboard.png" alt="Signature requests dashboard" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Signature requests dashboard</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/02_request_builder.png" alt="Request builder" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Request builder with signers</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/03_pdf_fields.png" alt="PDF field placement" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Per-signer field placement</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/04_signing_page.png" alt="Signing page" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Public signer page with signature pad</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/05_audit_trail.png" alt="Audit trail" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Immutable audit trail</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img src="screenshots/06_completion_certificate.png" alt="Completion certificate" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+      <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Completion certificate with QR code</figcaption>
+    </figure>
+  </div>
+  <figure style="margin:0 auto; max-width:420px;">
+    <img src="screenshots/07_verification_page.png" alt="Public verification page" style="width:100%; border:1px solid #ddd; border-radius:8px;"/>
+    <figcaption style="text-align:center; color:#777; font-size:13px; margin-top:4px;">Public, privacy-preserving verification page</figcaption>
+  </figure>
+
+  <!-- Signing workflow -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Signing workflow</h2>
+  <p>Draft &rarr; Ready &rarr; Sent &rarr; Partially Signed &rarr; Completed (or Rejected / Expired / Cancelled).</p>
+  <ul>
+    <li>Sequential signing: signers are notified one at a time, in order.</li>
+    <li>Parallel signing: every signer is notified at once.</li>
+    <li>Automatic reminders and expiration, both on configurable schedules.</li>
+  </ul>
+
+  <!-- Field types -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Field types</h2>
+  <p>Signature, Initials, Name, Date, Text, Checkbox, Selection, Stamp - placed per signer at an exact page/position (percentage-based, so it works at any zoom or paper size).</p>
+
+  <!-- Security -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Security</h2>
+  <ul>
+    <li>Every signer gets a cryptographically random, single-purpose token - never the database record id.</li>
+    <li>Tokens are revoked the instant a request is rejected, cancelled or completed, and cannot be reused.</li>
+    <li>Field position/definition and the original document are both frozen the moment a request is sent - not even an administrator can change them through the UI afterward.</li>
+    <li>The audit trail is immutable: no edit or delete is possible through the UI, by anyone.</li>
+    <li>The public verification page never exposes any signer's name, email or IP address.</li>
+    <li>No new external Python dependency: PDF generation uses PyPDF2 and reportlab, both already part of core Odoo.</li>
+  </ul>
+
+  <!-- Audit trail -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Audit trail</h2>
+  <p>Every view, field fill, signature, rejection, resend, reminder and public verification attempt is logged with a timestamp, IP address and user agent.</p>
+
+  <!-- Verification -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Verification</h2>
+  <p>The completion certificate embeds a QR code linking to a public page that confirms the document is valid and shows its completion date - nothing more.</p>
+
+  <!-- Installation -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Installation</h2>
+  <ol>
+    <li>Copy the module into your addons path and restart Odoo.</li>
+    <li>Go to <strong>Apps</strong>, search "Secure Digital Signature Workflow", click <strong>Install</strong>.</li>
+    <li>Assign the <strong>User</strong> group to anyone who should send signature requests, and <strong>Manager</strong> to anyone who should see every request in the company.</li>
+  </ol>
+
+  <!-- Limitations -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Limitations</h2>
+  <p>Field placement uses page number + X/Y/width/height percentages rather than a drag-and-drop visual designer.</p>
+
+  <!-- FAQ -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">FAQ</h2>
+  <p><strong>Does this require Odoo Enterprise?</strong><br/>No, it runs fully on Community.</p>
+  <p><strong>Does it depend on any other paid app?</strong><br/>No, it only depends on standard Odoo modules (base, mail, portal, web).</p>
+  <p><strong>Is this a legally certified e-signature service?</strong><br/>No - see the disclaimer above. It is an internal workflow and audit tool.</p>
+  <p><strong>Can signers without an Odoo account sign?</strong><br/>Yes - external signers only need a name and email; they sign through a personal, single-use link.</p>
+
+  <!-- Support -->
+  <h2 style="border-bottom:2px solid #eee; padding-bottom:8px; margin-top:36px;">Support</h2>
+  <p>Email: support@mto-systems.com &nbsp;|&nbsp; Website: https://mto-systems.com</p>
+
+</section>

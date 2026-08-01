@@ -44,15 +44,41 @@ employee accepts it and posts status updates from `/my/assignments`. A daily
 scheduled action (`Employee Portal: Assignment Status Reminder`) emails
 anyone with an unfinished task until they mark it done.
 
+## General request system
+
+Beyond leave, employees and true external clients can submit typed
+requests (permission, attendance correction, overtime, letter/certificate,
+data change, equipment/custody, internal support, or a client service
+request) from `/my/requests`. Each request has its own state machine
+(Draft -> Submitted -> Under Review -> Waiting for Information ->
+Approved/Rejected -> In Progress -> Completed -> Closed, or Cancelled), an
+immutable status history, comments, and in-portal notifications on every
+status change. Staff triage everything from **Employee & Client Requests**
+in the backend (All Requests, My Tickets, Overdue, plus basic reports).
+
+## Client self-service (new group)
+
+A dedicated **Client** group - separate from the project-scoped Portal
+Manager above - lets an external company contact submit and track their
+own requests under `/my/requests`, without ever seeing employee HR data.
+Assign it from **Settings -> Users**. Internal staff who should triage and
+approve requests need the **Request Manager** group instead.
+
 ## Security model
 
-No new security groups are introduced - everything runs on the standard
-Portal (`base.group_portal`) user type. All record-level access is enforced
-through `ir.rule`s scoped to that group (see
-`security/employee_client_self_service_portal_security.xml`), and every
-write performed on behalf of a portal user goes through an explicit
-controller method that verifies ownership in Python before calling
-`sudo()` - the portal group itself is never granted broad write access.
+Two new security groups exist for the request system (**Client** and
+**Request Manager**); everything else still runs on the standard Portal
+(`base.group_portal`) user type as before. All record-level access is
+enforced through `ir.rule`s (see
+`security/employee_client_self_service_portal_security.xml` and
+`security/ess_request_security.xml`), and every write performed on behalf
+of a portal user goes through an explicit controller method that verifies
+ownership in Python before calling `sudo()` - the portal group itself is
+never granted broad write access. `_get_managed_projects()` /
+`_get_managed_employees()` are now explicitly scoped to the user's
+allowed companies (while still including company-independent records),
+and the request system's status history cannot be edited or deleted by
+anyone through the UI, including administrators.
 
 ## Branding
 

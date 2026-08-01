@@ -31,7 +31,7 @@
                     <t t-set="placeholder_count" t-value="'task_count'"/>
                 </t>
             </div>
-            <div t-if="request.env['project.project'].sudo().search_count([('portal_manager_id', '=', request.env.user.id)])"
+            <div t-if="request.env['project.project'].sudo().search_count(['|', ('portal_manager_id', '=', request.env.user.id), ('project_owner_id', '=', request.env.user.id)])"
                  class="o_portal_category row g-2 mt-3" id="portal_employee_team_category">
                 <t t-call="portal.portal_docs_entry">
                     <t t-set="title">My Team</t>
@@ -44,6 +44,12 @@
                     <t t-set="text">Time off requests waiting for your approval</t>
                     <t t-set="url" t-value="'/my/team/approvals'"/>
                     <t t-set="placeholder_count" t-value="'team_approval_count'"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Team Requests</t>
+                    <t t-set="text">Requests waiting for your decision before they reach the company</t>
+                    <t t-set="url" t-value="'/my/team/requests'"/>
+                    <t t-set="placeholder_count" t-value="'team_request_count'"/>
                 </t>
             </div>
         </xpath>
@@ -58,6 +64,8 @@
             <li t-if="page_name == 'team'" class="breadcrumb-item active">My Team</li>
             <li t-if="page_name == 'team_approvals'" class="breadcrumb-item active">Approvals</li>
             <li t-if="page_name == 'team_tasks'" class="breadcrumb-item active">Team Tasks</li>
+            <li t-if="page_name == 'team_requests'" class="breadcrumb-item active">Team Requests</li>
+            <li t-if="page_name == 'team_employee_detail'" class="breadcrumb-item active">Team Member</li>
             <li t-if="page_name == 'assignments'" class="breadcrumb-item active">My Assignments</li>
         </xpath>
     </template>
@@ -82,6 +90,7 @@
                             <a href="/my/profile" class="btn btn-outline-secondary btn-sm">My Profile</a>
                             <a href="/my/attendances" class="btn btn-outline-secondary btn-sm">My Attendances</a>
                             <a href="/my/tasks" class="btn btn-outline-secondary btn-sm">My Tasks</a>
+                            <a t-if="dash_projects_status" href="/my/team" class="btn btn-outline-secondary btn-sm">My Team</a>
                             <a href="/my/assignments" class="btn btn-outline-secondary btn-sm">
                                 My Assignments
                                 <span t-if="dash_employee['assignment_count']" class="badge text-bg-danger ms-1"><t t-esc="dash_employee['assignment_count']"/></span>
@@ -148,39 +157,43 @@
                     </div>
                 </t>
 
-                <t t-if="dash_projects_status">
-                    <div class="o_dash_section">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="mb-0">My Team</h4>
-                            <div class="d-flex gap-2">
-                                <a href="/my/team/tasks" class="btn btn-outline-secondary btn-sm">Team Tasks</a>
-                                <a href="/my/team/approvals" class="btn btn-primary btn-sm">Review Approvals</a>
+                <t t-if="dash_manager">
+                    <div class="o_dash_hero d-flex align-items-center flex-wrap gap-3 mb-4">
+                        <div class="o_dash_avatar"><t t-esc="(request.env.user.name or '?')[0]"/></div>
+                        <div class="flex-grow-1">
+                            <h2 class="mb-0"><t t-esc="request.env.user.name"/></h2>
+                            <div class="text-muted">
+                                <t t-esc="', '.join(dash_manager['projects'].mapped('name'))"/>
                             </div>
                         </div>
-                        <t t-foreach="dash_projects_status" t-as="proj">
-                            <div class="mb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h5 class="mb-0"><t t-esc="proj['project'].name"/></h5>
-                                    <div class="d-flex gap-1">
-                                        <span t-if="proj['approval_count']" class="badge text-bg-danger"><t t-esc="proj['approval_count']"/> pending leaves</span>
-                                        <span t-if="proj['task_count']" class="badge text-bg-warning"><t t-esc="proj['task_count']"/> open tasks</span>
-                                    </div>
-                                </div>
-                                <div class="row g-2">
-                                    <t t-foreach="proj['lines']" t-as="line">
-                                        <div class="col-6 col-md-3">
-                                            <div class="o_dash_mini_card text-center">
-                                                <div class="fw-bold small"><t t-esc="line['employee'].name"/></div>
-                                                <span t-if="line['status'] == 'present'" class="badge text-bg-success">Present</span>
-                                                <span t-elif="line['status'] == 'leave'" class="badge text-bg-warning">On Leave</span>
-                                                <span t-elif="line['status'] == 'permission'" class="badge text-bg-info">On Permission</span>
-                                                <span t-else="" class="badge text-bg-secondary">Absent</span>
-                                            </div>
-                                        </div>
-                                    </t>
-                                </div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="/my/team" class="btn btn-outline-secondary btn-sm">My Team</a>
+                            <a href="/my/team/tasks" class="btn btn-outline-secondary btn-sm">Team Tasks</a>
+                            <a href="/my/team/approvals" class="btn btn-outline-secondary btn-sm">
+                                Time Off Approvals
+                                <span t-if="dash_manager['leave_approval_count']" class="badge text-bg-danger ms-1"><t t-esc="dash_manager['leave_approval_count']"/></span>
+                            </a>
+                            <a href="/my/team/requests" class="btn btn-outline-secondary btn-sm">
+                                Team Requests
+                                <span t-if="dash_manager['team_request_count']" class="badge text-bg-danger ms-1"><t t-esc="dash_manager['team_request_count']"/></span>
+                            </a>
+                            <a t-if="dash_manager['is_client']" href="/my/requests" class="btn btn-primary btn-sm">My Requests</a>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4 col-6">
+                            <div class="o_dash_card h-100">
+                                <div class="o_dash_card_label">Projects Managed</div>
+                                <div class="o_dash_card_value"><t t-esc="len(dash_manager['projects'])"/></div>
                             </div>
-                        </t>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="o_dash_card h-100">
+                                <div class="o_dash_card_label">Team Members</div>
+                                <div class="o_dash_card_value"><t t-esc="dash_manager['employee_count']"/></div>
+                            </div>
+                        </div>
                     </div>
                 </t>
 
@@ -331,7 +344,7 @@
                         <td><a t-attf-href="/my/time-off/#{leave.id}"><t t-out="leave.holiday_status_id.name"/></a></td>
                         <td><span t-field="leave.date_from"/></td>
                         <td><span t-field="leave.date_to"/></td>
-                        <td><span t-out="leave.state"/></td>
+                        <td><span t-out="leave._fields['state'].convert_to_export(leave.state, leave)"/></td>
                         <td/>
                     </tr>
                 </t>
@@ -386,7 +399,7 @@
                 <tr><th>Type</th><td t-out="leave.holiday_status_id.name"/></tr>
                 <tr><th>From</th><td><span t-field="leave.date_from"/></td></tr>
                 <tr><th>To</th><td><span t-field="leave.date_to"/></td></tr>
-                <tr><th>Status</th><td t-out="leave.state"/></tr>
+                <tr><th>Status</th><td t-out="leave._fields['state'].convert_to_export(leave.state, leave)"/></tr>
                 <tr><th>Description</th><td t-out="leave.name"/></tr>
             </table>
             <form t-if="leave.state in ('confirm', 'validate1')" t-attf-action="/my/time-off/#{leave.id}/cancel" method="post">
@@ -465,6 +478,29 @@
     </template>
 
     <!-- ==================== Team (manager) ==================== -->
+    <template id="portal_my_team_project_grid" name="My Team Project Grid">
+        <h4 t-if="show_title" class="mt-4"><t t-esc="proj['project'].name"/></h4>
+        <div t-if="not proj['lines']" class="alert alert-warning" role="alert">
+            No employees are assigned to this project yet.
+        </div>
+        <div t-if="proj['lines']" class="row g-3">
+            <t t-foreach="proj['lines']" t-as="line">
+                <div class="col-6 col-md-3">
+                    <a t-attf-href="/my/team/employees/#{line['employee'].id}" class="card h-100 text-center text-decoration-none text-reset">
+                        <div class="card-body">
+                            <div class="fw-bold"><t t-esc="line['employee'].name"/></div>
+                            <div class="small text-muted mb-2"><t t-esc="line['employee'].job_title or '-'"/></div>
+                            <span t-if="line['status'] == 'present'" class="badge text-bg-success">Present</span>
+                            <span t-elif="line['status'] == 'leave'" class="badge text-bg-warning">On Leave</span>
+                            <span t-elif="line['status'] == 'permission'" class="badge text-bg-info">On Permission</span>
+                            <span t-else="" class="badge text-bg-secondary">Absent</span>
+                        </div>
+                    </a>
+                </div>
+            </t>
+        </div>
+    </template>
+
     <template id="portal_my_team" name="My Team">
         <t t-call="portal.portal_layout">
             <t t-set="breadcrumbs_searchbar" t-value="True"/>
@@ -473,31 +509,84 @@
             </t>
             <div class="mb-3">
                 <a href="/my/team/approvals" class="btn btn-primary">Review Approvals</a>
+                <a href="/my/team/requests" class="btn btn-outline-primary">Team Requests</a>
             </div>
             <div t-if="not projects_status" class="alert alert-warning" role="alert">
-                You are not the Portal Manager of any project yet.
+                You are not the Project Owner or Client Project Manager of any project yet.
             </div>
-            <t t-foreach="projects_status" t-as="proj">
-                <h4 class="mt-4"><t t-esc="proj['project'].name"/></h4>
-                <div t-if="not proj['lines']" class="alert alert-warning" role="alert">
-                    No employees are assigned to this project yet.
-                </div>
-                <div t-if="proj['lines']" class="row g-3">
-                    <t t-foreach="proj['lines']" t-as="line">
-                        <div class="col-6 col-md-3">
-                            <div class="card h-100 text-center">
-                                <div class="card-body">
-                                    <div class="fw-bold"><t t-esc="line['employee'].name"/></div>
-                                    <div class="small text-muted mb-2"><t t-esc="line['employee'].job_title or '-'"/></div>
-                                    <span t-if="line['status'] == 'present'" class="badge text-bg-success">Present</span>
-                                    <span t-elif="line['status'] == 'leave'" class="badge text-bg-warning">On Leave</span>
-                                    <span t-elif="line['status'] == 'permission'" class="badge text-bg-info">On Permission</span>
-                                    <span t-else="" class="badge text-bg-secondary">Absent</span>
-                                </div>
-                            </div>
+            <t t-if="len(projects_status) &gt; 1">
+                <ul class="nav nav-tabs mb-3">
+                    <t t-foreach="projects_status" t-as="proj">
+                        <li class="nav-item">
+                            <a t-attf-class="nav-link #{'active' if proj_index == 0 else ''}"
+                               data-bs-toggle="tab" t-attf-href="#o_team_project_#{proj_index}">
+                                <t t-esc="proj['project'].name"/>
+                            </a>
+                        </li>
+                    </t>
+                </ul>
+                <div class="tab-content">
+                    <t t-foreach="projects_status" t-as="proj">
+                        <div t-attf-id="o_team_project_#{proj_index}"
+                             t-attf-class="tab-pane fade #{'show active' if proj_index == 0 else ''}">
+                            <t t-call="employee_client_self_service_portal.portal_my_team_project_grid">
+                                <t t-set="show_title" t-value="False"/>
+                            </t>
                         </div>
                     </t>
                 </div>
+            </t>
+            <t t-else="">
+                <t t-foreach="projects_status" t-as="proj">
+                    <t t-call="employee_client_self_service_portal.portal_my_team_project_grid">
+                        <t t-set="show_title" t-value="True"/>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_my_team_employee_detail" name="Team Member Detail">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                <div>
+                    <h3 class="mb-0"><t t-esc="employee.name"/></h3>
+                    <div class="text-muted"><t t-esc="employee.job_title or '-'"/></div>
+                </div>
+                <span t-if="status['status'] == 'present'" class="badge text-bg-success">Present</span>
+                <span t-elif="status['status'] == 'leave'" class="badge text-bg-warning">On Leave</span>
+                <span t-elif="status['status'] == 'permission'" class="badge text-bg-info">On Permission</span>
+                <span t-else="" class="badge text-bg-secondary">Absent</span>
+            </div>
+            <a href="/my/team" class="btn btn-outline-secondary btn-sm mb-3">Back to My Team</a>
+
+            <h5>Assigned Tasks</h5>
+            <div t-if="not tasks" class="alert alert-warning" role="alert">
+                No tasks assigned to this employee yet.
+            </div>
+            <t t-if="tasks" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Title</th>
+                        <th>Deadline</th>
+                        <th>Status</th>
+                        <th>Latest Update</th>
+                    </tr>
+                </thead>
+                <t t-foreach="tasks" t-as="task">
+                    <tr>
+                        <td><t t-esc="task.name"/></td>
+                        <td><span t-if="task.deadline" t-field="task.deadline"/></td>
+                        <td>
+                            <span t-if="task.state == 'new'" class="badge text-bg-secondary">New</span>
+                            <span t-elif="task.state == 'accepted'" class="badge text-bg-info">Accepted</span>
+                            <span t-elif="task.state == 'in_progress'" class="badge text-bg-warning">In Progress</span>
+                            <span t-else="" class="badge text-bg-success">Done</span>
+                        </td>
+                        <td><t t-esc="task.status_note or '-'"/></td>
+                    </tr>
+                </t>
             </t>
         </t>
     </template>
@@ -508,6 +597,7 @@
             <t t-call="portal.portal_searchbar">
                 <t t-set="title">Approvals</t>
             </t>
+            <div t-if="error" class="alert alert-danger" role="alert" t-out="error"/>
             <div t-if="not leaves" class="alert alert-warning" role="alert">
                 No pending requests from your team.
             </div>
@@ -535,6 +625,48 @@
                             <form t-attf-action="/my/team/approvals/#{leave.id}/refuse" method="post" class="d-inline">
                                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                 <button type="submit" class="btn btn-sm btn-outline-danger">Refuse</button>
+                            </form>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_my_team_requests" name="Team Requests">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Team Requests</t>
+            </t>
+            <div t-if="error" class="alert alert-danger" role="alert" t-out="error"/>
+            <div t-if="not requests" class="alert alert-warning" role="alert">
+                No requests are waiting for your decision.
+            </div>
+            <t t-if="requests" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Reference</th>
+                        <th>Project</th>
+                        <th>Type</th>
+                        <th>Subject</th>
+                        <th class="text-end"/>
+                    </tr>
+                </thead>
+                <t t-foreach="requests" t-as="req">
+                    <tr>
+                        <td t-out="req.name"/>
+                        <td t-out="req.project_id.name"/>
+                        <td t-out="req.request_type_id.name"/>
+                        <td t-out="req.subject"/>
+                        <td class="text-end">
+                            <form t-attf-action="/my/team/requests/#{req.id}/approve" method="post" class="d-inline">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                            </form>
+                            <form t-attf-action="/my/team/requests/#{req.id}/reject" method="post" class="d-inline">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Reject</button>
                             </form>
                         </td>
                     </tr>
@@ -637,7 +769,14 @@
                         <div>
                             <div class="fw-bold"><t t-esc="task.name"/></div>
                             <div class="small text-muted" t-if="task.description"><t t-esc="task.description"/></div>
-                            <div class="small text-muted" t-if="task.deadline">Deadline: <span t-field="task.deadline"/></div>
+                            <div class="small text-muted" t-if="task.deadline">
+                                Deadline: <span t-field="task.deadline"/>
+                                <span t-if="task.state != 'done'"
+                                      class="o_ess_task_countdown ms-2 fw-bold"
+                                      t-att-data-deadline="task.deadline.isoformat() + 'Z'"
+                                      t-att-data-overdue-label="ess_overdue_label"
+                                      t-att-data-left-label="ess_left_label"/>
+                            </div>
                         </div>
                         <span t-if="task.state == 'new'" class="badge text-bg-secondary">New</span>
                         <span t-elif="task.state == 'accepted'" class="badge text-bg-info">Accepted</span>

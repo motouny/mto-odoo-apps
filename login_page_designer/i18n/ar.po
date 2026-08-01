@@ -1,0 +1,322 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* login_page_designer
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-01 13:58+0000\n"
+"PO-Revision-Date: 2026-08-01 13:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid ".o_lpd_card { border-radius: 24px; }"
+msgstr ".o_lpd_card { border-radius: 24px; }"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "<p>Need help? Contact IT support.</p>"
+msgstr "<p>تحتاج مساعدة؟ تواصل مع الدعم الفني.</p>"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid ""
+"A dark layer over the background for legible text, 0 = none, 0.9 = almost "
+"black"
+msgstr "طبقة داكنة فوق الخلفية لتحسين وضوح النص، 0 = بدون تعتيم، 0.9 = أقرب إلى الأسود"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid ""
+"A real, live view of your login page - it updates as you change settings "
+"below, before you save anything"
+msgstr "معاينة حية وفعلية لصفحة تسجيل الدخول - تتحدث فور تغيير الإعدادات أدناه، قبل الحفظ"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Background"
+msgstr "الخلفية"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_bg_color
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_bg_color
+msgid "Background Color"
+msgstr "لون الخلفية"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_bg_image_filename
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_bg_image_filename
+msgid "Background Image Filename"
+msgstr "اسم ملف صورة الخلفية"
+
+#. module: login_page_designer
+#: model:ir.model.fields.selection,name:login_page_designer.selection__res_company__lpd_position__bottom
+msgid "Bottom"
+msgstr "أسفل"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_button_color
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_button_color
+msgid "Button / Link Color"
+msgstr "لون الزر / الروابط"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_card_bg_color
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_card_bg_color
+msgid "Card Background Color"
+msgstr "لون خلفية البطاقة"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Card Colors"
+msgstr "ألوان البطاقة"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_card_text_color
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_card_text_color
+msgid "Card Text Color"
+msgstr "لون نص البطاقة"
+
+#. module: login_page_designer
+#: model:ir.model.fields.selection,name:login_page_designer.selection__res_company__lpd_position__center
+msgid "Center"
+msgstr "الوسط"
+
+#. module: login_page_designer
+#: model:ir.model,name:login_page_designer.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: login_page_designer
+#: model:ir.model,name:login_page_designer.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_custom_css
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_custom_css
+msgid "Custom CSS"
+msgstr "كود CSS مخصص"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_custom_html
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_custom_html
+msgid "Custom HTML Panel"
+msgstr "لوحة HTML مخصصة"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_bg_overlay_opacity
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_bg_overlay_opacity
+msgid "Dark Overlay Opacity"
+msgstr "درجة تعتيم الطبقة الداكنة"
+
+#. module: login_page_designer
+#: model:ir.model.fields.selection,name:login_page_designer.selection__res_company__lpd_bg_type__none
+msgid "Default"
+msgstr "افتراضي"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Enable"
+msgstr "التفعيل"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_enabled
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_enabled
+msgid "Enable Login Page Designer"
+msgstr "تفعيل مصمم صفحة تسجيل الدخول"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_pro_mode
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_pro_mode
+msgid "Enable Pro Mode"
+msgstr "تفعيل وضع المحترف"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid ""
+"For advanced users - inject your own CSS and an extra HTML panel directly "
+"into the login page, on top of the design above. Only Settings "
+"administrators can edit this."
+msgstr ""
+"للمستخدمين المتقدمين - أضف كود CSS الخاص بك ولوحة HTML إضافية مباشرة إلى "
+"صفحة تسجيل الدخول، فوق التصميم أعلاه. يمكن لمسؤولي الإعدادات فقط تعديل هذا."
+
+#. module: login_page_designer
+#: model:ir.model.fields.selection,name:login_page_designer.selection__res_company__lpd_bg_type__gradient
+msgid "Gradient"
+msgstr "تدرج لوني"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_bg_gradient_angle
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_bg_gradient_angle
+msgid "Gradient Angle"
+msgstr "زاوية التدرج اللوني"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Gradient Angle (deg)"
+msgstr "زاوية التدرج اللوني (بالدرجات)"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Gradient End"
+msgstr "نهاية التدرج اللوني"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_bg_gradient_end
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_bg_gradient_end
+msgid "Gradient End Color"
+msgstr "لون نهاية التدرج"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Gradient Start"
+msgstr "بداية التدرج اللوني"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_bg_gradient_start
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_bg_gradient_start
+msgid "Gradient Start Color"
+msgstr "لون بداية التدرج"
+
+#. module: login_page_designer
+#: model:ir.model.fields.selection,name:login_page_designer.selection__res_company__lpd_bg_type__image
+msgid "Image"
+msgstr "صورة"
+
+#. module: login_page_designer
+#: model:ir.model.fields.selection,name:login_page_designer.selection__res_company__lpd_position__left
+msgid "Left"
+msgstr "اليسار"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Live Preview"
+msgstr "معاينة حية"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_position
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_position
+msgid "Login Card Position"
+msgstr "موضع بطاقة تسجيل الدخول"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_bg_image
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_bg_image
+msgid "Login Page Background Image"
+msgstr "صورة خلفية صفحة تسجيل الدخول"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Login Page Designer"
+msgstr "مصمم صفحة تسجيل الدخول"
+
+#. module: login_page_designer
+#. odoo-javascript
+#: code:addons/login_page_designer/static/src/js/login_preview/login_preview_widget.xml:0
+msgid "Login page live preview"
+msgstr "معاينة حية لصفحة تسجيل الدخول"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid ""
+"Optional heading shown above the login form, translatable per installed "
+"language"
+msgstr "عنوان اختياري يظهر أعلى نموذج تسجيل الدخول، قابل للترجمة حسب كل لغة مثبتة"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_bg_type
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_bg_type
+msgid "Page Background"
+msgstr "خلفية الصفحة"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Position"
+msgstr "الموضع"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Pro Mode"
+msgstr "وضع المحترف"
+
+#. module: login_page_designer
+#: model:ir.model.fields.selection,name:login_page_designer.selection__res_company__lpd_position__right
+msgid "Right"
+msgstr "اليمين"
+
+#. module: login_page_designer
+#: model:ir.model.fields.selection,name:login_page_designer.selection__res_company__lpd_bg_type__color
+msgid "Solid Color"
+msgstr "لون واحد ثابت"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid ""
+"Switch on to apply your custom login page design. Leave off to keep Odoo's "
+"default login page."
+msgstr "فعّل لتطبيق تصميمك المخصص لصفحة تسجيل الدخول. اتركه معطلاً للإبقاء على صفحة تسجيل الدخول الافتراضية في أودو."
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "The login card itself - background, text and the login button/links"
+msgstr "بطاقة تسجيل الدخول نفسها - الخلفية والنص وزر/روابط تسجيل الدخول"
+
+#. module: login_page_designer
+#: model:ir.model.fields.selection,name:login_page_designer.selection__res_company__lpd_position__top
+msgid "Top"
+msgstr "أعلى"
+
+#. module: login_page_designer
+#: model:ir.model.fields,help:login_page_designer.field_res_company__lpd_enabled
+#: model:ir.model.fields,help:login_page_designer.field_res_config_settings__lpd_enabled
+msgid ""
+"Turn on to apply this company's custom login page design. Leave off to keep "
+"Odoo's default login page untouched."
+msgstr "فعّل لتطبيق تصميم صفحة تسجيل الدخول الخاص بهذه الشركة. اتركه معطلاً للحفاظ على صفحة تسجيل الدخول الافتراضية في أودو دون تغيير."
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_welcome_subtitle
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_welcome_subtitle
+msgid "Welcome Subtitle"
+msgstr "العنوان الفرعي الترحيبي"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Welcome Text"
+msgstr "نص الترحيب"
+
+#. module: login_page_designer
+#: model:ir.model.fields,field_description:login_page_designer.field_res_company__lpd_welcome_title
+#: model:ir.model.fields,field_description:login_page_designer.field_res_config_settings__lpd_welcome_title
+msgid "Welcome Title"
+msgstr "العنوان الترحيبي"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "What fills the rest of the screen behind the card"
+msgstr "ما يملأ باقي الشاشة خلف البطاقة"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "Where the login card sits on the screen"
+msgstr "أين تقع بطاقة تسجيل الدخول على الشاشة"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "e.g. Sign in to continue to your workspace"
+msgstr "مثال: سجّل الدخول لمتابعة العمل في مساحتك"
+
+#. module: login_page_designer
+#: model_terms:ir.ui.view,arch_db:login_page_designer.res_config_settings_view_form
+msgid "e.g. Welcome back"
+msgstr "مثال: أهلاً بعودتك"

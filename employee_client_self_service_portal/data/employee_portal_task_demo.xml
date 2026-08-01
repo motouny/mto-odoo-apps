@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="demo_portal_task_1" model="employee.portal.task">
+        <field name="employee_id" ref="hr.employee_hne"/>
+        <field name="assigned_by_id" ref="base.user_admin"/>
+        <field name="name">Prepare onboarding checklist for new hire</field>
+        <field name="description">Draft the checklist and share it with facilities.</field>
+        <field name="deadline" eval="(datetime.now() + relativedelta(days=3))"/>
+        <field name="state">accepted</field>
+    </record>
+
+    <record id="demo_portal_task_2" model="employee.portal.task">
+        <field name="employee_id" ref="hr.employee_al"/>
+        <field name="assigned_by_id" ref="base.user_admin"/>
+        <field name="name">Submit expense report for client visit</field>
+        <field name="deadline" eval="(datetime.now() + relativedelta(days=1))"/>
+        <field name="state">new</field>
+    </record>
+
+    <record id="demo_portal_task_3" model="employee.portal.task">
+        <field name="employee_id" ref="hr.employee_admin"/>
+        <field name="assigned_by_id" ref="base.user_admin"/>
+        <field name="name">Review and sign the updated remote work policy</field>
+        <field name="description">HR has updated the remote work policy - please review and confirm.</field>
+        <field name="deadline" eval="(datetime.now() + relativedelta(days=2))"/>
+        <field name="state">new</field>
+    </record>
+</odoo>

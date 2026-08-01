@@ -1,0 +1,36 @@
+// Settings > Chroma Identity - a light polish pass so this app's own
+// settings page reads as a deliberate, premium "identity control panel"
+// rather than a plain stack of default Odoo settings blocks - dogfeeds
+// the theme's own --chroma-* tokens on its own configuration screen.
+// Scoped to [data-key="chroma_identity_theme"] (see web.SettingsBlock /
+// web.SettingsApp core templates) so nothing else in Settings is touched.
+
+.app_settings_block[data-key="chroma_identity_theme"] {
+    h2 {
+        position: relative;
+        padding-inline-start: var(--chroma-space-3);
+        margin-top: var(--chroma-space-5);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset-inline-start: 0;
+            top: 3px;
+            bottom: 3px;
+            width: 4px;
+            border-radius: 2px;
+            background: var(--chroma-primary);
+        }
+    }
+
+    .o_setting_tip {
+        padding-inline-start: var(--chroma-space-3);
+        margin-bottom: var(--chroma-space-3) !important;
+    }
+
+    .o_setting_box {
+        padding-block: var(--chroma-space-2);
+    }
+}

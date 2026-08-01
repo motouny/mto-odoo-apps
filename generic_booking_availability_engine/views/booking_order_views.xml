@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_booking_order_list" model="ir.ui.view">
+        <field name="name">booking.order.list</field>
+        <field name="model">booking.order</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state in ('payment_failed', 'rejected_by_supplier')"
+                  decoration-success="state in ('confirmed', 'completed')"
+                  decoration-muted="state in ('cancelled_by_customer', 'cancelled_by_admin', 'refunded', 'no_show')">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date_order"/>
+                <field name="amount_total"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_booking_order_kanban" model="ir.ui.view">
+        <field name="name">booking.order.kanban</field>
+        <field name="model">booking.order</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="amount_total"/>
+                <field name="currency_id"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-2">
+                            <strong><field name="name"/></strong>
+                            <div><field name="partner_id"/></div>
+                            <div><field name="amount_total" widget="monetary"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_booking_order_form" model="ir.ui.view">
+        <field name="name">booking.order.form</field>
+        <field name="model">booking.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Request Payment" name="action_request_payment" type="object"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button string="Mark Paid" name="action_mark_paid" type="object"
+                            class="btn-primary" invisible="state not in ('pending_payment', 'payment_failed')"/>
+                    <button string="Payment Failed" name="action_mark_payment_failed" type="object"
+                            invisible="state != 'pending_payment'"/>
+                    <button string="Send to Supplier" name="action_send_to_supplier" type="object"
+                            class="btn-primary" invisible="state != 'paid'"/>
+                    <button string="Supplier Confirm" name="action_supplier_confirm" type="object"
+                            class="btn-primary" invisible="state != 'pending_supplier_confirmation'"/>
+                    <button string="Supplier Reject" name="action_supplier_reject" type="object"
+                            invisible="state != 'pending_supplier_confirmation'"/>
+                    <button string="Mark Completed" name="action_complete" type="object"
+                            class="btn-primary" invisible="state != 'confirmed'"/>
+                    <button string="Mark No-show" name="action_mark_no_show" type="object"
+                            invisible="state != 'confirmed'"/>
+                    <button string="Cancel (Customer)" name="action_cancel_by_customer" type="object"
+                            invisible="state not in ('pending_payment', 'paid', 'pending_supplier_confirmation', 'confirmed')"/>
+                    <button string="Cancel (Admin)" name="action_cancel_by_admin" type="object"
+                            invisible="state not in ('draft', 'pending_payment', 'payment_failed', 'paid', 'pending_supplier_confirmation', 'confirmed')"/>
+                    <button string="Request Refund" name="action_request_refund" type="object"
+                            invisible="state not in ('cancelled_by_customer', 'cancelled_by_admin')"/>
+                    <button string="Mark Refunded" name="action_mark_refunded" type="object"
+                            class="btn-primary" invisible="state != 'refund_requested'"/>
+                    <button string="Reset to Draft" name="action_reset_to_draft" type="object"
+                            invisible="state not in ('payment_failed', 'rejected_by_supplier', 'cancelled_by_admin')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,pending_payment,paid,pending_supplier_confirmation,confirmed,completed"
+                           options="{'clickable': '0'}"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(action_report_booking_voucher)d" type="action"
+                                class="oe_stat_button" icon="fa-file-pdf-o"
+                                invisible="state not in ('paid', 'pending_supplier_confirmation', 'confirmed', 'completed')">
+                            <span>Voucher</span>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="user_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="date_order"/>
+                            <field name="amount_total"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="sale_order_id"/>
+                        </group>
+                    </group>
+                    <group invisible="not cancelled_date">
+                        <group>
+                            <field name="cancelled_date"/>
+                            <field name="refund_percentage"/>
+                            <field name="refund_amount"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Booking Lines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="resource_id"/>
+                                    <field name="date_from"/>
+                                    <field name="date_to"/>
+                                    <field name="nights"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_price"/>
+                                    <field name="subtotal"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="note"/>
+                            <field name="rejection_reason" invisible="state != 'rejected_by_supplier'"/>
+                            <field name="cancellation_reason"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_booking_order_search" model="ir.ui.view">
+        <field name="name">booking.order.search</field>
+        <field name="model">booking.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter string="My Bookings" name="my_bookings" domain="[('user_id', '=', uid)]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Needs Attention" name="needs_attention"
+                        domain="[('state', 'in', ('pending_payment', 'payment_failed', 'pending_supplier_confirmation', 'refund_requested'))]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Customer" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_booking_order" model="ir.actions.act_window">
+        <field name="name">Bookings</field>
+        <field name="res_model">booking.order</field>
+        <field name="view_mode">list,kanban,form</field>
+    </record>
+</odoo>

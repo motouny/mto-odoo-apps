@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_digital_signature_signer_field_form" model="ir.ui.view">
+        <field name="name">digital.signature.signer.field.form</field>
+        <field name="model">digital.signature.signer</field>
+        <field name="arch" type="xml">
+            <form string="Signer Field Placement">
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="email" readonly="1"/>
+                        <field name="status" readonly="1"/>
+                    </group>
+                    <field name="field_ids">
+                        <list editable="bottom">
+                            <field name="field_type"/>
+                            <field name="page_number"/>
+                            <field name="pos_x"/>
+                            <field name="pos_y"/>
+                            <field name="width"/>
+                            <field name="height"/>
+                            <field name="required"/>
+                            <field name="selection_options"
+                                   invisible="field_type != 'selection'"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digital_signature_request_form" model="ir.ui.view">
+        <field name="name">digital.signature.request.form</field>
+        <field name="model">digital.signature.request</field>
+        <field name="arch" type="xml">
+            <form string="Signature Request">
+                <header>
+                    <button name="action_mark_ready" type="object" string="Mark Ready"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_send" type="object" string="Send"
+                            class="oe_highlight" invisible="state != 'ready'"/>
+                    <button name="action_resend" type="object" string="Resend"
+                            invisible="state not in ('sent', 'partially_signed')"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('completed', 'cancelled', 'rejected', 'expired')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,ready,sent,partially_signed,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="subject"/>
+                            <field name="description"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="signing_mode" readonly="state != 'draft'"/>
+                        </group>
+                        <group>
+                            <field name="expiration_date"/>
+                            <field name="reminder_interval_days"/>
+                            <field name="original_hash" readonly="1" invisible="not original_hash"/>
+                            <field name="final_hash" readonly="1" invisible="not final_hash"/>
+                            <field name="completed_date" readonly="1" invisible="not completed_date"/>
+                        </group>
+                    </group>
+                    <group string="Original Document" invisible="state != 'draft'">
+                        <field name="original_file" filename="original_filename"/>
+                        <field name="original_filename" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Signers">
+                            <field name="signer_ids" readonly="state not in ('draft', 'ready')">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="signer_type"/>
+                                    <field name="user_id" invisible="signer_type != 'internal'"/>
+                                    <field name="partner_id" invisible="signer_type != 'portal'"/>
+                                    <field name="name"/>
+                                    <field name="email"/>
+                                    <field name="status" widget="badge"/>
+                                    <field name="sent_date"/>
+                                    <field name="signed_date"/>
+                                    <button name="action_open_fields" type="object" string="Fields"
+                                            icon="fa-map-marker-alt" class="btn-link"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Documents">
+                            <field name="document_ids" readonly="1">
+                                <list>
+                                    <field name="document_type"/>
+                                    <field name="filename"/>
+                                    <field name="file" filename="filename"/>
+                                    <field name="page_count"/>
+                                    <field name="sha256_hash"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Audit Trail">
+                            <field name="event_ids" readonly="1">
+                                <list>
+                                    <field name="event_date"/>
+                                    <field name="event_type"/>
+                                    <field name="signer_id"/>
+                                    <field name="ip_address"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_digital_signature_request_list" model="ir.ui.view">
+        <field name="name">digital.signature.request.list</field>
+        <field name="model">digital.signature.request</field>
+        <field name="arch" type="xml">
+            <list string="Signature Requests">
+                <field name="name"/>
+                <field name="subject"/>
+                <field name="signing_mode"/>
+                <field name="created_by_uid"/>
+                <field name="expiration_date"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_digital_signature_request_search" model="ir.ui.view">
+        <field name="name">digital.signature.request.search</field>
+        <field name="model">digital.signature.request</field>
+        <field name="arch" type="xml">
+            <search string="Signature Requests">
+                <field name="name"/>
+                <field name="subject"/>
+                <filter string="Pending Signers" name="pending"
+                        domain="[('state', 'in', ('sent', 'partially_signed'))]"/>
+                <filter string="Completed" name="completed" domain="[('state', '=', 'completed')]"/>
+                <filter string="Expired" name="expired" domain="[('state', '=', 'expired')]"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Created By" name="group_creator" context="{'group_by': 'created_by_uid'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_digital_signature_request" model="ir.actions.act_window">
+        <field name="name">Signature Requests</field>
+        <field name="res_model">digital.signature.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_digital_signature_request_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smart_action">Create your first signature request.</p>
+        </field>
+    </record>
+
+    <record id="action_digital_signature_request_pending" model="ir.actions.act_window">
+        <field name="name">Pending Signers</field>
+        <field name="res_model">digital.signature.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_digital_signature_request_search"/>
+        <field name="context">{'search_default_pending': 1}</field>
+    </record>
+</odoo>

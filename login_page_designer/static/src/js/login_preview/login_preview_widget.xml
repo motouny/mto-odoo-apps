@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="login_page_designer.LoginPageDesignerPreview">
+        <div class="o_lpd_preview_wrapper">
+            <iframe t-ref="lpdIframe" t-att-src="state.src" class="o_lpd_preview_iframe"
+                    title="Login page live preview"/>
+        </div>
+    </t>
+
+</templates>

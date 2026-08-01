@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_booking" name="My Bookings" customize_show="True" inherit_id="portal.portal_my_home" priority="50">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_client_category_enable" t-value="True"/>
+        </xpath>
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Bookings</t>
+                <t t-set="url" t-value="'/my/bookings'"/>
+                <t t-set="text">View your booking history and download your vouchers</t>
+                <t t-set="placeholder_count" t-value="'booking_order_count'"/>
+            </t>
+        </div>
+    </template>
+
+    <template id="portal_my_bookings" name="My Bookings">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Bookings</t>
+            </t>
+
+            <div t-if="not orders" class="alert alert-warning" role="alert">
+                There are currently no bookings for your account.
+            </div>
+            <t t-if="orders" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>Reference</th>
+                        <th class="text-end">Booking Date</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-end">Total</th>
+                    </tr>
+                </thead>
+                <t t-foreach="orders" t-as="order">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/my/bookings/#{order.id}?{{ keep_query() }}">
+                                <t t-out="order.name"/>
+                            </a>
+                        </td>
+                        <td class="text-end"><span t-field="order.date_order"/></td>
+                        <td class="text-center">
+                            <span t-field="order.state" widget="badge"/>
+                        </td>
+                        <td class="text-end">
+                            <span t-field="order.amount_total" t-options="{'widget': 'monetary', 'display_currency': order.currency_id}"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_my_booking" name="Booking">
+        <t t-call="portal.portal_layout">
+            <t t-set="additional_title" t-value="order.name"/>
+            <div id="portal_booking_content">
+                <h3>
+                    <t t-out="order.name"/>
+                    <span t-field="order.state" widget="badge" class="ms-2"/>
+                </h3>
+                <p>
+                    <a t-attf-href="/my/bookings/#{order.id}/voucher" target="_blank" class="btn btn-secondary">
+                        <i class="fa fa-download"/> Download Voucher
+                    </a>
+                    <form t-if="order.state in ('pending_payment', 'paid', 'pending_supplier_confirmation', 'confirmed')"
+                          t-attf-action="/my/bookings/#{order.id}/cancel" method="post" class="d-inline">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <button type="submit" class="btn btn-link text-danger">Request Cancellation</button>
+                    </form>
+                </p>
+
+                <div t-if="order.cancelled_date" class="alert alert-info">
+                    Cancelled on <span t-field="order.cancelled_date"/> -
+                    Refund: <span t-field="order.refund_percentage"/>% (<span t-field="order.refund_amount" t-options="{'widget': 'monetary', 'display_currency': order.currency_id}"/>)
+                </div>
+
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th class="text-end">Qty</th>
+                            <th class="text-end">Unit Price</th>
+                            <th class="text-end">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="order.line_ids" t-as="line">
+                            <td><t t-out="line.resource_id.name"/></td>
+                            <td><span t-field="line.date_from"/></td>
+                            <td><span t-field="line.date_to"/></td>
+                            <td class="text-end"><t t-out="line.quantity"/></td>
+                            <td class="text-end"><span t-field="line.unit_price" t-options="{'widget': 'monetary', 'display_currency': order.currency_id}"/></td>
+                            <td class="text-end"><span t-field="line.subtotal" t-options="{'widget': 'monetary', 'display_currency': order.currency_id}"/></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-end"><strong>Total</strong></td>
+                            <td class="text-end"><span t-field="order.amount_total" t-options="{'widget': 'monetary', 'display_currency': order.currency_id}"/></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

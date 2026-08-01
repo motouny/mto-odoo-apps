@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_sign_page" name="Sign Document">
+        <t t-call="portal.frontend_layout">
+            <div class="container mt-4 mb-5" style="max-width:720px;">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="mb-1" t-esc="req.subject"/>
+                        <p class="text-muted">
+                            Signer: <strong t-esc="signer.name"/>
+                            (<span t-esc="dict(signer._fields['status'].selection).get(signer.status)"/>)
+                        </p>
+
+                        <div t-if="error" class="alert alert-danger" role="alert" t-out="error"/>
+
+                        <t t-if="not can_sign">
+                            <div class="alert alert-info">
+                                <t t-if="signer.status == 'signed'">
+                                    You already signed this document on
+                                    <span t-field="signer.signed_date"/>.
+                                    <t t-if="req.state == 'completed'">
+                                        <br/>
+                                        <a t-attf-href="/sign/#{signer.token}/download/final">
+                                            Download the final signed document
+                                        </a>
+                                    </t>
+                                </t>
+                                <t t-elif="signer.status == 'rejected'">
+                                    You rejected this document.
+                                </t>
+                                <t t-else="">
+                                    This signing link is no longer active.
+                                </t>
+                            </div>
+                        </t>
+
+                        <t t-if="can_sign">
+                            <p>
+                                <a t-attf-href="/sign/#{signer.token}/download/original" target="_blank">
+                                    View the original document
+                                </a>
+                            </p>
+
+                            <form t-attf-action="/sign/#{signer.token}/submit" method="post" id="signForm">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                <t t-foreach="fields" t-as="f">
+                                    <div class="o_signature_field_block">
+                                        <label class="form-label fw-bold">
+                                            <t t-esc="dict(f._fields['field_type'].selection).get(f.field_type)"/>
+                                            <span t-if="f.required" class="text-danger">*</span>
+                                            (page <t t-esc="f.page_number"/>)
+                                        </label>
+
+                                        <t t-if="f.field_type in ('signature', 'initials', 'stamp')">
+                                            <br/>
+                                            <canvas t-att-id="'pad_%s' % f.id" class="o_signature_pad"
+                                                    width="400" height="120"
+                                                    t-att-data-input-id="'field_%s' % f.id"/>
+                                            <br/>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary mt-1"
+                                                    t-att-data-clear-for="'pad_%s' % f.id">Clear</button>
+                                            <input type="hidden" t-att-id="'field_%s' % f.id"
+                                                   t-attf-name="field_#{f.id}"/>
+                                        </t>
+                                        <t t-elif="f.field_type == 'date'">
+                                            <input type="date" class="form-control"
+                                                   t-attf-name="field_#{f.id}" t-att-required="f.required"/>
+                                        </t>
+                                        <t t-elif="f.field_type == 'checkbox'">
+                                            <input type="checkbox" class="form-check-input ms-2"
+                                                   t-attf-name="field_#{f.id}"/>
+                                        </t>
+                                        <t t-elif="f.field_type == 'selection'">
+                                            <select class="form-select" t-attf-name="field_#{f.id}"
+                                                    t-att-required="f.required">
+                                                <t t-foreach="(f.selection_options or '').split(',')" t-as="opt">
+                                                    <option t-att-value="opt.strip()" t-esc="opt.strip()"/>
+                                                </t>
+                                            </select>
+                                        </t>
+                                        <t t-else="">
+                                            <input type="text" class="form-control"
+                                                   t-attf-name="field_#{f.id}" t-att-required="f.required"/>
+                                        </t>
+                                    </div>
+                                </t>
+
+                                <button type="submit" class="btn btn-primary">Sign Document</button>
+                            </form>
+
+                            <hr/>
+                            <form t-attf-action="/sign/#{signer.token}/reject" method="post" class="mt-2">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <label class="form-label">Reject with a reason (optional)</label>
+                                <textarea name="reason" class="form-control mb-2" rows="2"/>
+                                <button type="submit" class="btn btn-outline-danger btn-sm">
+                                    Reject Document
+                                </button>
+                            </form>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_verify_page" name="Verify Signed Document">
+        <t t-call="portal.frontend_layout">
+            <div class="container mt-4 mb-5" style="max-width:600px;">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h2>Document Verification</h2>
+                        <t t-if="not found">
+                            <div class="alert alert-warning mt-3">
+                                No document was found for this verification code.
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <t t-if="is_valid">
+                                <div class="alert alert-success mt-3">
+                                    <strong>&#10003; Valid</strong><br/>
+                                    This document was completed on
+                                    <span t-field="req.completed_date"/> and its integrity is intact.
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <div class="alert alert-danger mt-3">
+                                    This request is not yet completed, so there is no final
+                                    signed document to verify.
+                                </div>
+                            </t>
+                            <p class="text-muted small">
+                                Reference: <span t-esc="req.name"/>
+                            </p>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

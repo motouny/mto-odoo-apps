@@ -1,0 +1,70 @@
+// Design tokens for the Chroma Identity Theme.
+//
+// --chroma-primary / --chroma-accent / --chroma-on-primary / --chroma-on-accent are
+// runtime-overridable CSS custom properties: the defaults below are a
+// professional, WCAG 2.1 AA contrast-checked starting palette, and
+// views/layout_templates.xml injects the company's actual chosen colors
+// (Settings > Chroma Identity, see models/res_company.py) with !important so
+// they always win, with no assets rebuild needed.
+:root {
+    // MTO Signature (purple/black) - the theme's own default brand
+    // identity (see CHROMA_COLOR_PRESETS in models/res_company.py). Still
+    // fully customer-overridable from Settings > Chroma Identity.
+    --chroma-primary: #5E4766;
+    --chroma-accent: #010101;
+    --chroma-on-primary: #FFFFFF;
+    --chroma-on-accent: #FFFFFF;
+    // R,G,B channels, for rgba() tints - kept in sync with --chroma-primary/
+    // --chroma-accent above (also runtime-overridden together, see
+    // views/layout_templates.xml).
+    --chroma-primary-rgb: 94, 71, 102;
+    --chroma-accent-rgb: 1, 1, 1;
+
+    // Dark "frame" behind the navbar/sidebar/card-launcher dropdowns -
+    // customer-editable separately from primary/accent (Settings > Chroma
+    // Identity > Colors), see views/layout_templates.xml.
+    --chroma-chrome: #0A0A0A;
+    --chroma-on-chrome: #FFFFFF;
+
+    // Text colors - also runtime-overridable (Settings > Chroma Identity > Text
+    // Colors), same !important injection pattern as the brand colors above.
+    --chroma-heading-color: #111827;
+    --chroma-body-color: #1F2937;
+    --chroma-muted-color: #6B7280;
+
+    // Neutral/chrome scale - a true black-based grayscale (not tinted),
+    // so --chroma-neutral-900 itself reads as "black" for the sidebar/home
+    // menu/footer dark chrome, reinforcing the purple+black identity
+    // wherever a dark surface is used, not just in primary/accent.
+    --chroma-neutral-900: #0A0A0A;
+    --chroma-neutral-700: #3D3D3D;
+    --chroma-neutral-500: #6B6B6B;
+    --chroma-neutral-300: #B0B0B0;
+    --chroma-neutral-200: #E0E0E0;
+    --chroma-neutral-100: #F5F5F5;
+    --chroma-neutral-0: #FFFFFF;
+
+    --chroma-danger: #B3261E;
+    --chroma-warning: #8A5A00;
+    --chroma-success: #1B7A3D;
+
+    --chroma-radius-sm: 6px;
+    --chroma-radius-md: 10px;
+    --chroma-radius-lg: 16px;
+
+    --chroma-space-1: 4px;
+    --chroma-space-2: 8px;
+    --chroma-space-3: 16px;
+    --chroma-space-4: 24px;
+    --chroma-space-5: 32px;
+
+    --chroma-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+    --chroma-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.16);
+
+    --chroma-focus-ring: 0 0 0 3px rgba(94, 71, 102, 0.45);
+    --chroma-transition: 150ms ease-in-out;
+
+    // Persistent backend sidebar (static/src/js/app_launcher/app_sidebar.js)
+    --chroma-sidebar-width-expanded: 208px;
+    --chroma-sidebar-width-collapsed: 56px;
+}

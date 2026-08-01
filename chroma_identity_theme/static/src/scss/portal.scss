@@ -1,0 +1,81 @@
+// Portal (My Account / documents / chatter) restyle using the shared
+// design tokens from variables.scss. Odoo's rtlcss pipeline mirrors all of
+// this automatically for RTL languages - only logical properties are used
+// below (inset-inline-*, margin-inline-*) so nothing needs a manual RTL pass.
+
+.o_portal_navbar {
+    background: var(--chroma-neutral-0);
+    border-bottom: 1px solid var(--chroma-neutral-200);
+}
+
+#wrapwrap .o_portal_content,
+#wrapwrap .o_portal_my_home {
+    color: var(--chroma-body-color);
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--chroma-heading-color);
+    }
+
+    .text-muted,
+    small {
+        color: var(--chroma-muted-color) !important;
+    }
+}
+
+.o_portal_index_card {
+    border: 1px solid var(--chroma-neutral-200);
+    border-radius: var(--chroma-radius-md);
+    box-shadow: var(--chroma-shadow-sm);
+    transition: box-shadow var(--chroma-transition), transform var(--chroma-transition);
+
+    &:hover {
+        box-shadow: var(--chroma-shadow-md);
+        transform: translateY(-2px);
+    }
+
+    .fa,
+    .oi {
+        color: var(--chroma-primary);
+    }
+}
+
+.o_portal_my_home .btn-primary,
+.o_portal_content .btn-primary {
+    background-color: var(--chroma-primary);
+    border-color: var(--chroma-primary);
+    color: var(--chroma-on-primary);
+
+    &:hover,
+    &:focus {
+        background-color: var(--chroma-accent);
+        border-color: var(--chroma-accent);
+        color: var(--chroma-on-accent);
+    }
+}
+
+.o_portal_my_doc_table {
+    thead th {
+        background: var(--chroma-neutral-100);
+        color: var(--chroma-neutral-900);
+        font-weight: 600;
+        border-bottom: 2px solid var(--chroma-neutral-200);
+    }
+
+    tbody tr:hover {
+        background: var(--chroma-neutral-100);
+    }
+}
+
+.o_portal_chatter {
+    border-radius: var(--chroma-radius-md);
+    border: 1px solid var(--chroma-neutral-200);
+    padding: var(--chroma-space-3);
+}
+
+.o_portal_sidebar_content a {
+    color: var(--chroma-primary);
+
+    &:hover {
+        color: var(--chroma-accent);
+    }
+}

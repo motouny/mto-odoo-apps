@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="mail_template_signature_invitation" model="mail.template">
+        <field name="name">Digital Signature: Invitation</field>
+        <field name="model_id" ref="model_digital_signature_signer"/>
+        <field name="subject">Please sign: {{ object.request_id.subject }}</field>
+        <field name="email_to">{{ object.email }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Dear <t t-out="object.name"/>,</p>
+                <p>
+                    You have been asked to sign <strong t-out="object.request_id.subject"/>
+                    (<t t-out="object.request_id.name"/>).
+                </p>
+                <p>
+                    <a t-attf-href="{{ object.get_base_url() }}/sign/{{ object.token }}">
+                        Review and Sign
+                    </a>
+                </p>
+                <p t-if="object.request_id.expiration_date">
+                    This link expires on <t t-out="object.request_id.expiration_date"/>.
+                </p>
+                <p>This link is personal, do not share it.</p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_signature_reminder" model="mail.template">
+        <field name="name">Digital Signature: Reminder</field>
+        <field name="model_id" ref="model_digital_signature_signer"/>
+        <field name="subject">Reminder: please sign {{ object.request_id.subject }}</field>
+        <field name="email_to">{{ object.email }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>Dear <t t-out="object.name"/>,</p>
+                <p>
+                    This is a reminder that <strong t-out="object.request_id.subject"/> is still
+                    waiting for your signature.
+                </p>
+                <p>
+                    <a t-attf-href="{{ object.get_base_url() }}/sign/{{ object.token }}">
+                        Review and Sign
+                    </a>
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="mail_template_signature_completed" model="mail.template">
+        <field name="name">Digital Signature: Completed</field>
+        <field name="model_id" ref="model_digital_signature_request"/>
+        <field name="subject">Completed: {{ object.subject }}</field>
+        <field name="body_html" type="html">
+            <div>
+                <p>
+                    All signers have completed <strong t-out="object.subject"/>
+                    (<t t-out="object.name"/>).
+                </p>
+                <p>
+                    <a t-attf-href="{{ object.get_base_url() }}/sign/verify/{{ object.verification_token }}">
+                        Verify this document online
+                    </a>
+                </p>
+            </div>
+        </field>
+    </record>
+</odoo>

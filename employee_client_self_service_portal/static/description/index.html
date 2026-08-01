@@ -4,25 +4,41 @@
         <h1 style="font-size: 2rem; margin-bottom: 8px; color: #222;">Employee &amp; Client Self-Service Portal</h1>
         <p style="font-size: 1.1rem; color: #666;">
             HR self-service for employees who don't need a full internal Odoo license,
-            plus a client-facing team-oversight role &mdash; all from the standard Odoo portal.
+            a client-facing team-oversight role, and a general request system for both
+            &mdash; all from the standard Odoo portal.
         </p>
+        <div>
+            <span style="display:inline-block; background:#f7f5f9; border:1px solid #e5e0e3; border-radius:20px; padding:6px 16px; margin:4px; font-size:14px;">Odoo 18</span>
+            <span style="display:inline-block; background:#f7f5f9; border:1px solid #e5e0e3; border-radius:20px; padding:6px 16px; margin:4px; font-size:14px;">Community &amp; Enterprise</span>
+        </div>
     </div>
 
     <div style="margin-bottom: 32px;">
         <img src="screenshots/01_dashboard.png" alt="Employee dashboard with leave balance and approval stepper" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block; margin-bottom:16px;"/>
         <div style="display:flex; gap:16px; flex-wrap:wrap;">
             <div style="flex:1; min-width:260px;">
-                <img src="screenshots/05_my_team.png" alt="Portal Manager team card grid with live status" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
+                <img src="screenshots/03_my_team.png" alt="Portal Manager team card grid with live status" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
                 <p style="text-align:center; color:#888; font-size:0.85rem; margin-top:6px;">Portal Manager &ndash; My Team</p>
             </div>
             <div style="flex:1; min-width:260px;">
-                <img src="screenshots/06_approvals.png" alt="Time off approval queue for the Portal Manager" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
-                <p style="text-align:center; color:#888; font-size:0.85rem; margin-top:6px;">Portal Manager &ndash; Approvals</p>
-            </div>
-            <div style="flex:1; min-width:260px;">
-                <img src="screenshots/03_assignments.png" alt="Employee assignments with accept and status update" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
+                <img src="screenshots/05_assignments.png" alt="Employee assignments with accept and status update" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
                 <p style="text-align:center; color:#888; font-size:0.85rem; margin-top:6px;">Employee &ndash; My Assignments</p>
             </div>
+            <div style="flex:1; min-width:260px;">
+                <img src="screenshots/07_client_portal.png" alt="External client self-service request list" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
+                <p style="text-align:center; color:#888; font-size:0.85rem; margin-top:6px;">Client &ndash; My Requests</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 32px; display:flex; gap:16px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:260px;">
+            <img src="screenshots/06_backend_requests.png" alt="Staff backend triage queue for all requests" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
+            <p style="text-align:center; color:#888; font-size:0.85rem; margin-top:6px;">Staff &ndash; Request triage (backend)</p>
+        </div>
+        <div style="flex:1; min-width:260px;">
+            <img src="screenshots/08_request_detail.png" alt="Request detail with status history and comments" style="width:100%; border-radius: 10px; border: 1px solid #e5e0e3; box-shadow: 0 4px 16px rgba(0,0,0,0.08); display:block;"/>
+            <p style="text-align:center; color:#888; font-size:0.85rem; margin-top:6px;">Request detail &ndash; status history &amp; comments</p>
         </div>
     </div>
 
@@ -43,6 +59,14 @@
             status for the day and approve time-off requests, entirely from the
             portal, with zero Odoo licenses on their side either.
         </p>
+        <p>
+            And for everything that isn't a leave request &mdash; a permission, an
+            attendance correction, an overtime claim, a letter, an equipment request,
+            an internal support ticket, or a genuine external client service request
+            &mdash; the built-in <strong>request system</strong> gives both employees
+            and true external clients a single place to submit, track and comment on
+            their own requests, with a full audit trail and in-portal notifications.
+        </p>
     </div>
 
     <h2>What employees get under <code>/my</code></h2>
@@ -57,6 +81,10 @@
             <td style="padding:10px; border-bottom:1px solid #eee;">Read-only list of Project tasks assigned to the employee.</td></tr>
         <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>My Assignments</strong></td>
             <td style="padding:10px; border-bottom:1px solid #eee;">Accept lightweight tasks assigned by the project's Portal Manager, post status updates, get a daily email reminder until marked done.</td></tr>
+        <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>My Requests</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">Submit permission, attendance correction, overtime, letter, data change, equipment or internal support requests, and track each one through to closure.</td></tr>
+        <tr><td style="padding:10px;"><strong>Notifications</strong></td>
+            <td style="padding:10px;">In-portal notifications every time one of your requests changes status.</td></tr>
     </table>
 
     <h2>What a project's Portal Manager gets</h2>
@@ -65,17 +93,38 @@
             <td style="padding:10px; border-bottom:1px solid #eee;">Card-grid of the project's employees with today's status: present, on leave, on permission or absent.</td></tr>
         <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>Approvals</strong></td>
             <td style="padding:10px; border-bottom:1px solid #eee;">First-stage approval on the team's time off / permission requests before internal HR finalizes them.</td></tr>
-        <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>Team Tasks</strong></td>
-            <td style="padding:10px; border-bottom:1px solid #eee;">Assign lightweight tasks with a deadline to the project's employees and track progress.</td></tr>
+        <tr><td style="padding:10px;"><strong>Team Tasks</strong></td>
+            <td style="padding:10px;">Assign lightweight tasks with a deadline to the project's employees and track progress.</td></tr>
+    </table>
+
+    <h2>What a true external Client gets (new, separate role)</h2>
+    <p>
+        A dedicated <strong>Client</strong> group &mdash; distinct from the project-scoped
+        Portal Manager above &mdash; lets an external company contact submit and track
+        their own service requests under <code>/my/requests</code>, without ever seeing
+        any employee HR data. Every request is looked up strictly by ownership; a client
+        can never see another client's request, and an employee can never see a client's
+        request either.
+    </p>
+
+    <h2>What your staff get in the backend</h2>
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 24px;">
+        <tr><td style="padding:10px; border-bottom:1px solid #eee; width:180px;"><strong>All Requests</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">Every employee and client request in one queue, with pivot/graph reporting by type, status and assignee.</td></tr>
+        <tr><td style="padding:10px; border-bottom:1px solid #eee;"><strong>My Tickets / Overdue</strong></td>
+            <td style="padding:10px; border-bottom:1px solid #eee;">Quick filters for what's assigned to you and what's past its due date.</td></tr>
+        <tr><td style="padding:10px;"><strong>Request Types &amp; Teams</strong></td>
+            <td style="padding:10px;">Configure your own request categories and the teams that handle them.</td></tr>
     </table>
 
     <div style="background:#f7f5f9; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
-        <h2 style="margin-top:0;">Built for multi-tenant, license-conscious deployments</h2>
+        <h2 style="margin-top:0;">Built for multi-tenant, license-conscious, multi-company deployments</h2>
         <ul>
-            <li>No new security groups &mdash; everything runs on the standard Portal user type.</li>
+            <li>Only two new security groups: <strong>Client</strong> (external self-service) and <strong>Request Manager</strong> (internal triage staff) &mdash; the existing employee and Portal Manager flows still run on the standard Portal user type.</li>
             <li>Branding follows your own company name and logo automatically; no fixed color scheme is imposed.</li>
-            <li>The Portal Manager role is assigned per <em>project</em>, so a single client contact can oversee exactly the employees working on their project &mdash; nothing else.</li>
+            <li>The Portal Manager role is assigned per <em>project</em>, so a single client contact can oversee exactly the employees working on their project &mdash; nothing else &mdash; and this is now correctly scoped per company too.</li>
             <li>Two-stage time-off validation: the client-side Portal Manager approves first, then your internal HR finalizes it &mdash; the client is never the final word.</li>
+            <li>The request status history is immutable &mdash; not even an administrator can edit it through the UI.</li>
             <li>Ships in English and Arabic.</li>
         </ul>
     </div>
@@ -93,7 +142,8 @@
         <li>On an <code>hr.employee</code> record, use the <strong>Grant Portal Access</strong> button to create (or link) a portal user for that employee.</li>
         <li>On a <code>project.project</code>, set the <strong>Portal Manager</strong> field to the portal user who should oversee that project's employees.</li>
         <li>On each <code>hr.employee</code> working on that project, set <strong>Portal Project</strong> to the same project.</li>
-        <li>Done &mdash; the employee sees their self-service tiles at <code>/my</code>, and the Portal Manager sees a "My Team" tile.</li>
+        <li>Under <strong>Settings &rarr; Users</strong>, assign the <strong>Client</strong> group to any external contact who should get their own request self-service area, and <strong>Request Manager</strong> to the internal staff who will triage requests.</li>
+        <li>Done &mdash; employees see their self-service tiles (including My Requests) at <code>/my</code>, the Portal Manager sees a "My Team" tile, and clients land directly on their own request list.</li>
     </ol>
 
     <div style="text-align:center; padding: 24px 0 8px; border-top: 1px solid #eee; margin-top: 8px;">

@@ -4,3 +4,14 @@ access_hr_leave_allocation_portal,hr.leave.allocation.portal,hr_holidays.model_h
 access_hr_leave_type_portal,hr.leave.type.portal,hr_holidays.model_hr_leave_type,base.group_portal,1,0,0,0
 access_hr_attendance_portal,hr.attendance.portal,hr_attendance.model_hr_attendance,base.group_portal,1,0,0,0
 access_employee_portal_task_portal,employee.portal.task.portal,model_employee_portal_task,base.group_portal,1,0,0,0
+access_ess_request_type_portal,ess.request.type.portal,model_ess_request_type,base.group_portal,1,0,0,0
+access_ess_request_type_manager,ess.request.type.manager,model_ess_request_type,group_ess_request_manager,1,1,1,1
+access_ess_request_team_manager,ess.request.team.manager,model_ess_request_team,group_ess_request_manager,1,1,1,1
+access_ess_request_portal,ess.request.portal,model_ess_request,base.group_portal,1,1,1,0
+access_ess_request_manager,ess.request.manager,model_ess_request,group_ess_request_manager,1,1,1,1
+access_ess_request_comment_portal,ess.request.comment.portal,model_ess_request_comment,base.group_portal,1,0,1,0
+access_ess_request_comment_manager,ess.request.comment.manager,model_ess_request_comment,group_ess_request_manager,1,1,1,0
+access_ess_request_status_history_portal,ess.request.status.history.portal,model_ess_request_status_history,base.group_portal,1,0,0,0
+access_ess_request_status_history_manager,ess.request.status.history.manager,model_ess_request_status_history,group_ess_request_manager,1,0,0,0
+access_ess_portal_notification_portal,ess.portal.notification.portal,model_ess_portal_notification,base.group_portal,1,1,0,0
+access_ess_portal_notification_user,ess.portal.notification.user,model_ess_portal_notification,base.group_user,1,1,0,0

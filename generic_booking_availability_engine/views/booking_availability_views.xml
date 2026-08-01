@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_booking_availability_list" model="ir.ui.view">
+        <field name="name">booking.availability.list</field>
+        <field name="model">booking.availability</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="resource_id"/>
+                <field name="date"/>
+                <field name="capacity_total"/>
+                <field name="capacity_booked"/>
+                <field name="capacity_remaining"/>
+                <field name="is_blackout"/>
+                <field name="note"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_booking_availability_form" model="ir.ui.view">
+        <field name="name">booking.availability.form</field>
+        <field name="model">booking.availability</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="resource_id"/>
+                        <field name="date"/>
+                        <field name="capacity_total"/>
+                        <field name="capacity_booked"/>
+                        <field name="capacity_remaining"/>
+                        <field name="is_blackout"/>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_booking_availability_calendar" model="ir.ui.view">
+        <field name="name">booking.availability.calendar</field>
+        <field name="model">booking.availability</field>
+        <field name="arch" type="xml">
+            <calendar date_start="date" string="Availability" color="resource_id" mode="month" quick_create="0">
+                <field name="resource_id"/>
+                <field name="capacity_remaining"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_booking_availability_search" model="ir.ui.view">
+        <field name="name">booking.availability.search</field>
+        <field name="model">booking.availability</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="resource_id"/>
+                <field name="date"/>
+                <filter string="Blackout" name="blackout" domain="[('is_blackout', '=', True)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Resource" name="group_resource" context="{'group_by': 'resource_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_booking_availability" model="ir.actions.act_window">
+        <field name="name">Availability</field>
+        <field name="res_model">booking.availability</field>
+        <field name="view_mode">calendar,list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_booking_root" name="Booking Engine" sequence="65" web_icon="generic_booking_availability_engine,static/description/icon.png"/>
+
+    <menuitem id="menu_booking_orders" name="Bookings" parent="menu_booking_root" sequence="10"
+              action="action_booking_order"/>
+
+    <menuitem id="menu_booking_configuration" name="Configuration" parent="menu_booking_root" sequence="90"
+              groups="generic_booking_availability_engine.group_booking_manager"/>
+    <menuitem id="menu_booking_resources" name="Resources" parent="menu_booking_configuration" sequence="10"
+              action="action_booking_resource"/>
+    <menuitem id="menu_booking_resource_categories" name="Categories" parent="menu_booking_configuration" sequence="20"
+              action="action_booking_resource_category"/>
+    <menuitem id="menu_booking_availability" name="Availability" parent="menu_booking_configuration" sequence="30"
+              action="action_booking_availability"/>
+    <menuitem id="menu_booking_pricing_rules" name="Pricing Rules" parent="menu_booking_configuration" sequence="40"
+              action="action_booking_pricing_rule"/>
+    <menuitem id="menu_booking_cancellation_policies" name="Cancellation Policies" parent="menu_booking_configuration" sequence="50"
+              action="action_booking_cancellation_policy"/>
+</odoo>

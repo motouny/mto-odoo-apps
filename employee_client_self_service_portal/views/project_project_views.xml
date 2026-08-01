@@ -7,6 +7,23 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_id']" position="after">
                 <field name="portal_manager_id" widget="many2one_avatar_user"/>
+                <field name="project_owner_id" widget="many2one_avatar_user"/>
+                <field name="attendance_longitude" invisible="1"/>
+                <field name="attendance_radius" invisible="1"/>
+                <label for="attendance_latitude" string="Attendance Zone"/>
+                <field name="attendance_latitude" widget="attendance_zone_map" nolabel="1" colspan="2"/>
+            </xpath>
+            <xpath expr="//page[@name='description']" position="after">
+                <page name="team_members" string="Team Members">
+                    <field name="employee_ids" nolabel="1" options="{'no_create': True, 'no_open': False}">
+                        <list create="false" delete="false">
+                            <field name="name"/>
+                            <field name="job_title"/>
+                            <field name="work_email" widget="email"/>
+                            <field name="work_phone" widget="phone"/>
+                        </list>
+                    </field>
+                </page>
             </xpath>
         </field>
     </record>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_booking" model="ir.module.category">
+        <field name="name">Booking Engine</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="group_booking_user" model="res.groups">
+        <field name="name">Booking Operator</field>
+        <field name="category_id" ref="module_category_booking"/>
+        <field name="comment">Can create and manage booking orders, view resources and availability.</field>
+    </record>
+
+    <record id="group_booking_manager" model="res.groups">
+        <field name="name">Booking Manager</field>
+        <field name="category_id" ref="module_category_booking"/>
+        <field name="implied_ids" eval="[(4, ref('group_booking_user'))]"/>
+        <field name="comment">Full configuration access: resources, availability, pricing rules and cancellation policies.</field>
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

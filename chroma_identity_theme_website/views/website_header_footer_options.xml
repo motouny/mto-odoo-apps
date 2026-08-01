@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Registers "Government / Public Sector" as one more choice in the
+         SAME header and footer "Template" pickers Odoo already ships
+         (Website > Configure > Theme > Header/Footer), instead of building
+         a parallel selection system - see website/views/snippets/snippets.xml
+         for the we-select this extends. This is an OPTIONAL pack aimed at
+         public-sector customers; the theme's own default header/footer
+         (Odoo's stock "Default" choice) is what applies out of the box. -->
+    <template id="website_header_footer_options" inherit_id="website.snippet_options"
+              name="Government / Public Sector Header/Footer Options">
+        <xpath expr="//we-select[@data-variable='header-template']" position="inside">
+            <we-button title="Government / Public Sector"
+                       data-name="header_government_opt"
+                       data-trigger="regular_header_visibility_opt"
+                       data-customize-website-views="chroma_identity_theme_website.template_header_government"
+                       data-customize-website-variable="'government'"
+                       data-img="/website/static/src/img/snippets_options/header_template_default.svg"/>
+        </xpath>
+        <xpath expr="//we-select[@data-variable='footer-template']" position="inside">
+            <we-button title="Government / Public Sector"
+                       data-customize-website-views="chroma_identity_theme_website.template_footer_government"
+                       data-customize-website-variable="'government'"
+                       data-img="/website/static/src/img/snippets_options/footer_template_default.svg"/>
+        </xpath>
+    </template>
+</odoo>

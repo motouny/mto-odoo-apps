@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="chroma_identity_theme.ChromaThemePreview">
+        <div class="o_chroma_theme_preview" t-att-style="previewStyle">
+            <div class="o_chroma_theme_preview_chrome" title="Preview: backend navbar / sidebar color">
+                <span class="o_chroma_theme_preview_chrome_dot"/>
+                <span class="o_chroma_theme_preview_chrome_dot"/>
+                <span class="o_chroma_theme_preview_chrome_dot"/>
+                <span class="o_chroma_theme_preview_chrome_label">Navbar / Sidebar</span>
+            </div>
+            <div class="o_chroma_theme_preview_card">
+                <span class="o_chroma_theme_preview_badge">Chroma Identity</span>
+                <h3 class="o_chroma_theme_preview_heading">عنوان تجريبي · Sample Heading</h3>
+                <p class="o_chroma_theme_preview_body">
+                    هذا نص تجريبي لمعاينة شكل الثيم قبل الحفظ.
+                    This is sample body text to preview the theme before saving.
+                </p>
+                <p class="o_chroma_theme_preview_muted">نص ثانوي · Secondary / muted text</p>
+                <button type="button" class="o_chroma_theme_preview_btn">زر أساسي · Primary Button</button>
+            </div>
+        </div>
+    </t>
+</templates>

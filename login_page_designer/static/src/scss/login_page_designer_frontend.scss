@@ -1,0 +1,24 @@
+// Static, company-independent layout helpers. Per-company colors,
+// background and position are injected as an inline <style> tag by
+// _lpd_build_style_markup() in models/res_company.py - this file only
+// covers the parts that never change per company.
+
+body.o_lpd_login_page {
+    #wrapwrap {
+        min-height: 100vh;
+    }
+
+    .o_lpd_welcome h4 {
+        font-weight: 600;
+    }
+
+    .o_lpd_custom_html {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    .card.o_lpd_card {
+        box-shadow: 0 8px 30px rgba(0, 0, 0, .12);
+    }
+}

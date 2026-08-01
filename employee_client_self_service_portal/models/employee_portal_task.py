@@ -20,6 +20,12 @@ class EmployeePortalTask(models.Model):
     ], string='Status', default='new', required=True)
     status_note = fields.Text(string='Latest Update')
     last_update_date = fields.Datetime(string='Last Updated')
+    overdue_alert_sent = fields.Boolean(string='Overdue Alert Sent', default=False, copy=False)
+
+    def write(self, vals):
+        if vals.get('deadline') and 'overdue_alert_sent' not in vals:
+            vals['overdue_alert_sent'] = False
+        return super().write(vals)
 
     def _cron_send_reminders(self):
         template = self.env.ref('employee_client_self_service_portal.mail_template_assignment_reminder', raise_if_not_found=False)
@@ -34,3 +40,20 @@ class EmployeePortalTask(models.Model):
             template.with_context(pending_tasks=tasks).send_mail(
                 employee.id, force_send=True, email_values={'email_to': employee.work_email},
             )
+
+    def _cron_send_overdue_alerts(self):
+        template = self.env.ref('employee_client_self_service_portal.mail_template_task_overdue', raise_if_not_found=False)
+        if not template:
+            return
+        overdue = self.search([
+            ('state', '!=', 'done'),
+            ('deadline', '!=', False),
+            ('deadline', '<', fields.Datetime.now()),
+            ('overdue_alert_sent', '=', False),
+        ])
+        for task in overdue:
+            employee = task.employee_id
+            if not employee.user_id or not employee.work_email:
+                continue
+            template.send_mail(task.id, force_send=True, email_values={'email_to': employee.work_email})
+        overdue.write({'overdue_alert_sent': True})

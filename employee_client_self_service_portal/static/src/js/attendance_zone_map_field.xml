@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="employee_client_self_service_portal.AttendanceZoneMapField">
+        <div class="o_ess_attendance_zone_map">
+            <div t-if="state.loadError" class="alert alert-warning mb-2" role="alert">
+                Could not load the map. You can still enter the coordinates manually below.
+            </div>
+            <div t-else="" class="d-flex flex-wrap gap-2 mb-2">
+                <input type="text" class="form-control form-control-sm w-auto flex-grow-1"
+                       t-att-placeholder="searchPlaceholder"
+                       t-model="state.searchText"
+                       t-on-keydown="onSearchKeydown"/>
+                <button type="button" class="btn btn-outline-secondary btn-sm" t-on-click="searchAddress" t-att-disabled="state.searching">
+                    Search
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" t-on-click="useMyLocation">
+                    Use my current location
+                </button>
+            </div>
+            <div t-if="state.shouldLoadMap" t-ref="map" class="o_ess_attendance_zone_map_canvas"/>
+            <div class="row g-2 mt-2">
+                <div class="col-md-4">
+                    <label class="form-label small text-muted mb-0">Latitude</label>
+                    <input type="number" step="any" class="form-control form-control-sm"
+                           t-att-value="latitude" t-on-change="onLatInput" t-att-readonly="props.readonly"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label small text-muted mb-0">Longitude</label>
+                    <input type="number" step="any" class="form-control form-control-sm"
+                           t-att-value="longitude" t-on-change="onLngInput" t-att-readonly="props.readonly"/>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label small text-muted mb-0">Radius (meters)</label>
+                    <input type="number" step="1" class="form-control form-control-sm"
+                           t-att-value="radius" t-on-change="onRadiusInput" t-att-readonly="props.readonly"/>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

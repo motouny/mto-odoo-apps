@@ -1,0 +1,33 @@
+// Typography aligned with the Saudi Design System's public guidance:
+// IBM Plex Sans Arabic for Arabic text, IBM Plex Sans for Latin text.
+// Applied by language, not as a blanket override, so every other
+// installed language keeps its own native font.
+// Comma-separated legacy Google Fonts API (matches Odoo core's own
+// $o-theme-font-configs convention, e.g. web/website primary_variables.scss)
+// - NOT the css2?...:wght@400;500 semicolon-separated syntax: Odoo's asset
+// minifier splits/reorders @import statements on ";", and a URL-embedded
+// semicolon corrupts the entire compiled bundle (found by testing - the
+// whole frontend stylesheet silently dropped to ~2 parsed CSS rules).
+// All 4 selectable font pairs (Settings > Chroma Identity > Typography) are
+// bundled in one request so switching between them is instant - no
+// dynamic <link> injection needed - see models/res_company.py
+// CHROMA_FONT_PAIRS for the matching Python-side definition.
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Arabic:400,500,600,700|IBM+Plex+Sans:400,500,600,700|Cairo:400,500,600,700|Tajawal:400,500,700|Noto+Kufi+Arabic:400,500,600,700&display=swap");
+
+:root {
+    // Runtime-overridable, same !important injection pattern as colors
+    // (views/layout_templates.xml, driven by Settings > Chroma Identity).
+    --chroma-font-latin: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --chroma-font-arabic: "IBM Plex Sans Arabic", "IBM Plex Sans", Tahoma, Arial, sans-serif;
+}
+
+// .o_rtl is set by Odoo on <body>/<html> whenever the active language's
+// direction is RTL (Arabic being the primary target of this theme).
+body:not(.o_rtl) {
+    font-family: var(--chroma-font-latin);
+}
+
+body.o_rtl,
+:lang(ar) {
+    font-family: var(--chroma-font-arabic);
+}

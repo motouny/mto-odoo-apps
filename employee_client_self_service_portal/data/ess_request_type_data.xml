@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="ess_request_type_permission" model="ess.request.type">
+        <field name="name">Permission Request</field>
+        <field name="code">permission</field>
+        <field name="sequence">10</field>
+        <field name="requester_kind">employee</field>
+        <field name="description">Short, hourly permission to leave during working hours.</field>
+    </record>
+
+    <record id="ess_request_type_attendance_correction" model="ess.request.type">
+        <field name="name">Attendance Correction</field>
+        <field name="code">attendance_correction</field>
+        <field name="sequence">20</field>
+        <field name="requester_kind">employee</field>
+        <field name="description">Correction to a missed or wrong check-in/check-out.</field>
+    </record>
+
+    <record id="ess_request_type_overtime" model="ess.request.type">
+        <field name="name">Overtime Request</field>
+        <field name="code">overtime</field>
+        <field name="sequence">30</field>
+        <field name="requester_kind">employee</field>
+        <field name="description">Request approval for overtime worked or planned.</field>
+    </record>
+
+    <record id="ess_request_type_letter" model="ess.request.type">
+        <field name="name">Letter / Certificate Request</field>
+        <field name="code">letter</field>
+        <field name="sequence">40</field>
+        <field name="requester_kind">employee</field>
+        <field name="description">Employment letter, salary certificate, or similar document.</field>
+    </record>
+
+    <record id="ess_request_type_data_change" model="ess.request.type">
+        <field name="name">Data Change Request</field>
+        <field name="code">data_change</field>
+        <field name="sequence">50</field>
+        <field name="requester_kind">employee</field>
+        <field name="description">Request a change to personal data not editable from My Profile.</field>
+    </record>
+
+    <record id="ess_request_type_equipment" model="ess.request.type">
+        <field name="name">Equipment / Custody Request</field>
+        <field name="code">equipment</field>
+        <field name="sequence">60</field>
+        <field name="requester_kind">employee</field>
+        <field name="description">Request equipment, or report a change to items already in custody.</field>
+    </record>
+
+    <record id="ess_request_type_internal_support" model="ess.request.type">
+        <field name="name">Internal Support Request</field>
+        <field name="code">internal_support</field>
+        <field name="sequence">70</field>
+        <field name="requester_kind">employee</field>
+        <field name="description">General internal support (IT, facilities, HR, ...).</field>
+    </record>
+
+    <record id="ess_request_type_service" model="ess.request.type">
+        <field name="name">Service Request</field>
+        <field name="code">service</field>
+        <field name="sequence">80</field>
+        <field name="requester_kind">client</field>
+        <field name="description">A client-submitted request for service or support.</field>
+        <field name="client_approver_role">client_pm</field>
+    </record>
+</odoo>
