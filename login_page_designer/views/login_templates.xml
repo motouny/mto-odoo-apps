@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="web_login_layout_lpd" name="Login Page Designer - Login Layout" inherit_id="web.login_layout">
+
+        <xpath expr="//t[@t-set='body_classname']" position="replace">
+            <t t-set="lpd_preview_raw" t-value="request.session.get('login_page_designer_preview') if request.httprequest.args.get('login_page_designer_preview') else None"/>
+            <t t-set="lpd_cfg" t-value="lpd_preview_raw or request.env['res.company']._lpd_get_login_render_company()._lpd_get_render_config()"/>
+            <t t-set="body_classname" t-value="('bg-100 o_lpd_login_page o_lpd_position_' + lpd_cfg['position']) if lpd_cfg else 'bg-100'"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('container') and hasclass('py-5')]" position="before">
+            <style t-if="lpd_cfg" t-out="request.env['res.company']._lpd_build_style_markup(lpd_cfg)"/>
+        </xpath>
+
+        <xpath expr="//div[contains(@t-attf-class, 'o_database_list')]" position="attributes">
+            <attribute name="t-attf-class">card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list {{'o_lpd_card' if lpd_cfg else ''}}</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('card-body')]/t[@t-out='0']" position="before">
+            <div class="o_lpd_welcome text-center mb-3" t-if="lpd_cfg and (lpd_cfg.get('welcome_title') or lpd_cfg.get('welcome_subtitle'))">
+                <h4 class="mb-1" t-if="lpd_cfg.get('welcome_title')" t-esc="lpd_cfg['welcome_title']"/>
+                <p class="text-muted small mb-0" t-if="lpd_cfg.get('welcome_subtitle')" t-esc="lpd_cfg['welcome_subtitle']"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[hasclass('card-body')]/t[@t-out='0']" position="after">
+            <div class="o_lpd_custom_html" t-if="lpd_cfg and lpd_cfg.get('pro_mode') and lpd_cfg.get('custom_html')"
+                 t-out="request.env['res.company']._lpd_build_html_markup(lpd_cfg)"/>
+        </xpath>
+
+    </template>
+</odoo>

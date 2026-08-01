@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- website.login_layout (priority 20) replaces web.login_layout's entire
+         content with a bare `website.layout` wrapper around a single
+         oe_website_login_container div, discarding everything
+         login_page_designer's own web.login_layout inherit adds (see
+         models/res_company.py._lpd_get_render_config and the note in
+         login_page_designer/views/login_templates.xml). This re-applies the
+         same design directly on top of the website-driven layout. -->
+    <template id="website_login_layout_lpd" name="Login Page Designer - Website Login Layout" inherit_id="website.login_layout">
+        <xpath expr="//div[hasclass('oe_website_login_container')]" position="replace">
+            <t t-set="lpd_preview_raw" t-value="request.session.get('login_page_designer_preview') if request.httprequest.args.get('login_page_designer_preview') else None"/>
+            <t t-set="lpd_cfg" t-value="lpd_preview_raw or request.env['res.company']._lpd_get_login_render_company()._lpd_get_render_config()"/>
+            <t t-if="lpd_cfg" t-set="no_header" t-value="True"/>
+            <t t-if="lpd_cfg" t-set="no_footer" t-value="True"/>
+            <t t-if="lpd_cfg" t-set="body_classname" t-value="((body_classname or '') + ' o_lpd_login_page o_lpd_position_' + lpd_cfg['position']).strip()"/>
+            <style t-if="lpd_cfg" t-out="request.env['res.company']._lpd_build_style_markup(lpd_cfg)"/>
+
+            <t t-if="lpd_cfg">
+                <div class="container py-5">
+                    <div class="card border-0 mx-auto o_lpd_card" style="max-width: 300px;">
+                        <div class="card-body">
+                            <div class="text-center pb-3 border-bottom mb-4">
+                                <img src="/web/binary/company_logo" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
+                            </div>
+                            <div class="o_lpd_welcome text-center mb-3" t-if="lpd_cfg.get('welcome_title') or lpd_cfg.get('welcome_subtitle')">
+                                <h4 class="mb-1" t-if="lpd_cfg.get('welcome_title')" t-esc="lpd_cfg['welcome_title']"/>
+                                <p class="text-muted small mb-0" t-if="lpd_cfg.get('welcome_subtitle')" t-esc="lpd_cfg['welcome_subtitle']"/>
+                            </div>
+                            <t t-out="0"/>
+                            <div class="o_lpd_custom_html" t-if="lpd_cfg.get('pro_mode') and lpd_cfg.get('custom_html')"
+                                 t-out="request.env['res.company']._lpd_build_html_markup(lpd_cfg)"/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <div t-else="" class="oe_website_login_container" t-out="0"/>
+        </xpath>
+    </template>
+</odoo>

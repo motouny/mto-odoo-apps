@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.login.page.designer</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="Login Page Designer" string="Login Page Designer" name="login_page_designer">
+                    <block title="Enable" help="Switch on to apply your custom login page design. Leave off to keep Odoo's default login page.">
+                        <setting>
+                            <field name="lpd_enabled"/>
+                        </setting>
+                    </block>
+
+                    <block title="Live Preview" help="A real, live view of your login page - it updates as you change settings below, before you save anything" invisible="not lpd_enabled">
+                        <widget name="login_page_designer_preview"/>
+                    </block>
+
+                    <block title="Position" help="Where the login card sits on the screen" invisible="not lpd_enabled">
+                        <setting>
+                            <field name="lpd_position" widget="radio" options="{'horizontal': true}"/>
+                        </setting>
+                    </block>
+
+                    <block title="Card Colors" help="The login card itself - background, text and the login button/links" invisible="not lpd_enabled">
+                        <setting>
+                            <field name="lpd_card_bg_color" widget="color"/>
+                        </setting>
+                        <setting>
+                            <field name="lpd_card_text_color" widget="color"/>
+                        </setting>
+                        <setting>
+                            <field name="lpd_button_color" widget="color"/>
+                        </setting>
+                    </block>
+
+                    <block title="Background" help="What fills the rest of the screen behind the card" invisible="not lpd_enabled">
+                        <setting>
+                            <field name="lpd_bg_type" widget="radio" options="{'horizontal': true}"/>
+                        </setting>
+                        <setting invisible="lpd_bg_type != 'color'">
+                            <field name="lpd_bg_color" widget="color"/>
+                        </setting>
+                        <setting invisible="lpd_bg_type != 'gradient'">
+                            <field name="lpd_bg_gradient_start" widget="color" string="Gradient Start"/>
+                        </setting>
+                        <setting invisible="lpd_bg_type != 'gradient'">
+                            <field name="lpd_bg_gradient_end" widget="color" string="Gradient End"/>
+                        </setting>
+                        <setting invisible="lpd_bg_type != 'gradient'">
+                            <field name="lpd_bg_gradient_angle" string="Gradient Angle (deg)"/>
+                        </setting>
+                        <setting invisible="lpd_bg_type != 'image'">
+                            <field name="lpd_bg_image" widget="image" class="oe_avatar" options="{'size': [0, 120]}"/>
+                            <field name="lpd_bg_image_filename" invisible="1"/>
+                        </setting>
+                        <setting invisible="lpd_bg_type not in ('image', 'gradient')" help="A dark layer over the background for legible text, 0 = none, 0.9 = almost black">
+                            <field name="lpd_bg_overlay_opacity"/>
+                        </setting>
+                    </block>
+
+                    <block title="Welcome Text" help="Optional heading shown above the login form, translatable per installed language" invisible="not lpd_enabled">
+                        <setting>
+                            <field name="lpd_welcome_title" placeholder="e.g. Welcome back"/>
+                        </setting>
+                        <setting>
+                            <field name="lpd_welcome_subtitle" placeholder="e.g. Sign in to continue to your workspace"/>
+                        </setting>
+                    </block>
+
+                    <block title="Pro Mode" help="For advanced users - inject your own CSS and an extra HTML panel directly into the login page, on top of the design above. Only Settings administrators can edit this." invisible="not lpd_enabled">
+                        <setting>
+                            <field name="lpd_pro_mode"/>
+                        </setting>
+                        <setting invisible="not lpd_pro_mode">
+                            <field name="lpd_custom_css" widget="text" placeholder=".o_lpd_card { border-radius: 24px; }"/>
+                        </setting>
+                        <setting invisible="not lpd_pro_mode">
+                            <field name="lpd_custom_html" widget="text" placeholder="&lt;p&gt;Need help? Contact IT support.&lt;/p&gt;"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
